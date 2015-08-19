@@ -12,15 +12,15 @@ public class LayRay : MonoBehaviour {
 	void Update () {
 	
         Vector3 curPos = gameObject.transform.position;
-        Vector3 target = curPos + new Vector3(0, 0, 100);
+        //Vector3 target = curPos + new Vector3(0, 0, 100);
         //Vector3 direction = target - curPos;  //垂直向下方式
         Vector3 direction = curPos - Camera.main.transform.position;
         curPos.x = curPos.x + direction.normalized.x;
         curPos.y = curPos.y + direction.normalized.y;
         curPos.z = curPos.z + direction.normalized.z;
-        direction.x = direction.x * 30;
-        direction.y = direction.y * 3;
-        direction.z = direction.z * 30;
+        //direction.x = direction.x * 3;
+        //direction.y = direction.y * 3;
+        //direction.z = direction.z * 3;
         RaycastHit hit;
         if (Physics.Raycast(curPos, direction, out hit))
         {
@@ -37,7 +37,7 @@ public class LayRay : MonoBehaviour {
                     RayHit.RightHitName = hit.collider.name;
                 }
                 RayHit.hitName = hit.collider.name;
-                //Debug.Log(RayHit.hitName);
+                Debug.Log(RayHit.hitName);
                 Debug.DrawRay(curPos, direction, Color.red);
             }
         }

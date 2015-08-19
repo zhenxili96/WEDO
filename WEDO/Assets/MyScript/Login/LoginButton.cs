@@ -55,7 +55,7 @@ public class LoginButton : MonoBehaviour
 
     private void run()
     {
-        Application.LoadLevel(1);
+        Application.LoadLevel(Name.ENTRYPAGENAME);
     }
 
     private void beginDraw()
