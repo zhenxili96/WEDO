@@ -15,7 +15,7 @@ public class AddButton : MonoBehaviour
     public static int projCount = 0;
     private Vector3 delta_Pos = new Vector3(7, 0, 0);
     private string PARENTNAME = "ProjBar";
-    private Vector3 closePos = new Vector3();
+    private Vector3 closePos = new Vector3();//跟随起点
     private bool closePosTemp = false;
     private float moveRate = 1;
 

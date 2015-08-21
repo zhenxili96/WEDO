@@ -13,7 +13,7 @@ public class LeftHandProperty : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        gameObject.renderer.material.color = Color.green;
     }
 
     // Update is called once per frame
@@ -36,12 +36,12 @@ public class LeftHandProperty : MonoBehaviour
     public void handClosed()
     {
         isClosed = true;
-        gameObject.renderer.material.color = Color.blue;
+        gameObject.renderer.material.color = Color.red;
     }
 
     public void handOpened()
     {
         isClosed = false;
-        gameObject.renderer.material.color = Color.red;
+        gameObject.renderer.material.color = Color.green;
     }
 }

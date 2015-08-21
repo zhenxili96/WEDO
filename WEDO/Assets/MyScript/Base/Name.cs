@@ -8,3 +8,5 @@ public class Name
     public static string PROJECTIONINFOPAGE = "project_info";
     public static string DESIGNROOMPAGENAME = "room";
 }
+
+public enum HAND { LEFTHAND, RIGHTHAND };

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Assets\Mirror Shaders\Mirror.cs" />
     <Compile Include="Assets\MyScript\Base\BaseButton.cs" />
+    <Compile Include="Assets\MyScript\Base\ColorTable.cs" />
     <Compile Include="Assets\MyScript\Base\Name.cs" />
     <Compile Include="Assets\MyScript\Base\RayHit.cs" />
     <Compile Include="Assets\MyScript\Entry\PersonButton.cs" />
@@ -81,6 +82,10 @@
     <Compile Include="Assets\MyScript\Projection\BackButton.cs" />
     <Compile Include="Assets\MyScript\Projection\Disk.cs" />
     <Compile Include="Assets\MyScript\Projection\EnterButton.cs" />
+    <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
+    <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
+    <Compile Include="Assets\MyScript\Room\ShapeItem.cs" />
+    <Compile Include="Assets\MyScript\Room\TextButton.cs" />
     <Compile Include="Assets\MyScript\Text\text.cs" />
     <Compile Include="Assets\MyScript\Text\text11.cs" />
     <Compile Include="Assets\MyScript\aaaa.cs" />

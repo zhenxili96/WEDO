@@ -5,7 +5,6 @@ public class LayRay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -30,15 +29,32 @@ public class LayRay : MonoBehaviour {
                 if (gameObject.name.Equals(LeftHandProperty.HANDNAME))
                 {
                     RayHit.LeftHitName = hit.collider.name;
+                    RayHit.hitName = hit.collider.name;
+                    //Debug.Log(RayHit.hitName);
+                    Debug.DrawRay(curPos, direction, Color.red);
                 }
-                //**ÐÂÔö
-                if (gameObject.name.Equals(RightHandProperty.HANDNAME))
+                else if (gameObject.name.Equals(RightHandProperty.HANDNAME))
                 {
                     RayHit.RightHitName = hit.collider.name;
+                    Debug.DrawRay(curPos, direction, Color.red);
                 }
-                RayHit.hitName = hit.collider.name;
-                Debug.Log(RayHit.hitName);
-                Debug.DrawRay(curPos, direction, Color.red);
+                else
+                {
+                    RayHit.hitName = hit.collider.name;
+                    //Debug.Log(RayHit.hitName);
+                    Debug.DrawRay(curPos, direction, Color.red);
+                }
+                //if (gameObject.name.Equals(LeftHandProperty.HANDNAME))
+                //{
+                //    RayHit.LeftHitName = hit.collider.name;
+                //}
+                //if (gameObject.name.Equals(RightHandProperty.HANDNAME))
+                //{
+                //    RayHit.RightHitName = hit.collider.name;
+                //}
+                //RayHit.hitName = hit.collider.name;
+                ////Debug.Log(RayHit.hitName);
+                //Debug.DrawRay(curPos, direction, Color.red);
             }
         }
 	}
