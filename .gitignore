@@ -4,6 +4,10 @@ Unity generated
 Temp/
 Library/
 WEDO/Library/
+/Library
+/Library/ScriptAssemblies
+/Library/metadata
+
 =====================================
 Visual Studio / MonoDevelop generated
 =====================================
