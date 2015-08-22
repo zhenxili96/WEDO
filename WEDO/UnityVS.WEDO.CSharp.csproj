@@ -82,6 +82,7 @@
     <Compile Include="Assets\MyScript\Projection\BackButton.cs" />
     <Compile Include="Assets\MyScript\Projection\Disk.cs" />
     <Compile Include="Assets\MyScript\Projection\EnterButton.cs" />
+    <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeItem.cs" />

@@ -21,14 +21,18 @@ public class ShapeButton : MonoBehaviour
         checkHover();
         if (isHover)
         {
-            if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
+            if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 GameObject.Find(MENUNAME).SetActive(false);
+                LeftHandProperty.clickUsed = true;
+                Debug.Log("click used");
                 GameObject.Find(MENUBARNAME).transform.Find(MENUSHAPENAME).gameObject.SetActive(true);
             }
-            if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed)
+            if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 GameObject.Find(MENUNAME).SetActive(false);
+                RightHandProperty.clickUsed = true;
+                Debug.Log("click used");
                 GameObject.Find(MENUBARNAME).transform.Find(MENUSHAPENAME).gameObject.SetActive(true);
             }
         }
@@ -36,7 +40,7 @@ public class ShapeButton : MonoBehaviour
 
     private void checkHover()
     {
-        if (RayHit.hitName.Equals(name))
+        if (MenuBar.isOut && RayHit.hitName.Equals(name))
         {
             isHover = true;
             renderer.material.color = Color.red;

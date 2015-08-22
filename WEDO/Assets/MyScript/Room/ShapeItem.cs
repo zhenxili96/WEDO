@@ -58,7 +58,7 @@ public class ShapeItem : MonoBehaviour
 
     private void checkHover()
     {
-        Debug.Log(RayHit.LeftHitName + " + " + name);
+        //Debug.Log(RayHit.LeftHitName + " + " + name);
         if (RayHit.LeftHitName.Equals(gameObject.name)
             || RayHit.RightHitName.Equals(gameObject.name))
         {

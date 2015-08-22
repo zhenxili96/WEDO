@@ -5,6 +5,7 @@ public class LeftHandProperty : MonoBehaviour
 {
 
     public static bool isClosed = false;
+    public static bool clickUsed = true;   //每次手势闭合只能被用一次 
     public static string HANDNAME = "LeftHand";
     public static Vector3 closePos = new Vector3();
     public static bool closePosWait = true; //防止因位置还没更新而已被其他脚本使用
@@ -25,6 +26,8 @@ public class LeftHandProperty : MonoBehaviour
             closePos = gameObject.transform.position;
             closePosTemp = true;
             closePosWait = false;
+            clickUsed = false;
+            Debug.Log("close a time");
         }
         if (!isClosed)
         {

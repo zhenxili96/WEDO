@@ -20,6 +20,7 @@ public class LayRay : MonoBehaviour {
         //direction.x = direction.x * 3;
         //direction.y = direction.y * 3;
         //direction.z = direction.z * 3;
+        Vector3 drawDirection = direction * 5;
         RaycastHit hit;
         if (Physics.Raycast(curPos, direction, out hit))
         {
@@ -31,18 +32,18 @@ public class LayRay : MonoBehaviour {
                     RayHit.LeftHitName = hit.collider.name;
                     RayHit.hitName = hit.collider.name;
                     //Debug.Log(RayHit.hitName);
-                    Debug.DrawRay(curPos, direction, Color.red);
+                    Debug.DrawRay(curPos, hit.point - curPos, Color.red);
                 }
                 else if (gameObject.name.Equals(RightHandProperty.HANDNAME))
                 {
                     RayHit.RightHitName = hit.collider.name;
-                    Debug.DrawRay(curPos, direction, Color.red);
+                    Debug.DrawRay(curPos, hit.point - curPos, Color.red);
                 }
                 else
                 {
                     RayHit.hitName = hit.collider.name;
                     //Debug.Log(RayHit.hitName);
-                    Debug.DrawRay(curPos, direction, Color.red);
+                    Debug.DrawRay(curPos, hit.point - curPos, Color.red);
                 }
                 //if (gameObject.name.Equals(LeftHandProperty.HANDNAME))
                 //{

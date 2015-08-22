@@ -9,9 +9,11 @@ public class TextButton : MonoBehaviour
     private bool isHover = false;
     private float lockTime = 3.0f;
     private Color textOriginColor = Color.red;
-    private Vector3 textOriginPos = new Vector3(0, 0, 22);
+    private Vector3 textOriginPos = new Vector3(-28, 0, 22);
     private int textInstanceCount = 0;
     private string TEXTPARENTNAME = "TextInstance";
+    private string ROOMNPCNAME = "Room_NPC";
+    private string TEXTBOARDNAME = "TextBoard";
 
     // Use this for initialization
     void Start()
@@ -37,7 +39,16 @@ public class TextButton : MonoBehaviour
                     textLock = true;
                     Invoke("textLockRelease", lockTime);
                 }
+                if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed))
+                {
+                    LeftHandProperty.clickUsed = true;
+                }
+                else if ((RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed))
+                {
+                    RightHandProperty.clickUsed = true;
+                }
                 textInstanceCount++;
+                //GameObject.Find(ROOMNPCNAME).transform.Find(TEXTBOARDNAME).gameObject.SetActive(true);
                 GameObject temp = (GameObject)Instantiate(Resources.Load("textPrefab"));
                 temp.transform.parent = GameObject.Find(TEXTPARENTNAME).transform;
                 temp.transform.position = textOriginPos;
@@ -57,7 +68,7 @@ public class TextButton : MonoBehaviour
 
     private void checkHover()
     {
-        if (RayHit.hitName.Equals(name))
+        if (MenuBar.isOut && RayHit.hitName.Equals(name))
         {
             isHover = true;
             renderer.material.color = Color.red;

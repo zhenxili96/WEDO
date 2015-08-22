@@ -8,7 +8,7 @@ public class ShapeClass : MonoBehaviour
 
     private bool isHover = false;
     private Color originColor;
-    private bool shapeLock = false;
+    private bool shapeLock = false; //防止连续生成
     private float lockTime = 3.0f;
     public SHAPE shape;
     private static int circleInstanceCount = 0;
@@ -35,8 +35,8 @@ public class ShapeClass : MonoBehaviour
         checkHover();
         if (isHover)
         {
-            if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
-                || (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed))
+            if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+                || (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed))
             {
                 if (shapeLock)
                 {
@@ -46,6 +46,16 @@ public class ShapeClass : MonoBehaviour
                 {
                     shapeLock = true;
                     Invoke("shapeLockRelease", lockTime);
+                }
+                if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed))
+                {
+                    LeftHandProperty.clickUsed = true;
+                    Debug.Log("click used");
+                }
+                else if ((RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed))
+                {
+                    RightHandProperty.clickUsed = true;
+                    Debug.Log("click used");
                 }
                 GameObject temp;
                 switch (shape)
@@ -94,7 +104,7 @@ public class ShapeClass : MonoBehaviour
     private void checkHover()
     {
         //Debug.Log(RayHit.hitName + " + " + gameObject.name);
-        if (RayHit.hitName.Equals(gameObject.name))
+        if (MenuBar.isOut && RayHit.hitName.Equals(gameObject.name))
         {
             isHover = true;
             renderer.material.color = Color.red;
