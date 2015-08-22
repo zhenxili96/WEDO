@@ -27,8 +27,8 @@ public class TextButton : MonoBehaviour
         checkHover();
         if (isHover)
         {
-            if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
-                || (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed))
+            if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+                || (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed))
             {
                 if (textLock)
                 {

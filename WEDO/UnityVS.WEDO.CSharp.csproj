@@ -82,11 +82,17 @@
     <Compile Include="Assets\MyScript\Projection\BackButton.cs" />
     <Compile Include="Assets\MyScript\Projection\Disk.cs" />
     <Compile Include="Assets\MyScript\Projection\EnterButton.cs" />
+    <Compile Include="Assets\MyScript\Room\ColorButton.cs" />
+    <Compile Include="Assets\MyScript\Room\ColorChoose.cs" />
+    <Compile Include="Assets\MyScript\Room\ColorItem.cs" />
+    <Compile Include="Assets\MyScript\Room\DownButton.cs" />
     <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeItem.cs" />
     <Compile Include="Assets\MyScript\Room\TextButton.cs" />
+    <Compile Include="Assets\MyScript\Room\TextItem.cs" />
+    <Compile Include="Assets\MyScript\Room\UpButton.cs" />
     <Compile Include="Assets\MyScript\Text\text.cs" />
     <Compile Include="Assets\MyScript\Text\text11.cs" />
     <Compile Include="Assets\MyScript\aaaa.cs" />
@@ -164,6 +170,7 @@
     <Compile Include="Assets\ReflectionMirror\MirrorReflection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Font\FontShader.shader" />
     <None Include="Assets\Mirror Shaders\Mirror-AlphaBumpSpec.shader" />
     <None Include="Assets\Mirror Shaders\Mirror-AlphaSpecSphere.shader" />
     <None Include="Assets\Mirror Shaders\Mirror-BumpSpec.shader" />

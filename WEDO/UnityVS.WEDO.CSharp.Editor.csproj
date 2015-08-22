@@ -90,6 +90,7 @@
     <Compile Include="Assets\RSUnityToolkit\Internals\Editor\VirtualWorldBoxActionEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Font\FontShader.shader" />
     <None Include="Assets\Mirror Shaders\Mirror-AlphaBumpSpec.shader" />
     <None Include="Assets\Mirror Shaders\Mirror-AlphaSpecSphere.shader" />
     <None Include="Assets\Mirror Shaders\Mirror-BumpSpec.shader" />
