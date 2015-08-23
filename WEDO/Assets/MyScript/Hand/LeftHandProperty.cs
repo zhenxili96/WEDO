@@ -27,7 +27,6 @@ public class LeftHandProperty : MonoBehaviour
             closePosTemp = true;
             closePosWait = false;
             clickUsed = false;
-            Debug.Log("close a time");
         }
         if (!isClosed)
         {

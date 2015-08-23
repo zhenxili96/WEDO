@@ -9,7 +9,7 @@ public class ColorItem : MonoBehaviour
     private Vector3 originPos;
     private Vector3 newPos;
     private bool isHover = false;
-    public static Color curColor = Color.white;
+    public static Color curColor;
     private string CURCOLORBOARDNAME = "CurColor";
 
     // Use this for initialization
@@ -27,6 +27,7 @@ public class ColorItem : MonoBehaviour
         checkHover();
         checkChoose();
         checkClick();
+        GameObject.Find(CURCOLORBOARDNAME).renderer.material.color = curColor;
     }
 
     private void checkClick()
@@ -51,7 +52,6 @@ public class ColorItem : MonoBehaviour
         int rowNum = name.ToCharArray()[0] - 'a';
         int colNum = name.ToCharArray()[1] - '1';
         curColor = ColorTable.Table[rowNum, colNum];
-        GameObject.Find(CURCOLORBOARDNAME).renderer.material.color = curColor;
     }
 
     private void checkChoose()

@@ -7,8 +7,8 @@ public class MenuBar : MonoBehaviour
     private bool statue = false;
     private bool isHover = false;
     public static bool isOut = false;
-    private Vector3 outPos = new Vector3(-37.5f, 0, 25);
-    private Vector3 inPos = new Vector3(-52f, 0, 25);
+    private Vector3 outPos = new Vector3(-43f, 0, 40);
+    private Vector3 inPos = new Vector3(-53f, 0, 40);
     private float outSpeed = 10f;
     private float inSpeed = 15f;
     private string barName = "menubar";
@@ -46,7 +46,7 @@ public class MenuBar : MonoBehaviour
         {
             transform.Translate(new Vector3(-1, 0, 0) * Time.deltaTime * inSpeed);
         }
-        if (curPos.x > inPos.x)
+        if (curPos.x >= outPos.x)
         {
             isOut = true;
         }

@@ -8,8 +8,7 @@ public class TextButton : MonoBehaviour
     private bool textLock = false;
     private bool isHover = false;
     private float lockTime = 3.0f;
-    private Color textOriginColor = Color.red;
-    private Vector3 textOriginPos = new Vector3(-28, 0, 22);
+    private Vector3 textOriginPos = new Vector3(-20, 5, 22);
     private int textInstanceCount = 0;
     private string TEXTPARENTNAME = "TextInstance";
     private string ROOMNPCNAME = "Room_NPC";
@@ -51,12 +50,12 @@ public class TextButton : MonoBehaviour
                 //GameObject.Find(ROOMNPCNAME).transform.Find(TEXTBOARDNAME).gameObject.SetActive(true);
                 GameObject temp = (GameObject)Instantiate(Resources.Load("textPrefab"));
                 temp.transform.parent = GameObject.Find(TEXTPARENTNAME).transform;
-                temp.transform.position = textOriginPos;
-                temp.renderer.material.color = textOriginColor;
                 temp.name = "TextInstance_" + textInstanceCount;
-                TextMesh tempText = temp.GetComponent<TextMesh>();
-                tempText.text = "hello";
-                tempText.characterSize = 1.5f;
+                GameObject tempChild = temp.transform.GetChild(0).gameObject;
+                tempChild.transform.position = textOriginPos;
+                TextMesh tempText = tempChild.GetComponent<TextMesh>();
+                tempText.text = "Hello world";
+                tempText.fontSize = 20;
             }
         }
     }

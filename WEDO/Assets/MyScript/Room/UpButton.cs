@@ -16,7 +16,7 @@ public class UpButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        checkHover();
     }
 
     private void checkHover()

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TextItem : MonoBehaviour
+public class RoomStatic : MonoBehaviour
 {
+
+    public static string curFocus = "";
 
     // Use this for initialization
     void Start()
@@ -13,6 +15,6 @@ public class TextItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        renderer.material.color = ColorItem.curColor;
+
     }
 }
