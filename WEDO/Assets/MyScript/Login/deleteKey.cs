@@ -29,8 +29,13 @@ public class deleteKey : MonoBehaviour
             if (!isPressed)
             {
                 isPressed = true;
-                GameObject.Find("Login_accountText").SendMessage("deleteChar");
-                GameObject.Find("Login_passwordText").SendMessage("deleteChar");
+                //GameObject.Find("Login_accountText").SendMessage("deleteChar");
+                //GameObject.Find("Login_passwordText").SendMessage("deleteChar");
+                if (Key.curSentence.Length <= 0)
+                {
+                    return;
+                }
+                Key.curSentence = Key.curSentence.Remove(Key.curSentence.Length - 1);
             }
         }
         else

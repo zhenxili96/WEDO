@@ -17,7 +17,7 @@ public class ColorItem : MonoBehaviour
     {
         originPos = transform.localPosition;
         newPos = originPos;
-        newPos.z = 8;
+        newPos.z = -5;
         GameObject.Find(CURCOLORBOARDNAME).renderer.material.color = curColor;
     }
 

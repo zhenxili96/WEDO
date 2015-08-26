@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Key : MonoBehaviour
+public class RoomKey : MonoBehaviour
 {
 
     private bool isHover = false;
@@ -21,37 +21,38 @@ public class Key : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        clickManager();
+        checkHover();
+        checkClick();
     }
 
-    private void clickManager()
+    private void checkClick()
     {
-        checkHover();
-        if (isHover && HandProperty.isClosed)
+        if (isHover)
         {
-            renderer.material.color = Color.red;
-            if (!isPressed)
+            if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                isPressed = true;
                 curSentence += MySelf;
+                LeftHandProperty.clickUsed = true;
             }
-        }
-        else
-        {
-            isPressed = false;
-            renderer.material.color = originColor;
+            if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+            {
+                curSentence += MySelf;
+                RightHandProperty.clickUsed = true;
+            }
         }
     }
 
     private void checkHover()
     {
-        if (RayHit.hitName.Equals(name))
+        if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
         {
             isHover = true;
+            renderer.material.color = Color.red;
         }
         else
         {
             isHover = false;
+            renderer.material.color = originColor;
         }
     }
 }

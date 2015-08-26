@@ -8,7 +8,7 @@ public class TextButton : MonoBehaviour
     private bool textLock = false;
     private bool isHover = false;
     private float lockTime = 3.0f;
-    private Vector3 textOriginPos = new Vector3(-20, 5, 22);
+    private Vector3 textOriginPos = new Vector3(-70, 1, 22);
     private int textInstanceCount = 0;
     private string TEXTPARENTNAME = "TextInstance";
     private string ROOMNPCNAME = "Room_NPC";
@@ -55,7 +55,8 @@ public class TextButton : MonoBehaviour
                 tempChild.transform.position = textOriginPos;
                 TextMesh tempText = tempChild.GetComponent<TextMesh>();
                 tempText.text = "Hello world";
-                tempText.fontSize = 20;
+                tempText.fontSize = 100;
+                RoomKeyBoard.isOut = true;
             }
         }
     }

@@ -5,10 +5,10 @@ public class ColorChoose : MonoBehaviour
 {
     public static bool isOut = false; //展开这个过程包括展开这个状态
     public static bool isOpen = false;  //展开这个状态
-    private Vector3 outPos = new Vector3(0, 8, 35);
-    private Vector3 inPos = new Vector3(0, 27, 35);
-    private float inSpeed = 20f;
-    private float outSpeed = 12f;
+    private Vector3 outPos = new Vector3(0, 14, 40);
+    private Vector3 inPos = new Vector3(0, 75, 35);
+    private float inSpeed = 50f;
+    private float outSpeed = 40f;
 
     // Use this for initialization
     void Start()

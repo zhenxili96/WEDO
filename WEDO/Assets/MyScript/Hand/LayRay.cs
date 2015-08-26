@@ -11,9 +11,9 @@ public class LayRay : MonoBehaviour {
 	void Update () {
 	
         Vector3 curPos = gameObject.transform.position;
-        //Vector3 target = curPos + new Vector3(0, 0, 100);
-        //Vector3 direction = target - curPos;  //垂直向下方式
-        Vector3 direction = curPos - Camera.main.transform.position;
+        Vector3 target = curPos + new Vector3(0, 0, 100);
+        Vector3 direction = target - curPos;  //垂直向下方式
+        //Vector3 direction = curPos - Camera.main.transform.position;
         curPos.x = curPos.x + direction.normalized.x;
         curPos.y = curPos.y + direction.normalized.y;
         curPos.z = curPos.z + direction.normalized.z;

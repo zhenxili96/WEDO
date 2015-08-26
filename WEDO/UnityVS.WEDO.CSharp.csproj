@@ -87,11 +87,17 @@
     <Compile Include="Assets\MyScript\Room\ColorChoose.cs" />
     <Compile Include="Assets\MyScript\Room\ColorItem.cs" />
     <Compile Include="Assets\MyScript\Room\DownButton.cs" />
+    <Compile Include="Assets\MyScript\Room\KeyBoardBackButton.cs" />
+    <Compile Include="Assets\MyScript\Room\LayerButton.cs" />
     <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
+    <Compile Include="Assets\MyScript\Room\ModeBackButton.cs" />
+    <Compile Include="Assets\MyScript\Room\RoomKey.cs" />
+    <Compile Include="Assets\MyScript\Room\RoomKeyBoard.cs" />
     <Compile Include="Assets\MyScript\Room\RoomStatic.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
     <Compile Include="Assets\MyScript\Room\ShapeItem.cs" />
+    <Compile Include="Assets\MyScript\Room\ShapeMenuBackButton.cs" />
     <Compile Include="Assets\MyScript\Room\TextButton.cs" />
     <Compile Include="Assets\MyScript\Room\TextInstance.cs" />
     <Compile Include="Assets\MyScript\Room\UpButton.cs" />

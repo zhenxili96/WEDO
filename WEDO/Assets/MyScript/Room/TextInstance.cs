@@ -11,6 +11,7 @@ public class TextInstance : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        RoomKey.curSentence = GetComponent<TextMesh>().text;
         name = transform.parent.name + "_prefab";
         RoomStatic.curFocus = name;
         isFocus = true;
@@ -30,7 +31,7 @@ public class TextInstance : MonoBehaviour
 
     private void checkScale()
     {
-        GetComponent<TextMesh>().fontSize = (int)(20 * transform.localScale.x);
+        GetComponent<TextMesh>().fontSize = (int)(100 * transform.localScale.x);
         transform.parent.localScale = new Vector3(1 / transform.localScale.x,
             1 / transform.localScale.y, 1 / transform.localScale.z);
     }
@@ -48,6 +49,7 @@ public class TextInstance : MonoBehaviour
         {
             isFocus = true;
             renderer.material.color = ColorItem.curColor;
+            GetComponent<TextMesh>().text = RoomKey.curSentence;
         }
         else
         {
