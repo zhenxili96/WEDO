@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShapeMenuBackButton : MonoBehaviour
+public class RoomKeyDelete : MonoBehaviour
 {
-    public static string MENUNAME = "menu";
-    public static string MENUBARNAME = "MenuBar";
-    public static string MENUSHAPENAME = "menu_shape";
+
     private bool isHover = false;
     private Color originColor;
     private Color hoverColor = Color.red;
@@ -28,20 +26,26 @@ public class ShapeMenuBackButton : MonoBehaviour
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
         {
             LeftHandProperty.clickUsed = true;
-            GameObject.Find(MENUSHAPENAME).SetActive(false);
-            GameObject.Find(MENUBARNAME).transform.Find(MENUNAME).gameObject.SetActive(true);
+            if (RoomKey.curSentence.Length <= 0)
+            {
+                return;
+            }
+            RoomKey.curSentence = RoomKey.curSentence.Remove(RoomKey.curSentence.Length - 1);
         }
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             RightHandProperty.clickUsed = true;
-            GameObject.Find(MENUSHAPENAME).SetActive(false);
-            GameObject.Find(MENUBARNAME).transform.Find(MENUNAME).gameObject.SetActive(true);
+            if (RoomKey.curSentence.Length <= 0)
+            {
+                return;
+            }
+            RoomKey.curSentence = RoomKey.curSentence.Remove(RoomKey.curSentence.Length - 1);
         }
     }
 
     private void checkHover()
     {
-        if (MenuBar.isOut && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        if (RoomKeyBoard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
             renderer.material.color = hoverColor;

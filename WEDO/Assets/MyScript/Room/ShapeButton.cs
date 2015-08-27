@@ -19,20 +19,23 @@ public class ShapeButton : MonoBehaviour
     void Update()
     {
         checkHover();
+        checkClick();
+    }
+
+    private void checkClick()
+    {
         if (isHover)
         {
             if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 GameObject.Find(MENUNAME).SetActive(false);
                 LeftHandProperty.clickUsed = true;
-                Debug.Log("click used");
                 GameObject.Find(MENUBARNAME).transform.Find(MENUSHAPENAME).gameObject.SetActive(true);
             }
             if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 GameObject.Find(MENUNAME).SetActive(false);
                 RightHandProperty.clickUsed = true;
-                Debug.Log("click used");
                 GameObject.Find(MENUBARNAME).transform.Find(MENUSHAPENAME).gameObject.SetActive(true);
             }
         }

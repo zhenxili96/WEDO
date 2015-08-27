@@ -4,6 +4,7 @@ using System.Collections;
 public class RoomKeyBoard : MonoBehaviour
 {
     public static bool isOut = false;
+    public static bool isOpen = false;
     private Vector3 outPos = new Vector3(0, -19, 0);
     private Vector3 inPos = new Vector3(0, -128, 0);
     private static float outSpeed = 50f;
@@ -23,11 +24,16 @@ public class RoomKeyBoard : MonoBehaviour
 
     private void checkOut()
     {
+        isOpen = false;
         if (isOut)
         {
             if (transform.position.y < outPos.y)
             {
                 transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * outSpeed);
+            }
+            else
+            {
+                isOpen = true;
             }
         }
         else

@@ -25,7 +25,6 @@ public class ColorItem : MonoBehaviour
     void Update()
     {
         checkHover();
-        checkChoose();
         checkClick();
         GameObject.Find(CURCOLORBOARDNAME).renderer.material.color = curColor;
     }
@@ -73,13 +72,17 @@ public class ColorItem : MonoBehaviour
 
     private void checkHover()
     {
-        if (ColorChoose.isOpen && RayHit.hitName.Equals(name))
+        if (ColorChoose.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
+            transform.localPosition = newPos;
+            transform.localScale = newScale;
         }
         else
         {
             isHover = false;
+            transform.localPosition = originPos;
+            transform.localScale = originScale;
         }
     }
 }

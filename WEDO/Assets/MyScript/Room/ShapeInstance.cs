@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShapeItem : MonoBehaviour
+public class ShapeInstance : MonoBehaviour
 {
-
-    private bool isActive = true;
+    public bool isFocus = false;
     private bool isHover = false;
     private Color originColor;
 
@@ -12,20 +11,44 @@ public class ShapeItem : MonoBehaviour
     void Start()
     {
         originColor = renderer.material.color;
+        RoomStatic.curFocus = transform.parent.name;
+        isFocus = true;
+        ColorItem.curColor = renderer.material.color;
     }
 
     // Update is called once per frame
     void Update()
     {
         checkHover();
-        DragManage();
+        checkDrag();
+        checkFocus();
     }
 
-    private void DragManage()
+    private void checkFocus()
+    {
+        if (RoomStatic.curFocus.Equals(transform.parent.name))
+        {
+            isFocus = true;
+            renderer.material.color = ColorItem.curColor;
+        } 
+        else if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
+            || (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed))
+        {
+            isFocus = true;
+            RoomStatic.curFocus = transform.parent.name;
+            ColorItem.curColor = renderer.material.color;
+        }
+        else
+        {
+            isFocus = false;
+        }
+    }
+
+    private void checkDrag()
     {
         HAND hand = HAND.LEFTHAND;
         bool isDrag = false;
-        if (isActive)
+        if (isFocus)
         {
             if (RayHit.LeftHitName.Equals(gameObject.name) && LeftHandProperty.isClosed)
             {
@@ -58,7 +81,6 @@ public class ShapeItem : MonoBehaviour
 
     private void checkHover()
     {
-        //Debug.Log(RayHit.LeftHitName + " + " + name);
         if (RayHit.LeftHitName.Equals(gameObject.name)
             || RayHit.RightHitName.Equals(gameObject.name))
         {

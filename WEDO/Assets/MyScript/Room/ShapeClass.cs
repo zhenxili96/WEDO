@@ -16,6 +16,7 @@ public class ShapeClass : MonoBehaviour
     private static int roundRectangleInstanceCount = 0;
     private static int triangleInstanceCount = 0;
     private static Vector3 initPos = new Vector3(0, 1, 23);
+    private static Vector3 initScale = new Vector3(5, 5, 1);
     private static string SHAPEPARETNNAME = "ShapeInstance";
 
     // Use this for initialization
@@ -27,12 +28,12 @@ public class ShapeClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        checkHover();
         createInstanceManage();
     }
 
     private void createInstanceManage()
     {
-        checkHover();
         if (isHover)
         {
             if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
@@ -65,6 +66,7 @@ public class ShapeClass : MonoBehaviour
                         temp = (GameObject)Instantiate(Resources.Load("shape_circle"));
                         temp.name = "CircleInstance_" + circleInstanceCount;
                         temp.transform.position = initPos;
+                        temp.transform.localScale = initScale;
                         temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
                         break;
                     case SHAPE.RECTANGLE:
@@ -72,6 +74,7 @@ public class ShapeClass : MonoBehaviour
                         temp = (GameObject)Instantiate(Resources.Load("shape_rectangle"));
                         temp.name = "RectangleInstance_" + rectangleInstanceCount;
                         temp.transform.position = initPos;
+                        temp.transform.localScale = initScale;
                         temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
                         break;
                     case SHAPE.ROUND_RECTANGLE:
@@ -79,6 +82,7 @@ public class ShapeClass : MonoBehaviour
                         temp = (GameObject)Instantiate(Resources.Load("shape_round_rectangle"));
                         temp.name = "RoundRectangleInstance_" + roundRectangleInstanceCount;
                         temp.transform.position = initPos;
+                        temp.transform.localScale = initScale;
                         temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
                         break;
                     case SHAPE.TRIANGLE:
@@ -86,6 +90,7 @@ public class ShapeClass : MonoBehaviour
                         temp = (GameObject)Instantiate(Resources.Load("shape_triangle"));
                         temp.name = "TriangleInstance_" + triangleInstanceCount;
                         temp.transform.position = initPos;
+                        temp.transform.localScale = initScale;
                         temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
                         break;
                     default:

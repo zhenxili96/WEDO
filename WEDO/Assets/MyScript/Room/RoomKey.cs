@@ -44,7 +44,7 @@ public class RoomKey : MonoBehaviour
 
     private void checkHover()
     {
-        if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
+        if (RoomKeyBoard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
             renderer.material.color = Color.red;
