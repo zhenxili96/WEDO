@@ -16,7 +16,7 @@ public class ShapeClass : MonoBehaviour
     private static int roundRectangleInstanceCount = 0;
     private static int triangleInstanceCount = 0;
     private static Vector3 initPos = new Vector3(0, 1, 23);
-    private static Vector3 initScale = new Vector3(5, 5, 1);
+    private static Vector3 initScale = new Vector3(1, 1, 1);
     private static string SHAPEPARETNNAME = "ShapeInstance";
 
     // Use this for initialization

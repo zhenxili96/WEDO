@@ -4,39 +4,76 @@ using System.Collections;
 public class ShapeInstance : MonoBehaviour
 {
     public bool isFocus = false;
-    private bool isHover = false;
     private Color originColor;
+    private static float warnHigh = 70f;
+    private static float deleteHigh = 80f;
+    private static string DELETEBUTTONNAME = "Room_delete";
 
     // Use this for initialization
     void Start()
     {
-        originColor = renderer.material.color;
-        RoomStatic.curFocus = transform.parent.name;
+        originColor = transform.GetChild(0).renderer.material.color;
+        RoomStatic.curFocus = name;
         isFocus = true;
-        ColorItem.curColor = renderer.material.color;
+        ColorItem.curColor = transform.GetChild(0).renderer.material.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        checkHover();
         checkDrag();
         checkFocus();
+        checkDelete();
+    }
+
+    private void checkDelete()
+    {
+        if (!isFocus)
+        {
+            return;
+        }
+        if (DeleteButton.isOpen && transform.position.y >= deleteHigh)
+        {
+            DeleteButton.isPrepare = false;
+            if (RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
+            {
+                DeleteButton.isPrepare = true;
+            }
+            else if (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed)
+            {
+                DeleteButton.isPrepare = true;
+            }
+            else
+            {
+                
+                DeleteButton.isOut = false;
+                Destroy(gameObject);
+                return;
+            }
+        }
+        if (transform.position.y >= warnHigh)
+        {
+            DeleteButton.isOut = true;
+        }
+        if (transform.position.y < warnHigh)
+        {
+            DeleteButton.isOut = false;
+        }
     }
 
     private void checkFocus()
     {
-        if (RoomStatic.curFocus.Equals(transform.parent.name))
+        if (RoomStatic.curFocus.Equals(name))
         {
             isFocus = true;
-            renderer.material.color = ColorItem.curColor;
-        } 
-        else if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
-            || (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed))
+            transform.GetChild(0).renderer.material.color = ColorItem.curColor;
+        }
+        else if ((RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
+            || (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed))
         {
             isFocus = true;
-            RoomStatic.curFocus = transform.parent.name;
-            ColorItem.curColor = renderer.material.color;
+            RoomStatic.curFocus = name;
+            ColorItem.curColor = transform.GetChild(0).renderer.material.color;
         }
         else
         {
@@ -46,16 +83,20 @@ public class ShapeInstance : MonoBehaviour
 
     private void checkDrag()
     {
+        if (!isFocus)
+        {
+            return;
+        }
         HAND hand = HAND.LEFTHAND;
         bool isDrag = false;
         if (isFocus)
         {
-            if (RayHit.LeftHitName.Equals(gameObject.name) && LeftHandProperty.isClosed)
+            if (RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
             {
                 isDrag = true;
                 hand = HAND.LEFTHAND;
             }
-            if (RayHit.RightHitName.Equals(gameObject.name) && RightHandProperty.isClosed)
+            if (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed)
             {
                 isDrag = true;
                 hand = HAND.RIGHTHAND;
@@ -76,21 +117,6 @@ public class ShapeInstance : MonoBehaviour
                 default:
                     break;
             }
-        }
-    }
-
-    private void checkHover()
-    {
-        if (RayHit.LeftHitName.Equals(gameObject.name)
-            || RayHit.RightHitName.Equals(gameObject.name))
-        {
-            isHover = true;
-            renderer.material.color = Color.red;
-        }
-        else
-        {
-            isHover = false;
-            renderer.material.color = originColor;
         }
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="Assets\MyScript\Room\ColorButton.cs" />
     <Compile Include="Assets\MyScript\Room\ColorChoose.cs" />
     <Compile Include="Assets\MyScript\Room\ColorItem.cs" />
+    <Compile Include="Assets\MyScript\Room\DeleteButton.cs" />
     <Compile Include="Assets\MyScript\Room\DownButton.cs" />
     <Compile Include="Assets\MyScript\Room\LayerButton.cs" />
     <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
