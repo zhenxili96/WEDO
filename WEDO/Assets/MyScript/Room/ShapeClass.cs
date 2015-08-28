@@ -15,7 +15,7 @@ public class ShapeClass : MonoBehaviour
     private static int rectangleInstanceCount = 0;
     private static int roundRectangleInstanceCount = 0;
     private static int triangleInstanceCount = 0;
-    private static Vector3 initPos = new Vector3(0, 1, 23);
+    private static Vector3 initPos = new Vector3(0, 0, 23);
     private static Vector3 initScale = new Vector3(1, 1, 1);
     private static string SHAPEPARETNNAME = "ShapeInstance";
 
@@ -51,12 +51,10 @@ public class ShapeClass : MonoBehaviour
                 if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed))
                 {
                     LeftHandProperty.clickUsed = true;
-                    Debug.Log("click used");
                 }
                 else if ((RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed))
                 {
                     RightHandProperty.clickUsed = true;
-                    Debug.Log("click used");
                 }
                 GameObject temp;
                 switch (shape)
@@ -67,7 +65,9 @@ public class ShapeClass : MonoBehaviour
                         temp.name = "CircleInstance_" + circleInstanceCount;
                         temp.transform.position = initPos;
                         temp.transform.localScale = initScale;
-                        temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
+                        string curLayer = "Layer" + RoomStatic.curLayer;
+                        GameObject parent = GameObject.Find(curLayer).transform.Find(SHAPEPARETNNAME).gameObject;
+                        temp.transform.parent = parent.transform;
                         break;
                     case SHAPE.RECTANGLE:
                         rectangleInstanceCount++;
@@ -75,7 +75,9 @@ public class ShapeClass : MonoBehaviour
                         temp.name = "RectangleInstance_" + rectangleInstanceCount;
                         temp.transform.position = initPos;
                         temp.transform.localScale = initScale;
-                        temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
+                        string curLayer1 = "Layer" + RoomStatic.curLayer;
+                        GameObject parent1 = GameObject.Find(curLayer1).transform.Find(SHAPEPARETNNAME).gameObject;
+                        temp.transform.parent = parent1.transform;
                         break;
                     case SHAPE.ROUND_RECTANGLE:
                         roundRectangleInstanceCount++;
@@ -83,7 +85,9 @@ public class ShapeClass : MonoBehaviour
                         temp.name = "RoundRectangleInstance_" + roundRectangleInstanceCount;
                         temp.transform.position = initPos;
                         temp.transform.localScale = initScale;
-                        temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
+                        string curLayer2 = "Layer" + RoomStatic.curLayer;
+                        GameObject parent2 = GameObject.Find(curLayer2).transform.Find(SHAPEPARETNNAME).gameObject;
+                        temp.transform.parent = parent2.transform;
                         break;
                     case SHAPE.TRIANGLE:
                         triangleInstanceCount++;
@@ -91,7 +95,9 @@ public class ShapeClass : MonoBehaviour
                         temp.name = "TriangleInstance_" + triangleInstanceCount;
                         temp.transform.position = initPos;
                         temp.transform.localScale = initScale;
-                        temp.transform.parent = GameObject.Find(SHAPEPARETNNAME).gameObject.transform;
+                        string curLayer3 = "Layer" + RoomStatic.curLayer;
+                        GameObject parent3 = GameObject.Find(curLayer3).transform.Find(SHAPEPARETNNAME).gameObject;
+                        temp.transform.parent = parent3.transform;
                         break;
                     default:
                         temp = null;

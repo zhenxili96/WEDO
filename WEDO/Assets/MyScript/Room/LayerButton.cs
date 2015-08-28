@@ -10,11 +10,16 @@ public class LayerButton : MonoBehaviour
     private bool isHover = false;
     private Color originColor;
     private Color newColor = Color.red;
+    private Vector3 originScale;
+    private Vector3 hoverScale;
+    private float scaleRate = 2;
 
     // Use this for initialization
     void Start()
     {
         originColor = renderer.material.color;
+        originScale = transform.localScale;
+        hoverScale = scaleRate * originScale;
     }
 
     // Update is called once per frame
@@ -43,11 +48,13 @@ public class LayerButton : MonoBehaviour
         {
             isHover = true;
             renderer.material.color = newColor;
+            transform.localScale = hoverScale;
         }
         else
         {
             isHover = false;
             renderer.material.color = originColor;
+            transform.localScale = originScale;
         }
     }
 }
