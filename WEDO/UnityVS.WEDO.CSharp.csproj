@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>4.1.0f4</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -90,8 +92,10 @@
     <Compile Include="Assets\MyScript\Room\DeleteButton.cs" />
     <Compile Include="Assets\MyScript\Room\DownButton.cs" />
     <Compile Include="Assets\MyScript\Room\LayerButton.cs" />
+    <Compile Include="Assets\MyScript\Room\LayerItemManager.cs" />
+    <Compile Include="Assets\MyScript\Room\LayerManager.cs" />
     <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
-    <Compile Include="Assets\MyScript\Room\ModeBackButton.cs" />
+    <Compile Include="Assets\MyScript\Room\LayerBackButton.cs" />
     <Compile Include="Assets\MyScript\Room\RoomKey.cs" />
     <Compile Include="Assets\MyScript\Room\RoomKeyBack.cs" />
     <Compile Include="Assets\MyScript\Room\RoomKeyBoard.cs" />

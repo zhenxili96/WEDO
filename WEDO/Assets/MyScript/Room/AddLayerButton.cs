@@ -35,8 +35,8 @@ public class AddLayerButton : MonoBehaviour
         {
             LeftHandProperty.clickUsed = true;
             ((Layer)RoomStatic.layerArray[RoomStatic.curLayer]).isActive = false;
-            RoomStatic.layerArray.Add(new Layer(ZMIN + 1 - RoomStatic.curLayer, ZMIN + 2 - RoomStatic.curLayer));
             RoomStatic.LayerCount++;
+            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.curLayer, ZMIN - 1 - RoomStatic.curLayer));
             GameObject layerObject = new GameObject();
             layerObject.name = "Layer" + RoomStatic.LayerCount;
             layerObject.transform.position = new Vector3(0, 0, 0);
@@ -50,6 +50,8 @@ public class AddLayerButton : MonoBehaviour
             textObject.transform.parent = layerObject.transform;
             RoomStatic.curLayer = RoomStatic.LayerCount;
             GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.LayerCount;
+            layerObject.transform.parent = GameObject.Find("Layer").transform;
+            layerObject.AddComponent<LayerItemManager>();
         }
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {

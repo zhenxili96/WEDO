@@ -4,10 +4,12 @@ using System.Collections;
 public class ColorItem : MonoBehaviour
 {
 
-    private Vector3 originScale = new Vector3(0.165f, 1, 0.165f);
-    private Vector3 newScale = new Vector3(0.25f, 1, 0.25f);
-    private Vector3 originPos;
-    private Vector3 newPos;
+
+    private Vector3 originScale;
+    private Vector3 hoverScale;
+    private float scaleRate = 2;
+    private float originZ;
+    private float hoverZ;
     private bool isHover = false;
     public static Color curColor;
     private string CURCOLORBOARDNAME = "CurColor";
@@ -15,10 +17,11 @@ public class ColorItem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        originPos = transform.localPosition;
-        newPos = originPos;
-        newPos.z = -5;
+        originZ = transform.position.z;
+        hoverZ = originZ - 1;
         GameObject.Find(CURCOLORBOARDNAME).renderer.material.color = curColor;
+        originScale = transform.localScale;
+        hoverScale = scaleRate * originScale;
     }
 
     // Update is called once per frame
@@ -53,35 +56,21 @@ public class ColorItem : MonoBehaviour
         curColor = ColorTable.Table[rowNum, colNum];
     }
 
-    private void checkChoose()
-    {
-        if (ColorChoose.isOpen)
-        {
-            if (isHover)
-            {
-                transform.localPosition = newPos;
-                transform.localScale = newScale;
-            }
-            else
-            {
-                transform.localPosition = originPos;
-                transform.localScale = originScale;
-            }
-        }
-    }
 
     private void checkHover()
     {
         if (ColorChoose.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
-            transform.localPosition = newPos;
-            transform.localScale = newScale;
+            transform.position = new Vector3(transform.position.x,
+                transform.position.y, hoverZ);
+            transform.localScale = hoverScale;
         }
         else
         {
             isHover = false;
-            transform.localPosition = originPos;
+            transform.position = new Vector3(transform.position.x,
+                transform.position.y, originZ);
             transform.localScale = originScale;
         }
     }

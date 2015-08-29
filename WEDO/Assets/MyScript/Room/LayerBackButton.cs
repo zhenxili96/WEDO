@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ModeBackButton : MonoBehaviour
+public class LayerBackButton : MonoBehaviour
 {
 
     private static string MODECHANGENAME = "ModeChange";
     private static string CURMODENAME = "Mode2";
     private static string ANOTHERMODENAME = "Mode1";
+    private static string LAYERNAME = "Layer";
     private bool isHover = false;
     private Color originColor;
     private Color newColor = Color.red;
@@ -31,6 +32,12 @@ public class ModeBackButton : MonoBehaviour
         {
             GameObject.Find(CURMODENAME).SetActive(false);
             GameObject.Find(MODECHANGENAME).transform.Find(ANOTHERMODENAME).gameObject.SetActive(true);
+            LayRay.rayStyle = RayStyle.Ortho;
+            foreach (Transform child in GameObject.Find(LAYERNAME).transform)
+            {
+                child.gameObject.SendMessage("backChange");
+            }
+            GameObject.Find(LAYERNAME).SendMessage("backChange");
         }
     }
 

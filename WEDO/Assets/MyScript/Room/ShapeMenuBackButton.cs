@@ -9,11 +9,20 @@ public class ShapeMenuBackButton : MonoBehaviour
     private bool isHover = false;
     private Color originColor;
     private Color hoverColor = Color.red;
+    private Vector3 originScale;
+    private Vector3 hoverScale;
+    private float scaleRate = 2;
+    private float originZ;
+    private float hoverZ;
 
     // Use this for initialization
     void Start()
     {
         originColor = renderer.material.color;
+        originScale = transform.localScale;
+        hoverScale = scaleRate * originScale;
+        originZ = transform.position.z;
+        hoverZ = originZ - 1;
     }
 
     // Update is called once per frame
@@ -45,11 +54,17 @@ public class ShapeMenuBackButton : MonoBehaviour
         {
             isHover = true;
             renderer.material.color = hoverColor;
+            transform.localScale = hoverScale;
+            transform.position = new Vector3(transform.position.x,
+                transform.position.y, hoverZ);
         }
         else
         {
             isHover = false;
             renderer.material.color = originColor;
+            transform.localScale = originScale;
+            transform.position = new Vector3(transform.position.x,
+                transform.position.y, originZ);
         }
     }
 }

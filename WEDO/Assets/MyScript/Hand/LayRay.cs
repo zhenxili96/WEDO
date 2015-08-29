@@ -1,7 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
+public enum RayStyle { Ortho, Perspect};
+
 public class LayRay : MonoBehaviour {
+
+    public static RayStyle rayStyle = RayStyle.Ortho;
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +16,16 @@ public class LayRay : MonoBehaviour {
 	
         Vector3 curPos = gameObject.transform.position;
         Vector3 target = curPos + new Vector3(0, 0, 100);
-        Vector3 direction = target - curPos;  //垂直向下方式
+        Vector3 direction = new Vector3();
+        switch (rayStyle)
+        {
+            case RayStyle.Ortho:
+                direction = target - curPos;  //垂直向下方式
+                break;
+            case RayStyle.Perspect:
+                direction = curPos - GameObject.Find("Camera_mode2").transform.position;    //沿相机方向
+                break;
+        }
         //Vector3 direction = curPos - Camera.main.transform.position;
         curPos.x = curPos.x + direction.normalized.x;
         curPos.y = curPos.y + direction.normalized.y;

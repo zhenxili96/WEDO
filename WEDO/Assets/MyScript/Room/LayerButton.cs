@@ -7,6 +7,7 @@ public class LayerButton : MonoBehaviour
     private static string MODECHANGENAME = "ModeChange";
     private static string CURMODENAME = "Mode1";
     private static string ANOTHERMODENAME = "Mode2";
+    private static string LAYERNAME = "Layer";
     private bool isHover = false;
     private Color originColor;
     private Color newColor = Color.red;
@@ -36,6 +37,12 @@ public class LayerButton : MonoBehaviour
         {
             GameObject.Find(CURMODENAME).SetActive(false);
             GameObject.Find(MODECHANGENAME).transform.Find(ANOTHERMODENAME).gameObject.SetActive(true);
+            LayRay.rayStyle = RayStyle.Perspect;
+            foreach (Transform child in GameObject.Find(LAYERNAME).transform)
+            {
+                child.gameObject.SendMessage("callChange");
+            }
+            GameObject.Find(LAYERNAME).SendMessage("callChange");
         }
     }
 
