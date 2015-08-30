@@ -10,6 +10,7 @@ public class LayerItemManager : MonoBehaviour
     public Color hoverColor = Color.red;
     public Color originColor;
     public bool isHover = false;
+    public bool isDrag = false;
     public float layerZ;
     public static string LEFTHANDNAME = "LeftHand";
     public static string RIGHTHANDNAME = "RightHand";
@@ -49,7 +50,18 @@ public class LayerItemManager : MonoBehaviour
 
     private void checkDelete()
     {
-
+        if (transform.position.y >= warnHight)
+        {
+            AnotherDelete.isOut = true;
+        }
+        if (AnotherDelete.isOpen && transform.position.y >= deleteHight)
+        {
+            if (!isDrag)
+            {
+                RoomStatic.layerArray.RemoveAt(selfLayer);
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void checkDrag()
@@ -59,7 +71,7 @@ public class LayerItemManager : MonoBehaviour
             return;
         }
 
-        bool isDrag = false;
+        isDrag = false;
         HAND dragHand = HAND.LEFTHAND;
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
         {

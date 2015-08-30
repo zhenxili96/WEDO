@@ -25,6 +25,9 @@ public class AnotherDelete : MonoBehaviour
 
     private void checkOut()
     {
+        if (isOut)
+        {
 
+        }
     }
 }
