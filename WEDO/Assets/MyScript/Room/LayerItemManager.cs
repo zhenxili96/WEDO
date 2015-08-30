@@ -11,6 +11,11 @@ public class LayerItemManager : MonoBehaviour
     public Color originColor;
     public bool isHover = false;
     public float layerZ;
+    public static string LEFTHANDNAME = "LeftHand";
+    public static string RIGHTHANDNAME = "RightHand";
+    public float warnHight = 100f;
+    public float deleteHight = 120f;
+    public float minHight = -60f;
 
     // Use this for initialization
     void Start()
@@ -38,18 +43,125 @@ public class LayerItemManager : MonoBehaviour
             layerBack.transform.localPosition = new Vector3(layerBack.transform.position.x, layerBack.transform.position.y, layerZ);
         }
         checkHover();
+        checkDrag();
+        checkDelete();
+    }
+
+    private void checkDelete()
+    {
+
+    }
+
+    private void checkDrag()
+    {
+        if (RoomStatic.curMode == RoomMode.Mode1)
+        {
+            return;
+        }
+
+        bool isDrag = false;
+        HAND dragHand = HAND.LEFTHAND;
+        if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
+        {
+            isDrag = true;
+            dragHand = HAND.LEFTHAND;
+        } 
+        else if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed)
+        {
+            isDrag = true;
+            dragHand = HAND.RIGHTHAND;
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                if (RayHit.LeftHitName.Equals(child.name) && LeftHandProperty.isClosed)
+                {
+                    isDrag = true;
+                    dragHand = HAND.LEFTHAND;
+                }
+                else if (RayHit.RightHitName.Equals(child.name) && RightHandProperty.isClosed)
+                {
+                    isDrag = true;
+                    dragHand = HAND.RIGHTHAND;
+                }
+                else
+                {
+                    foreach (Transform grandChild in child.transform)
+                    {
+                        if (RayHit.LeftHitName.Equals(grandChild.name) && LeftHandProperty.isClosed)
+                        {
+                            isDrag = true;
+                            dragHand = HAND.LEFTHAND;
+                        }
+                        else if (RayHit.RightHitName.Equals(grandChild.name) && RightHandProperty.isClosed)
+                        {
+                            isDrag = true;
+                            dragHand = HAND.RIGHTHAND;
+                        }
+                    }
+                }
+            }
+        }
+        if (isDrag)
+        {
+            switch (dragHand)
+            {
+                case HAND.LEFTHAND:
+                    if (GameObject.Find(LEFTHANDNAME).transform.position.y >= minHight)
+                    {
+                        transform.position = new Vector3(transform.position.x, GameObject.Find(LEFTHANDNAME).transform.position.y,
+                        transform.position.z);
+                    }
+                    break;
+                case HAND.RIGHTHAND:
+                    if (GameObject.Find(RIGHTHANDNAME).transform.position.y >= minHight)
+                    {
+                        transform.position = new Vector3(transform.position.x, GameObject.Find(RIGHTHANDNAME).transform.position.y,
+                        transform.position.z);
+                    }
+                    break;
+            }
+        }
     }
 
     private void checkHover()
     {
+        if (RoomStatic.curMode == RoomMode.Mode1)
+        {
+            return;
+        }
+        isHover = false;
         if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
         {
             isHover = true;
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                if (RayHit.LeftHitName.Equals(child.name) || RayHit.RightHitName.Equals(child.name))
+                {
+                    isHover = true;
+                }
+                else
+                {
+                    foreach (Transform grandChild in child.transform)
+                    {
+                        if (RayHit.LeftHitName.Equals(grandChild.name) || RayHit.RightHitName.Equals(grandChild.name))
+                        {
+                            isHover = true;
+                        }
+                    }
+                }
+            }
+        }
+        if (isHover)
+        {
             layerBack.transform.GetChild(0).renderer.material.color = hoverColor;
         }
         else
         {
-            isHover = false;
             layerBack.transform.GetChild(0).renderer.material.color = originColor;
         }
     }

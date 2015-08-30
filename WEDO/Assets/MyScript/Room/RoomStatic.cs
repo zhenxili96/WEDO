@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum RoomMode { Mode1, Mode2};
+
 public class RoomStatic : MonoBehaviour
 {
 
@@ -8,6 +10,7 @@ public class RoomStatic : MonoBehaviour
     public static int LayerCount = 1;
     public static int curLayer = 1;
     public static ArrayList layerArray = new ArrayList();
+    public static RoomMode curMode = RoomMode.Mode1;
 
     // Use this for initialization
     void Start()

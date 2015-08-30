@@ -30,6 +30,7 @@ public class LayerBackButton : MonoBehaviour
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed
             || RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
+            RoomStatic.curMode = RoomMode.Mode1;
             GameObject.Find(CURMODENAME).SetActive(false);
             GameObject.Find(MODECHANGENAME).transform.Find(ANOTHERMODENAME).gameObject.SetActive(true);
             LayRay.rayStyle = RayStyle.Ortho;

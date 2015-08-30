@@ -85,6 +85,7 @@
     <Compile Include="Assets\MyScript\Projection\Disk.cs" />
     <Compile Include="Assets\MyScript\Projection\EnterButton.cs" />
     <Compile Include="Assets\MyScript\Room\AddLayerButton.cs" />
+    <Compile Include="Assets\MyScript\Room\AnotherDelete.cs" />
     <Compile Include="Assets\MyScript\Room\ColorBack.cs" />
     <Compile Include="Assets\MyScript\Room\ColorButton.cs" />
     <Compile Include="Assets\MyScript\Room\ColorChoose.cs" />
