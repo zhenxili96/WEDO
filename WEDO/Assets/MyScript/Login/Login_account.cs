@@ -3,91 +3,93 @@ using System.Collections;
 
 public class Login_account : MonoBehaviour
 {
-    private bool isHover = false;
-    private bool isActive = false;
-    private string account = "";
+    public bool isHover = false;
+    public bool isFocus = false;
+    public Color hoverColor = Color.red;
+    public Color focusColor = Color.yellow;
+    public Color originColor;
+    public GameObject accountText;
+    public Color accountTextColor = Color.black;
+    public string account = "";
+
 
     // Use this for initialization
     void Start()
     {
-        gameObject.renderer.material.color = Color.black;
+        originColor = renderer.material.color;
+        accountText = transform.GetChild(0).gameObject;
+        accountText.renderer.material.color = accountTextColor;
     }
 
     // Update is called once per frame
     void Update()
     {
-        checkActive();
+        checkHover();
+        if (isFocus)
+        {
+            renderer.material.color = focusColor;
+        }
+        checkFocus();
+        checkContent();
     }
 
-    public void receiveChar(string ch)
+    private void checkContent()
     {
-        if (!isActive)
+        if (!isFocus)
         {
             return;
         }
-        if (account.Length >= 20)
-        {
-            return;
-        }
-        account += ch;
-        ((TextMesh)GetComponent("TextMesh")).text = account;
+        account = Login_Key.curSentence;
+        accountText.GetComponent<TextMesh>().text = account;
     }
 
-    public void deleteChar()
+    private void checkFocus()
     {
-        if (!isActive)
+        isFocus = false;
+        if (LoginStatic.curFocus.Equals(name))
         {
-            return;
+            isFocus = true;
         }
-        if (account.Length <= 0)
+        else if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
         {
-            return;
-        }
-        account = account.Remove(account.Length - 1);
-        ((TextMesh)GetComponent("TextMesh")).text = account;
-    }
-
-    public void loseFocus()
-    {
-        isActive = false;
-        foreach (Transform child in transform)
-        {
-            if (child.name.Equals("Login_account"))
+            if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                child.renderer.material.color = Color.white;
+                isFocus = true;
+                LoginStatic.curFocus = name;
+                LeftHandProperty.clickUsed = true;
+                Login_Key.curSentence = account;
+            }
+            if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+            {
+                isFocus = true;
+                LoginStatic.curFocus = name;
+                RightHandProperty.clickUsed = true;
+                Login_Key.curSentence = account;
             }
         }
     }
 
-    private void checkActive()
+    private void checkHover()
     {
         isHover = false;
-        if (RayHit.hitName.Equals(name))
+
+        if (RayHit.LeftHitName.Equals(name) && !LeftHandProperty.isClosed
+            || RayHit.RightHitName.Equals(name) && !RightHandProperty.isClosed)
         {
             isHover = true;
+            if (!isFocus)
+            {
+                renderer.material.color = hoverColor;
+            }
         }
         else
         {
-            foreach (Transform child in transform)
+            isHover = false;
+            if (!isFocus)
             {
-                if (RayHit.hitName.Equals(child.name))
-                {
-                    isHover = true;
-                }
+                renderer.material.color = originColor;
             }
-        }
-
-        if (isHover && HandProperty.isClosed)
-        {
-            isActive = true;
-            foreach (Transform child in transform)
-            {
-                if (child.name.Equals("Login_account"))
-                {
-                    child.renderer.material.color = Color.yellow;
-                }
-            }
-            GameObject.Find("Login_passwordText").SendMessage("loseFocus");
         }
     }
+
 }

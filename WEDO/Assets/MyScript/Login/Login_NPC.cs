@@ -10,7 +10,12 @@ public class Login_NPC : MonoBehaviour
     private float topBorder = 11;
     private float bottomBorder = 0;
     private bool isHover = false;
-    private bool moveUp = false;
+    public static bool isOut = true;
+    public static bool isOpen = true;
+    public Vector3 outPos = new Vector3(0, 27, -50);
+    public Vector3 inPos = new Vector3(0, 75, -60);
+    public float outSpeed = 40f;
+    public float inSpeed = 50f;
 
     // Use this for initialization
     void Start()
@@ -20,24 +25,29 @@ public class Login_NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkMove();
+        checkHover();
+        checkOut();
     }
 
-    private void checkMove()
+    private void checkOut()
     {
-        checkHover();
-        if (moveUp)
+        isOpen = false;
+        if (isOut)
         {
-            if (gameObject.transform.position.y <= topBorder)
+            if (transform.position.y > outPos.y)
             {
-                transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * upSpeed);
+                transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * outSpeed);
+            }
+            else
+            {
+                isOpen = true;
             }
         }
         else
         {
-            if (gameObject.transform.position.y >= bottomBorder)
+            if (transform.position.y < inPos.y)
             {
-                transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * downSpeed);
+                transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * inSpeed);
             }
         }
     }
@@ -47,20 +57,16 @@ public class Login_NPC : MonoBehaviour
         isHover = false;
         foreach (Transform child in transform)
         {
-            if (RayHit.hitName.Equals(child.name))
+            if (RayHit.LeftHitName.Equals(child.name) && !LeftHandProperty.isClosed
+                || RayHit.RightHitName.Equals(child.name) && !RightHandProperty.isClosed)
             {
                 isHover = true;
             }
         }
         if (isHover)
         {
-            moveUp = true;
-            GameObject.Find("Keyboard").SendMessage("setMoveUp");
+            isOut = false;
+            Login_Keyboard.isOut = true;
         }
-    }
-
-    public void setMoveDown()
-    {
-        moveUp = false;
     }
 }

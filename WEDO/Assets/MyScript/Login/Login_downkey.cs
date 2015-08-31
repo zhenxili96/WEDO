@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RoomKeyBack : MonoBehaviour
+public class Login_downkey : MonoBehaviour
 {
 
-    private bool isHover = false;
-    private Color originColor;
-    private Color hoverColor = Color.red;
-    private Vector3 originScale;
-    private Vector3 hoverScale;
-    private float scaleRate = 2;
-    private float originZ;
-    private float hoverZ;
+    public bool isHover = false;
+    public Color originColor;
+    public Color hoverColor = Color.red;
+    public Vector3 originScale;
+    public Vector3 hoverScale;
+    public float scaleRate = 2;
+    public float originZ;
+    public float hoverZ;
 
     // Use this for initialization
     void Start()
@@ -36,12 +36,14 @@ public class RoomKeyBack : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                RoomKeyBoard.isOut = false;
+                Login_Keyboard.isOut = false;
+                Login_NPC.isOut = false;
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                RoomKeyBoard.isOut = false;
+                Login_Keyboard.isOut = false;
+                Login_NPC.isOut = false;
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -49,7 +51,7 @@ public class RoomKeyBack : MonoBehaviour
 
     private void checkHover()
     {
-        if (RoomKeyBoard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        if (Login_Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
             renderer.material.color = hoverColor;

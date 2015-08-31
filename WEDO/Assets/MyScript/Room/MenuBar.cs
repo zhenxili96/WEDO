@@ -8,7 +8,7 @@ public class MenuBar : MonoBehaviour
     private bool isHover = false;
     public static bool isOut = false;
     private Vector3 outPos = new Vector3(-144f, 0, 40);
-    private Vector3 inPos = new Vector3(-176f, 0, 40);
+    private Vector3 inPos = new Vector3(-190f, 0, 40);
     private float outSpeed = 40f;
     private float inSpeed = 50f;
     private string barName = "menubar";

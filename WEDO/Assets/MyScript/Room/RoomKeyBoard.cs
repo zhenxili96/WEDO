@@ -5,8 +5,8 @@ public class RoomKeyBoard : MonoBehaviour
 {
     public static bool isOut = false;
     public static bool isOpen = false;
-    private Vector3 outPos = new Vector3(0, -19, 0);
-    private Vector3 inPos = new Vector3(0, -128, 0);
+    private Vector3 outPos = new Vector3(-19, -1, 210);
+    private Vector3 inPos = new Vector3(210, -97, 210);
     private static float outSpeed = 50f;
     private static float inSpeed = 40f;
 

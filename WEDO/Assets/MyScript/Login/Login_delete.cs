@@ -1,22 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RoomKeyBack : MonoBehaviour
+public class Login_delete : MonoBehaviour
 {
 
-    private bool isHover = false;
-    private Color originColor;
-    private Color hoverColor = Color.red;
-    private Vector3 originScale;
-    private Vector3 hoverScale;
-    private float scaleRate = 2;
-    private float originZ;
-    private float hoverZ;
+    public bool isHover = false;
+    public Color originColor;
+    public Color hoverColor = Color.red;
+    public Vector3 originScale;
+    public Vector3 hoverScale;
+    public float scaleRate = 2;
+    public float originZ;
+    public float hoverZ;
+
 
     // Use this for initialization
     void Start()
     {
-        originColor = renderer.material.color;
+        originColor = gameObject.renderer.material.color;
         originScale = transform.localScale;
         hoverScale = scaleRate * originScale;
         originZ = transform.position.z;
@@ -36,12 +37,20 @@ public class RoomKeyBack : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                RoomKeyBoard.isOut = false;
+                if (Login_Key.curSentence.Length <= 0)
+                {
+                    return;
+                }
+                Login_Key.curSentence = Login_Key.curSentence.Remove(Login_Key.curSentence.Length - 1);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                RoomKeyBoard.isOut = false;
+                if (Login_Key.curSentence.Length <= 0)
+                {
+                    return;
+                }
+                Login_Key.curSentence = Login_Key.curSentence.Remove(Login_Key.curSentence.Length - 1);
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -49,10 +58,10 @@ public class RoomKeyBack : MonoBehaviour
 
     private void checkHover()
     {
-        if (RoomKeyBoard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        if (Login_Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
-            renderer.material.color = hoverColor;
+            renderer.material.color = Color.red;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
