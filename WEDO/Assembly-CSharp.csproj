@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{9DE72573-9136-58BD-0C9D-0AD9F3CA8B1F}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_0;UNITY_4_1;ENABLE_PROFILER;UNITY_EDITOR;UNITY_TEAM_LICENSE;CROSS_PLATFORM_INPUT</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Mirror Shaders\Mirror.cs" />
+     <Compile Include="Assets\MyScript\Base\BaseButton.cs" />
+     <Compile Include="Assets\MyScript\Base\ColorTable.cs" />
+     <Compile Include="Assets\MyScript\Base\Name.cs" />
+     <Compile Include="Assets\MyScript\Base\RayHit.cs" />
+     <Compile Include="Assets\MyScript\Entry\PersonButton.cs" />
+     <Compile Include="Assets\MyScript\Entry\ProjectionButton.cs" />
+     <Compile Include="Assets\MyScript\Hand\ChangingStateAction.cs" />
+     <Compile Include="Assets\MyScript\Hand\HandProperty.cs" />
+     <Compile Include="Assets\MyScript\Hand\LayRay.cs" />
+     <Compile Include="Assets\MyScript\Hand\LeftHandProperty.cs" />
+     <Compile Include="Assets\MyScript\Hand\RightHandProperty.cs" />
+     <Compile Include="Assets\MyScript\Home\AddButton.cs" />
+     <Compile Include="Assets\MyScript\Login\LoginStatic.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_Button.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_Key.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_Keyboard.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_NPC.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_account.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_delete.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_downkey.cs" />
+     <Compile Include="Assets\MyScript\Login\Login_password.cs" />
+     <Compile Include="Assets\MyScript\ProjectInfo\EnterProject.cs" />
+     <Compile Include="Assets\MyScript\Projection\BackButton.cs" />
+     <Compile Include="Assets\MyScript\Projection\Disk.cs" />
+     <Compile Include="Assets\MyScript\Projection\EnterButton.cs" />
+     <Compile Include="Assets\MyScript\Room\AddLayerButton.cs" />
+     <Compile Include="Assets\MyScript\Room\AnotherDelete.cs" />
+     <Compile Include="Assets\MyScript\Room\ColorBack.cs" />
+     <Compile Include="Assets\MyScript\Room\ColorButton.cs" />
+     <Compile Include="Assets\MyScript\Room\ColorChoose.cs" />
+     <Compile Include="Assets\MyScript\Room\ColorItem.cs" />
+     <Compile Include="Assets\MyScript\Room\DeleteButton.cs" />
+     <Compile Include="Assets\MyScript\Room\DownButton.cs" />
+     <Compile Include="Assets\MyScript\Room\LayerBackButton.cs" />
+     <Compile Include="Assets\MyScript\Room\LayerButton.cs" />
+     <Compile Include="Assets\MyScript\Room\LayerItemManager.cs" />
+     <Compile Include="Assets\MyScript\Room\LayerManager.cs" />
+     <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
+     <Compile Include="Assets\MyScript\Room\RoomKey.cs" />
+     <Compile Include="Assets\MyScript\Room\RoomKeyBack.cs" />
+     <Compile Include="Assets\MyScript\Room\RoomKeyBoard.cs" />
+     <Compile Include="Assets\MyScript\Room\RoomKeyDelete.cs" />
+     <Compile Include="Assets\MyScript\Room\RoomStatic.cs" />
+     <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
+     <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
+     <Compile Include="Assets\MyScript\Room\ShapeInstance.cs" />
+     <Compile Include="Assets\MyScript\Room\ShapeMenuBackButton.cs" />
+     <Compile Include="Assets\MyScript\Room\TextButton.cs" />
+     <Compile Include="Assets\MyScript\Room\TextInstance.cs" />
+     <Compile Include="Assets\MyScript\Room\UpButton.cs" />
+     <Compile Include="Assets\MyScript\Text\text.cs" />
+     <Compile Include="Assets\MyScript\Text\text11.cs" />
+     <Compile Include="Assets\MyScript\aaaa.cs" />
+     <Compile Include="Assets\MyScript\aaaction.cs" />
+     <Compile Include="Assets\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Plugins.Managed\pxcmdefs.extensions.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\ActivateAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\BlendShapeAnimationAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\DeactivateAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\DisableBehaviorAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\EnableBehaviorAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\HideAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\RotationAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\ScaleAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\SendMessageAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\ShowAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\TrackingAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Actions\TranslateAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\BaseAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\Bool3D.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\CameraARCalibation.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\Draw3DSegmentation.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\DrawImages.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\MinMax2D.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\PointCloudViewer.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\RotationConstraints.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\RotationMax2D.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\ScaleConstraints.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\SmoothingUtility.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\Transformation3D.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Actions Utils\VirtualWorldBoxAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Debug\DebugAction.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\HiddenBehaviour.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\RealSenseInput\MCTTypes.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\RealSenseInput\SenseOption.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\RealSenseInput\SenseToolkitManager.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\RealSenseInput\SenseToolkitSpeechManager.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\AlwaysTrueRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\BaseRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\BlobDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\BlobLostRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\BlobTrackingRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\FaceDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\FaceLostRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\FaceTrackingRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\FacialExpressionAnimationRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\FacialExpressionDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\FacialExpressionLostRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\GestureDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\GestureLostRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\HandClosedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\HandDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\HandLostRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\HandMoveRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\HandOpennedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\HandTrackingRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\ObjectDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\ObjectLostRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\ObjectTrackingRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\SpeechDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\TwoHandsDetectedRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\TwoHandsInteractionRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\TwoHandsLostRule.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\Utils\BlobUtilityClass.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\Utils\SpeechCommand.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Rules\Utils\TrackingUtilityClass.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Triggers\AnimationTrigger.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Triggers\EventTrigger.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Triggers\RotationTrigger.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Triggers\ScaleTrigger.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Triggers\TrackTrigger.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Triggers\TranslationTrigger.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Internals\Triggers\Trigger.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Samples\SampleTriggerRegistration.cs" />
+     <Compile Include="Assets\RSUnityToolkit\Samples\TargetCounter.cs" />
+     <Compile Include="Assets\ReflectionMirror\MirrorReflection.cs" />
+     <None Include="Assets\Mirror Shaders\Mirror-AlphaBumpSpec.shader" />
+     <None Include="Assets\Mirror Shaders\Mirror-AlphaSpecSphere.shader" />
+     <None Include="Assets\Font\FontShader.shader" />
+     <None Include="Assets\Mirror Shaders\Mirror-BumpSpec.shader" />
+     <None Include="Assets\ReflectionMirror\MirrorReflection.shader" />
+     <None Include="Assets\RSUnityToolkit\Internals\Materials\Occlusion.shader" />
+ <Reference Include="libpxcclr.unity">
+ <HintPath>Assets\Plugins.Managed\libpxcclr.unity.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

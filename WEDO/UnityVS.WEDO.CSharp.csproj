@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>4.1.0f4</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -72,15 +70,15 @@
     <Compile Include="Assets\MyScript\Hand\LeftHandProperty.cs" />
     <Compile Include="Assets\MyScript\Hand\RightHandProperty.cs" />
     <Compile Include="Assets\MyScript\Home\AddButton.cs" />
-    <Compile Include="Assets\MyScript\Login\Login_downkey.cs" />
-    <Compile Include="Assets\MyScript\Login\Login_Key.cs" />
-    <Compile Include="Assets\MyScript\Login\Login_Button.cs" />
     <Compile Include="Assets\MyScript\Login\LoginStatic.cs" />
+    <Compile Include="Assets\MyScript\Login\Login_Button.cs" />
+    <Compile Include="Assets\MyScript\Login\Login_Key.cs" />
     <Compile Include="Assets\MyScript\Login\Login_Keyboard.cs" />
     <Compile Include="Assets\MyScript\Login\Login_NPC.cs" />
     <Compile Include="Assets\MyScript\Login\Login_account.cs" />
-    <Compile Include="Assets\MyScript\Login\Login_password.cs" />
     <Compile Include="Assets\MyScript\Login\Login_delete.cs" />
+    <Compile Include="Assets\MyScript\Login\Login_downkey.cs" />
+    <Compile Include="Assets\MyScript\Login\Login_password.cs" />
     <Compile Include="Assets\MyScript\ProjectInfo\EnterProject.cs" />
     <Compile Include="Assets\MyScript\Projection\BackButton.cs" />
     <Compile Include="Assets\MyScript\Projection\Disk.cs" />
@@ -93,11 +91,11 @@
     <Compile Include="Assets\MyScript\Room\ColorItem.cs" />
     <Compile Include="Assets\MyScript\Room\DeleteButton.cs" />
     <Compile Include="Assets\MyScript\Room\DownButton.cs" />
+    <Compile Include="Assets\MyScript\Room\LayerBackButton.cs" />
     <Compile Include="Assets\MyScript\Room\LayerButton.cs" />
     <Compile Include="Assets\MyScript\Room\LayerItemManager.cs" />
     <Compile Include="Assets\MyScript\Room\LayerManager.cs" />
     <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
-    <Compile Include="Assets\MyScript\Room\LayerBackButton.cs" />
     <Compile Include="Assets\MyScript\Room\RoomKey.cs" />
     <Compile Include="Assets\MyScript\Room\RoomKeyBack.cs" />
     <Compile Include="Assets\MyScript\Room\RoomKeyBoard.cs" />
@@ -114,6 +112,7 @@
     <Compile Include="Assets\MyScript\Text\text11.cs" />
     <Compile Include="Assets\MyScript\aaaa.cs" />
     <Compile Include="Assets\MyScript\aaaction.cs" />
+    <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Plugins.Managed\pxcmdefs.extensions.cs" />
     <Compile Include="Assets\RSUnityToolkit\Actions\ActivateAction.cs" />
     <Compile Include="Assets\RSUnityToolkit\Actions\BlendShapeAnimationAction.cs" />
