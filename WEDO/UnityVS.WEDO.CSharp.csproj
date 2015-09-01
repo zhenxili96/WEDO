@@ -74,7 +74,7 @@
     <Compile Include="Assets\MyScript\Home\AddButton.cs" />
     <Compile Include="Assets\MyScript\Login\Login_downkey.cs" />
     <Compile Include="Assets\MyScript\Login\Login_Key.cs" />
-    <Compile Include="Assets\MyScript\Login\LoginButton.cs" />
+    <Compile Include="Assets\MyScript\Login\Login_Button.cs" />
     <Compile Include="Assets\MyScript\Login\LoginStatic.cs" />
     <Compile Include="Assets\MyScript\Login\Login_Keyboard.cs" />
     <Compile Include="Assets\MyScript\Login\Login_NPC.cs" />

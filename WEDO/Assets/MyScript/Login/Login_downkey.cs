@@ -37,13 +37,13 @@ public class Login_downkey : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 Login_Keyboard.isOut = false;
-                Login_NPC.isOut = false;
+                Login_NPC.isOut = true;
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 Login_Keyboard.isOut = false;
-                Login_NPC.isOut = false;
+                Login_NPC.isOut = true;
                 RightHandProperty.clickUsed = true;
             }
         }

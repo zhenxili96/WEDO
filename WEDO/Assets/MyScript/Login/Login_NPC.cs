@@ -57,6 +57,10 @@ public class Login_NPC : MonoBehaviour
         isHover = false;
         foreach (Transform child in transform)
         {
+            if (child.name.Equals("Login_button") || child.name.Equals("Login_signtext"))
+            {
+                continue;
+            }
             if (RayHit.LeftHitName.Equals(child.name) && !LeftHandProperty.isClosed
                 || RayHit.RightHitName.Equals(child.name) && !RightHandProperty.isClosed)
             {
