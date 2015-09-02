@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class aaaa : MonoBehaviour
+public class Entry_projection : MonoBehaviour
 {
 
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 2;
+    public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
 
@@ -33,10 +33,12 @@ public class aaaa : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
+                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
+                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
                 RightHandProperty.clickUsed = true;
             }
         }

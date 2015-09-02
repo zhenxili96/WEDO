@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class aaaa : MonoBehaviour
+public class Login_signtext : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -10,6 +10,9 @@ public class aaaa : MonoBehaviour
     public float scaleRate = 2;
     public float originZ;
     public float hoverZ;
+    public string NPCNAME = "NPC";
+    public string LIGINNPCNAME = "Login_NPC";
+    public string SIGNNPCNAME = "Signup_NPC";
 
     // Use this for initialization
     void Start()
@@ -33,10 +36,16 @@ public class aaaa : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
+                Login_Keyboard.isOut = false;
+                GameObject.Find(NPCNAME).transform.Find(LIGINNPCNAME).gameObject.SetActive(false);
+                GameObject.Find(NPCNAME).transform.Find(SIGNNPCNAME).gameObject.SetActive(true);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
+                Login_Keyboard.isOut = false;
+                GameObject.Find(NPCNAME).transform.Find(LIGINNPCNAME).gameObject.SetActive(false);
+                GameObject.Find(NPCNAME).transform.Find(SIGNNPCNAME).gameObject.SetActive(true);
                 RightHandProperty.clickUsed = true;
             }
         }

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class aaaa : MonoBehaviour
+public class Signup_SignupButton : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -33,10 +34,12 @@ public class aaaa : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
+                Application.LoadLevel(Name.ENTRYPAGENAME);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
+                Application.LoadLevel(Name.ENTRYPAGENAME);
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -60,3 +63,4 @@ public class aaaa : MonoBehaviour
         }
     }
 }
+

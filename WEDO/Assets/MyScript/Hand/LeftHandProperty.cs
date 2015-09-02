@@ -46,4 +46,6 @@ public class LeftHandProperty : MonoBehaviour
         isClosed = false;
         gameObject.renderer.material.color = Color.green;
     }
+
+
 }

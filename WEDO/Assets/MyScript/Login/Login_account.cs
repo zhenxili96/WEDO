@@ -11,13 +11,14 @@ public class Login_account : MonoBehaviour
     public GameObject accountText;
     public Color accountTextColor = Color.black;
     public string account = "";
+    public int accounttextIndex = 0;
 
 
     // Use this for initialization
     void Start()
     {
         originColor = renderer.material.color;
-        accountText = transform.GetChild(0).gameObject;
+        accountText = transform.GetChild(accounttextIndex).gameObject;
         accountText.renderer.material.color = accountTextColor;
     }
 

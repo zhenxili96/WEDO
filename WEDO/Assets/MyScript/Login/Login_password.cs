@@ -11,12 +11,13 @@ public class Login_password : MonoBehaviour
     public GameObject passwordText;
     public Color passwordTextColor = Color.black;
     public string password = "";
+    public int passwordtextIndex = 0;
 
     // Use this for initialization
     void Start()
     {
         originColor = renderer.material.color;
-        passwordText = transform.GetChild(0).gameObject;
+        passwordText = transform.GetChild(passwordtextIndex).gameObject;
         passwordText.renderer.material.color = passwordTextColor;
     }
 

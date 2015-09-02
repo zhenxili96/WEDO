@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>4.1.0f4</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -62,16 +64,19 @@
     <Compile Include="Assets\MyScript\Base\ColorTable.cs" />
     <Compile Include="Assets\MyScript\Base\Name.cs" />
     <Compile Include="Assets\MyScript\Base\RayHit.cs" />
+    <Compile Include="Assets\MyScript\Entry\Entry_logout.cs" />
+    <Compile Include="Assets\MyScript\Entry\Entry_projection.cs" />
     <Compile Include="Assets\MyScript\Entry\PersonButton.cs" />
     <Compile Include="Assets\MyScript\Entry\ProjectionButton.cs" />
     <Compile Include="Assets\MyScript\Hand\ChangingStateAction.cs" />
+    <Compile Include="Assets\MyScript\Hand\HandManager.cs" />
     <Compile Include="Assets\MyScript\Hand\HandProperty.cs" />
     <Compile Include="Assets\MyScript\Hand\LayRay.cs" />
     <Compile Include="Assets\MyScript\Hand\LeftHandProperty.cs" />
     <Compile Include="Assets\MyScript\Hand\RightHandProperty.cs" />
     <Compile Include="Assets\MyScript\Home\AddButton.cs" />
     <Compile Include="Assets\MyScript\Login\LoginStatic.cs" />
-    <Compile Include="Assets\MyScript\Login\Login_Button.cs" />
+    <Compile Include="Assets\MyScript\Login\Login_LoginButton.cs" />
     <Compile Include="Assets\MyScript\Login\Login_Key.cs" />
     <Compile Include="Assets\MyScript\Login\Login_Keyboard.cs" />
     <Compile Include="Assets\MyScript\Login\Login_NPC.cs" />
@@ -79,6 +84,10 @@
     <Compile Include="Assets\MyScript\Login\Login_delete.cs" />
     <Compile Include="Assets\MyScript\Login\Login_downkey.cs" />
     <Compile Include="Assets\MyScript\Login\Login_password.cs" />
+    <Compile Include="Assets\MyScript\Login\Login_signtext.cs" />
+    <Compile Include="Assets\MyScript\Login\Signup_back.cs" />
+    <Compile Include="Assets\MyScript\Login\Signup_NPC.cs" />
+    <Compile Include="Assets\MyScript\Login\Signup_SignupButton.cs" />
     <Compile Include="Assets\MyScript\ProjectInfo\EnterProject.cs" />
     <Compile Include="Assets\MyScript\Projection\BackButton.cs" />
     <Compile Include="Assets\MyScript\Projection\Disk.cs" />

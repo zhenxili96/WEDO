@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Login_NPC : MonoBehaviour
+public class Signup_NPC : MonoBehaviour
 {
 
     private float upSpeed = 16f;
@@ -13,7 +13,7 @@ public class Login_NPC : MonoBehaviour
     public static bool isOut = true;
     public static bool isOpen = true;
     public Vector3 outPos = new Vector3(0, 27, -50);
-    public Vector3 inPos = new Vector3(0, 75, -60);
+    public Vector3 inPos = new Vector3(0, 67, -60);
     public float outSpeed = 40f;
     public float inSpeed = 50f;
 
@@ -57,7 +57,7 @@ public class Login_NPC : MonoBehaviour
         isHover = false;
         foreach (Transform child in transform)
         {
-            if (child.name.Equals("Login_loginbutton") || child.name.Equals("Login_signtext"))
+            if (child.name.Equals("Signup_signupbutton") || child.name.Equals("Signup_back"))
             {
                 continue;
             }

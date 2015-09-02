@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class aaaa : MonoBehaviour
+public class Entry_logout : MonoBehaviour
 {
 
     public bool isHover = false;
