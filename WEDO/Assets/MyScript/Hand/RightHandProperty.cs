@@ -10,11 +10,17 @@ public class RightHandProperty : MonoBehaviour
     public static Vector3 closePos = new Vector3();
     public static bool closePosWait = true; //防止因位置还没更新而已被其他脚本使用
     private bool closePosTemp = false;  //为获得手刚闭合时的位置的中间临时变量
+    public Material handOpenMaterial;
+    public string handOpenMaterialName = "BlackRightHand";
+    public Material handCloseMaterial;
+    public string handCloseMaterialName = "BlackRightHandFist";
 
     // Use this for initialization
     void Start()
     {
-        gameObject.renderer.material.color = Color.green;
+        handOpenMaterial = (Material)Instantiate(Resources.Load(handOpenMaterialName));
+        handCloseMaterial = (Material)Instantiate(Resources.Load(handCloseMaterialName));
+        renderer.material = handOpenMaterial;
     }
 
     // Update is called once per frame
@@ -38,12 +44,12 @@ public class RightHandProperty : MonoBehaviour
     public void handClosed()
     {
         isClosed = true;
-        gameObject.renderer.material.color = Color.red;
+        renderer.material = handCloseMaterial;
     }
 
     public void handOpened()
     {
         isClosed = false;
-        gameObject.renderer.material.color = Color.green;
+        renderer.material = handOpenMaterial;
     }
 }

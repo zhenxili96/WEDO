@@ -40,7 +40,7 @@ public class Login_account : MonoBehaviour
         {
             return;
         }
-        account = Login_Key.curSentence;
+        account = Keyboard.curSentence;
         accountText.GetComponent<TextMesh>().text = account;
     }
 
@@ -58,14 +58,14 @@ public class Login_account : MonoBehaviour
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 LeftHandProperty.clickUsed = true;
-                Login_Key.curSentence = account;
+                Keyboard.curSentence = account;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 RightHandProperty.clickUsed = true;
-                Login_Key.curSentence = account;
+                Keyboard.curSentence = account;
             }
         }
     }

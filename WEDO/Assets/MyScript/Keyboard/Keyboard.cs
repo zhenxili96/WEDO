@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RoomKeyBoard : MonoBehaviour
+public class Keyboard : MonoBehaviour
 {
+
+    public Vector3 outPos = new Vector3(-18, 11, -210);
+    public Vector3 inPos = new Vector3(-18, -100, -210);
+    public float outSpeed = 60f;
+    public float inSpeed = 70f;
     public static bool isOut = false;
     public static bool isOpen = false;
-    private Vector3 outPos = new Vector3(-19, -1, 210);
-    private Vector3 inPos = new Vector3(210, -97, 210);
-    private static float outSpeed = 50f;
-    private static float inSpeed = 40f;
+    public static string curSentence = "";
 
     // Use this for initialization
     void Start()

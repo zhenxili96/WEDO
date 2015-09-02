@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LoginStatic : MonoBehaviour
+public class PersonStatic : MonoBehaviour
 {
 
-    public static string curFocus = "";
+    public static string account = "";
+    public static string ID = "";
+    public static string email = "";
+    public static string sex = "";
 
     // Use this for initialization
     void Start()
@@ -18,3 +21,4 @@ public class LoginStatic : MonoBehaviour
 
     }
 }
+

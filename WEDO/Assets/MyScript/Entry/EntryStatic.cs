@@ -1,28 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
-public class BackButton : BaseButton
+public class EntryStatic : MonoBehaviour
 {
-
 
     // Use this for initialization
     void Start()
     {
-
+        LayRay.rayStyle = RayStyle.Ortho;
     }
 
     // Update is called once per frame
     void Update()
     {
-        base.DrawManage();
+
     }
-
-
-    public override void run()
-    {
-        Application.LoadLevel(Name.ENTRYPAGENAME);
-    }
-
 }
-

@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RoomKeyBack : MonoBehaviour
+public class UsualKey : MonoBehaviour
 {
 
-    private bool isHover = false;
-    private Color originColor;
-    private Color hoverColor = Color.red;
-    private Vector3 originScale;
-    private Vector3 hoverScale;
-    private float scaleRate = 2;
-    private float originZ;
-    private float hoverZ;
+    public bool isHover = false;
+    public Vector3 originScale;
+    public Vector3 hoverScale;
+    public float scaleRate = 2;
+    public float originZ;
+    public float hoverZ;
+    public Color originColor;
+    public Color hoverColor = Color.red;
+    public string MySelf = "";
 
     // Use this for initialization
     void Start()
     {
-        originColor = renderer.material.color;
         originScale = transform.localScale;
         hoverScale = scaleRate * originScale;
         originZ = transform.position.z;
         hoverZ = originZ - 1;
+        originColor = renderer.material.color;
+        MySelf = name;
     }
 
     // Update is called once per frame
@@ -36,12 +38,12 @@ public class RoomKeyBack : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                RoomKeyBoard.isOut = false;
+                Keyboard.curSentence += MySelf;
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                RoomKeyBoard.isOut = false;
+                Keyboard.curSentence += MySelf;
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -49,21 +51,21 @@ public class RoomKeyBack : MonoBehaviour
 
     private void checkHover()
     {
-        if (RoomKeyBoard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        if (Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name) ))
         {
             isHover = true;
-            renderer.material.color = hoverColor;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
+            renderer.material.color = hoverColor;
         }
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
+            renderer.material.color = originColor;
         }
     }
 }

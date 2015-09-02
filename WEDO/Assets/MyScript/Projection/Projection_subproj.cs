@@ -1,30 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RoomKey : MonoBehaviour
+public class Projection_subproj : MonoBehaviour
 {
 
-    private bool isHover = false;
-    private Color originColor;
-    private bool isPressed = false;
-    private string MySelf = "";
-    private Vector3 originScale;
-    private Vector3 hoverScale;
-    private float scaleRate = 2;
-    private float originZ;
-    private float hoverZ;
-
-    public static string curSentence;
+    public bool isHover = false;
+    public Vector3 originScale;
+    public Vector3 hoverScale;
+    public float scaleRate = 1.1f;
+    public float originZ;
+    public float hoverZ;
+    public string curSubProjID = "";
 
     // Use this for initialization
     void Start()
     {
-        originColor = gameObject.renderer.material.color;
         originScale = transform.localScale;
         hoverScale = scaleRate * originScale;
-        MySelf = name;
         originZ = transform.position.z;
         hoverZ = originZ - 1;
+        foreach (Transform child in transform)
+        {
+            child.name = name + "_" + child.name;
+        }
     }
 
     // Update is called once per frame
@@ -40,12 +38,10 @@ public class RoomKey : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                curSentence += MySelf;
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                curSentence += MySelf;
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -53,10 +49,24 @@ public class RoomKey : MonoBehaviour
 
     private void checkHover()
     {
-        if (RoomKeyBoard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        isHover = false;
+        if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
         {
             isHover = true;
-            renderer.material.color = Color.red;
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                if (RayHit.LeftHitName.Equals(child.name) || RayHit.RightHitName.Equals(child.name))
+                {
+                    isHover = true;
+                }
+            }
+        }
+
+        if (isHover)
+        {
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
@@ -64,7 +74,6 @@ public class RoomKey : MonoBehaviour
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);

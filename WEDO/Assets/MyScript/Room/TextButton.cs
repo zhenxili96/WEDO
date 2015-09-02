@@ -65,7 +65,7 @@ public class TextButton : MonoBehaviour
                 TextMesh tempText = tempChild.GetComponent<TextMesh>();
                 tempText.text = "Hello world";
                 tempText.fontSize = 100;
-                RoomKeyBoard.isOut = true;
+                Keyboard.isOut = true;
             }
         }
     }

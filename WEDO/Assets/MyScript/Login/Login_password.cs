@@ -39,7 +39,7 @@ public class Login_password : MonoBehaviour
         {
             return;
         }
-        password = Login_Key.curSentence;
+        password = Keyboard.curSentence;
         passwordText.GetComponent<TextMesh>().text = TranslatePassword();
     }
 
@@ -57,14 +57,14 @@ public class Login_password : MonoBehaviour
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 LeftHandProperty.clickUsed = true;
-                Login_Key.curSentence = password;
+                Keyboard.curSentence = password;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 RightHandProperty.clickUsed = true;
-                Login_Key.curSentence = password;
+                Keyboard.curSentence = password;
             }
         }
     }

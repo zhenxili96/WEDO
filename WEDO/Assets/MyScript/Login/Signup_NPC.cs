@@ -32,6 +32,10 @@ public class Signup_NPC : MonoBehaviour
     private void checkOut()
     {
         isOpen = false;
+        if (!Keyboard.isOut)
+        {
+            isOut = true;
+        }
         if (isOut)
         {
             if (transform.position.y > outPos.y)
@@ -70,7 +74,7 @@ public class Signup_NPC : MonoBehaviour
         if (isHover)
         {
             isOut = false;
-            Login_Keyboard.isOut = true;
+            Keyboard.isOut = true;
         }
     }
 }

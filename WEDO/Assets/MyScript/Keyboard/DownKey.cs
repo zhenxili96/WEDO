@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Login_delete : MonoBehaviour
+public class DownKey : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -13,11 +13,10 @@ public class Login_delete : MonoBehaviour
     public float originZ;
     public float hoverZ;
 
-
     // Use this for initialization
     void Start()
     {
-        originColor = gameObject.renderer.material.color;
+        originColor = renderer.material.color;
         originScale = transform.localScale;
         hoverScale = scaleRate * originScale;
         originZ = transform.position.z;
@@ -37,20 +36,12 @@ public class Login_delete : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                if (Login_Key.curSentence.Length <= 0)
-                {
-                    return;
-                }
-                Login_Key.curSentence = Login_Key.curSentence.Remove(Login_Key.curSentence.Length - 1);
+                Keyboard.isOut = false;
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                if (Login_Key.curSentence.Length <= 0)
-                {
-                    return;
-                }
-                Login_Key.curSentence = Login_Key.curSentence.Remove(Login_Key.curSentence.Length - 1);
+                Keyboard.isOut = false;
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -58,10 +49,10 @@ public class Login_delete : MonoBehaviour
 
     private void checkHover()
     {
-        if (Login_Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        if (Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
-            renderer.material.color = Color.red;
+            renderer.material.color = hoverColor;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);

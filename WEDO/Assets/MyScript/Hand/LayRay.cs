@@ -23,7 +23,15 @@ public class LayRay : MonoBehaviour {
                 direction = target - curPos;  //垂直向下方式
                 break;
             case RayStyle.Perspect:
-                direction = curPos - GameObject.Find("Camera_mode2").transform.position;    //沿相机方向
+                GameObject camera = GameObject.Find("Camera_mode2");
+                if (camera == null)
+                {
+                    direction = curPos - Camera.main.transform.position;
+                }
+                else
+                {
+                    direction = curPos - GameObject.Find("Camera_mode2").transform.position;    //沿相机方向
+                }
                 break;
         }
         //Vector3 direction = curPos - Camera.main.transform.position;

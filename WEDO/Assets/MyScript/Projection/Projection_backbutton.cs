@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Login_downkey : MonoBehaviour
+public class Projection_backbutton : MonoBehaviour
 {
 
     public bool isHover = false;
-    public Color originColor;
-    public Color hoverColor = Color.red;
     public Vector3 originScale;
     public Vector3 hoverScale;
     public float scaleRate = 2;
@@ -16,7 +14,6 @@ public class Login_downkey : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        originColor = renderer.material.color;
         originScale = transform.localScale;
         hoverScale = scaleRate * originScale;
         originZ = transform.position.z;
@@ -36,14 +33,12 @@ public class Login_downkey : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Login_Keyboard.isOut = false;
-                Login_NPC.isOut = true;
+                Application.LoadLevel(Name.ENTRYPAGENAME);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Login_Keyboard.isOut = false;
-                Login_NPC.isOut = true;
+                Application.LoadLevel(Name.ENTRYPAGENAME);
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -51,10 +46,9 @@ public class Login_downkey : MonoBehaviour
 
     private void checkHover()
     {
-        if (Login_Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
         {
             isHover = true;
-            renderer.material.color = hoverColor;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
@@ -62,7 +56,6 @@ public class Login_downkey : MonoBehaviour
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);

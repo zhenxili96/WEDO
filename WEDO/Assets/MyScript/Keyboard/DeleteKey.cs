@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Login_signtext : MonoBehaviour
+public class DeleteKey : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -10,9 +10,8 @@ public class Login_signtext : MonoBehaviour
     public float scaleRate = 2;
     public float originZ;
     public float hoverZ;
-    public string NPCNAME = "NPC";
-    public string LIGINNPCNAME = "Login_NPC";
-    public string SIGNNPCNAME = "Signup_NPC";
+    public Color originColor;
+    public Color hoverColor = Color.red;
 
     // Use this for initialization
     void Start()
@@ -21,6 +20,7 @@ public class Login_signtext : MonoBehaviour
         hoverScale = scaleRate * originScale;
         originZ = transform.position.z;
         hoverZ = originZ - 1;
+        originColor = renderer.material.color;
     }
 
     // Update is called once per frame
@@ -36,16 +36,20 @@ public class Login_signtext : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Keyboard.isOut = false;
-                GameObject.Find(NPCNAME).transform.Find(LIGINNPCNAME).gameObject.SetActive(false);
-                GameObject.Find(NPCNAME).transform.Find(SIGNNPCNAME).gameObject.SetActive(true);
+                if (Keyboard.curSentence.Length <= 0)
+                {
+                    return;
+                }
+                Keyboard.curSentence = Keyboard.curSentence.Remove(Keyboard.curSentence.Length - 1);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Keyboard.isOut = false;
-                GameObject.Find(NPCNAME).transform.Find(LIGINNPCNAME).gameObject.SetActive(false);
-                GameObject.Find(NPCNAME).transform.Find(SIGNNPCNAME).gameObject.SetActive(true);
+                if (Keyboard.curSentence.Length <= 0)
+                {
+                    return;
+                }
+                Keyboard.curSentence = Keyboard.curSentence.Remove(Keyboard.curSentence.Length - 1);
                 RightHandProperty.clickUsed = true;
             }
         }
@@ -53,12 +57,13 @@ public class Login_signtext : MonoBehaviour
 
     private void checkHover()
     {
-        if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
+        if (Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
+            renderer.material.color = hoverColor;
         }
         else
         {
@@ -66,6 +71,7 @@ public class Login_signtext : MonoBehaviour
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
+            renderer.material.color = originColor;
         }
     }
 }

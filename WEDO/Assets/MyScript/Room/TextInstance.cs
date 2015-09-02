@@ -15,7 +15,7 @@ public class TextInstance : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        RoomKey.curSentence = GetComponent<TextMesh>().text;
+        Keyboard.curSentence = GetComponent<TextMesh>().text;
         name = transform.parent.name + "_prefab";
         RoomStatic.curFocus = name;
         isFocus = true;
@@ -118,7 +118,7 @@ public class TextInstance : MonoBehaviour
         {
             isFocus = true;
             renderer.material.color = ColorItem.curColor;
-            GetComponent<TextMesh>().text = RoomKey.curSentence;
+            GetComponent<TextMesh>().text = Keyboard.curSentence;
         }
         else
         {

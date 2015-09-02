@@ -36,14 +36,14 @@ public class Signup_back : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Login_Keyboard.isOut = false;
+                Keyboard.isOut = false;
                 GameObject.Find(NPCNAME).transform.Find(LIGINNPCNAME).gameObject.SetActive(true);
                 GameObject.Find(NPCNAME).transform.Find(SIGNNPCNAME).gameObject.SetActive(false);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Login_Keyboard.isOut = false;
+                Keyboard.isOut = false;
                 GameObject.Find(NPCNAME).transform.Find(LIGINNPCNAME).gameObject.SetActive(true);
                 GameObject.Find(NPCNAME).transform.Find(SIGNNPCNAME).gameObject.SetActive(false);
                 RightHandProperty.clickUsed = true;
