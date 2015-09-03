@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -80,7 +80,6 @@
      <Compile Include="Assets\MyScript\Person\Person_back.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\EnterProject.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfoStatic.cs" />
-     <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_Member.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_leftbar.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_leftbarItem.cs" />
      <Compile Include="Assets\MyScript\Projection\EnterButton.cs" />
