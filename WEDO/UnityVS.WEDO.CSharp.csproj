@@ -94,9 +94,14 @@
     <Compile Include="Assets\MyScript\Person\Person_back.cs" />
     <Compile Include="Assets\MyScript\Person\Person_Information.cs" />
     <Compile Include="Assets\MyScript\ProjectInfo\EnterProject.cs" />
+    <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_topaddbutton.cs" />
+    <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_bottominput.cs" />
+    <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_bottominputtext.cs" />
     <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_leftbar.cs" />
     <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfoStatic.cs" />
     <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_leftbarItem.cs" />
+    <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_bottomback.cs" />
+    <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_topprojection.cs" />
     <Compile Include="Assets\MyScript\Projection\EnterButton.cs" />
     <Compile Include="Assets\MyScript\Projection\ProjectionStatic.cs" />
     <Compile Include="Assets\MyScript\Projection\Projection_backbutton.cs" />

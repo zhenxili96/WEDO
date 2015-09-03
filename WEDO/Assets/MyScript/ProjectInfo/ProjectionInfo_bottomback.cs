@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projection_enterbutton : MonoBehaviour
+public class ProjectionInfo_bottomback : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -33,12 +33,12 @@ public class Projection_enterbutton : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
                 RightHandProperty.clickUsed = true;
             }
         }

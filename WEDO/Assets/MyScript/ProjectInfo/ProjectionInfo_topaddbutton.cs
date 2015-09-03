@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projection_enterbutton : MonoBehaviour
+public class ProjectionInfo_topaddbutton : MonoBehaviour
 {
 
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 2;
+    public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
+    public int projectionCount = 0;
+    public Vector3 projectionSpace = new Vector3(58, 0, 0);
+    public Vector3 projectionRotation = new Vector3(90, 180, 0);
+    public Vector3 projectionLocalScale = new Vector3(5, 1, 5);
+    public string ProjectionPrefabName = "projection";
 
     // Use this for initialization
     void Start()
@@ -33,12 +38,22 @@ public class Projection_enterbutton : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                projectionCount++;
+                GameObject newPorjection = (GameObject)Instantiate(Resources.Load(ProjectionPrefabName));
+                newPorjection.transform.localScale = projectionLocalScale;
+                newPorjection.transform.eulerAngles = projectionRotation;
+                newPorjection.transform.position = transform.position + projectionCount * projectionSpace;
+                newPorjection.AddComponent<ProjectionInfo_topprojection>();
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                projectionCount++;
+                GameObject newPorjection = (GameObject)Instantiate(Resources.Load(ProjectionPrefabName));
+                newPorjection.transform.localScale = projectionLocalScale;
+                newPorjection.transform.eulerAngles = projectionRotation;
+                newPorjection.transform.position = transform.position + projectionCount * projectionSpace;
+                newPorjection.AddComponent<ProjectionInfo_topprojection>();
                 RightHandProperty.clickUsed = true;
             }
         }

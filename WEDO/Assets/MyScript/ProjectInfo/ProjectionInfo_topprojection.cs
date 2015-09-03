@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projection_enterbutton : MonoBehaviour
+public class ProjectionInfo_topprojection : MonoBehaviour
 {
 
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 2;
+    public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
 
@@ -33,12 +33,12 @@ public class Projection_enterbutton : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
                 RightHandProperty.clickUsed = true;
             }
         }
