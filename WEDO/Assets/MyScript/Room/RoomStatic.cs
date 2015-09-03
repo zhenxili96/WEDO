@@ -17,6 +17,7 @@ public class RoomStatic : MonoBehaviour
     {
         layerArray.Add(new Layer());
         layerArray.Add(new Layer(35, 34, 0, true));
+        LayRay.rayStyle = RayStyle.Ortho;
     }
 
     // Update is called once per frame
