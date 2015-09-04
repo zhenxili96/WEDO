@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +213,7 @@
      <None Include="Assets\ReflectionMirror\MirrorReflection.shader" />
      <None Include="Assets\RSUnityToolkit\Internals\Materials\Occlusion.shader" />
  <Reference Include="Newtonsoft.Json">
- <HintPath>Assets\Plugins.Managed\Newtonsoft.Json.dll</HintPath>
+ <HintPath>Assets\Plugins\x86_64\Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="libpxcclr.unity">
  <HintPath>Assets\Plugins.Managed\libpxcclr.unity.dll</HintPath>

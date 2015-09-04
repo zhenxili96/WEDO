@@ -56,7 +56,7 @@
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\Plugins.Managed\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Assets\Plugins\x86_64\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="libpxcclr.unity">
       <HintPath>Assets\Plugins.Managed\libpxcclr.unity.dll</HintPath>
