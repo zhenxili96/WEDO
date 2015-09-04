@@ -1,25 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Login_account : MonoBehaviour
+public class Signup_password : MonoBehaviour
 {
     public bool isHover = false;
     public bool isFocus = false;
     public Color hoverColor = Color.red;
     public Color focusColor = Color.yellow;
     public Color originColor;
-    public GameObject accountText;
-    public Color accountTextColor = Color.black;
-    public static string account = "";
-    public int accounttextIndex = 0;
-
+    public GameObject passwordText;
+    public Color passwordTextColor = Color.black;
+    public static string signupPassword = "";
+    public int passwordtextIndex = 0;
 
     // Use this for initialization
     void Start()
     {
         originColor = renderer.material.color;
-        accountText = transform.GetChild(accounttextIndex).gameObject;
-        accountText.renderer.material.color = accountTextColor;
+        passwordText = transform.GetChild(passwordtextIndex).gameObject;
+        passwordText.renderer.material.color = passwordTextColor;
     }
 
     // Update is called once per frame
@@ -40,8 +39,8 @@ public class Login_account : MonoBehaviour
         {
             return;
         }
-        account = Keyboard.curSentence;
-        accountText.GetComponent<TextMesh>().text = account;
+        signupPassword = Keyboard.curSentence;
+        passwordText.GetComponent<TextMesh>().text = TranslatePassword();
     }
 
     private void checkFocus()
@@ -58,14 +57,14 @@ public class Login_account : MonoBehaviour
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 LeftHandProperty.clickUsed = true;
-                Keyboard.curSentence = account;
+                Keyboard.curSentence = signupPassword;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 RightHandProperty.clickUsed = true;
-                Keyboard.curSentence = account;
+                Keyboard.curSentence = signupPassword;
             }
         }
     }
@@ -91,6 +90,16 @@ public class Login_account : MonoBehaviour
                 renderer.material.color = originColor;
             }
         }
+    }
+
+    private string TranslatePassword()
+    {
+        string showPassword = "";
+        for (int i = 0; i < signupPassword.Length; i++)
+        {
+            showPassword += "*";
+        }
+        return showPassword;
     }
 
 }

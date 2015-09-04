@@ -34,15 +34,38 @@ public class Signup_SignupButton : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.ENTRYPAGENAME);
                 LeftHandProperty.clickUsed = true;
+                if (checkSignup())
+                {
+                    //TODO 弹出注册成功窗
+                }
+                else
+                {
+                    //TODO 弹出注册失败信息窗
+                }
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.ENTRYPAGENAME);
                 RightHandProperty.clickUsed = true;
+                if (checkSignup())
+                {
+                    //TODO 弹出注册成功窗
+                }
+                else
+                {
+                    //TODO 弹出注册失败信息窗
+                }
             }
         }
+    }
+
+    private bool checkSignup()
+    {
+        string account = Signup_account.signupAccount;
+        string password = Signup_password.signupPassword;
+        string repassword = Signup_repassword.signupRePassword;
+        //TODO 检测并注册账号
+        return true;
     }
 
     private void checkHover()

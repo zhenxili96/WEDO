@@ -10,7 +10,7 @@ public class Login_password : MonoBehaviour
     public Color originColor;
     public GameObject passwordText;
     public Color passwordTextColor = Color.black;
-    public string password = "";
+    public static string password = "";
     public int passwordtextIndex = 0;
 
     // Use this for initialization

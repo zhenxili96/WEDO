@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Login_account : MonoBehaviour
+public class Signup_account : MonoBehaviour
 {
     public bool isHover = false;
     public bool isFocus = false;
@@ -10,7 +10,7 @@ public class Login_account : MonoBehaviour
     public Color originColor;
     public GameObject accountText;
     public Color accountTextColor = Color.black;
-    public static string account = "";
+    public static string signupAccount = "";
     public int accounttextIndex = 0;
 
 
@@ -40,8 +40,8 @@ public class Login_account : MonoBehaviour
         {
             return;
         }
-        account = Keyboard.curSentence;
-        accountText.GetComponent<TextMesh>().text = account;
+        signupAccount = Keyboard.curSentence;
+        accountText.GetComponent<TextMesh>().text = signupAccount;
     }
 
     private void checkFocus()
@@ -58,14 +58,14 @@ public class Login_account : MonoBehaviour
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 LeftHandProperty.clickUsed = true;
-                Keyboard.curSentence = account;
+                Keyboard.curSentence = signupAccount;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 isFocus = true;
                 LoginStatic.curFocus = name;
                 RightHandProperty.clickUsed = true;
-                Keyboard.curSentence = account;
+                Keyboard.curSentence = signupAccount;
             }
         }
     }

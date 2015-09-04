@@ -6,11 +6,11 @@ public class Person_Information : MonoBehaviour
 
     public string AccountTextName = "accountText";
     public string EmailTextName = "emailText";
-    public string IDTextName = "IDText";
+    public string UserImageName = "Person_image";
     public string SexTextName = "sexText";
     public GameObject accountTextObject;
     public GameObject emailTextObject;
-    public GameObject IDTextObject;
+    public GameObject userImageObject;
     public GameObject sexTextObject;
 
     // Use this for initialization
@@ -18,7 +18,7 @@ public class Person_Information : MonoBehaviour
     {
         accountTextObject = GameObject.Find(AccountTextName);
         emailTextObject = GameObject.Find(EmailTextName);
-        IDTextObject = GameObject.Find(IDTextName);
+        userImageObject = GameObject.Find(UserImageName);
         sexTextObject = GameObject.Find(SexTextName);
     }
 
@@ -27,7 +27,7 @@ public class Person_Information : MonoBehaviour
     {
         accountTextObject.GetComponent<TextMesh>().text = "昵称：" + PersonStatic.account;
         emailTextObject.GetComponent<TextMesh>().text = "邮箱：" + PersonStatic.email;
-        IDTextObject.GetComponent<TextMesh>().text = "ID：" + PersonStatic.ID;
         sexTextObject.GetComponent<TextMesh>().text = "性别：" + PersonStatic.sex;
+        //TODO 用户头像替换
     }
 }

@@ -74,7 +74,10 @@
      <Compile Include="Assets\MyScript\Login\Login_signtext.cs" />
      <Compile Include="Assets\MyScript\Login\Signup_NPC.cs" />
      <Compile Include="Assets\MyScript\Login\Signup_SignupButton.cs" />
+     <Compile Include="Assets\MyScript\Login\Signup_account.cs" />
      <Compile Include="Assets\MyScript\Login\Signup_back.cs" />
+     <Compile Include="Assets\MyScript\Login\Signup_password.cs" />
+     <Compile Include="Assets\MyScript\Login\Signup_repassword.cs" />
      <Compile Include="Assets\MyScript\Person\PersonStatic.cs" />
      <Compile Include="Assets\MyScript\Person\Person_Information.cs" />
      <Compile Include="Assets\MyScript\Person\Person_back.cs" />
