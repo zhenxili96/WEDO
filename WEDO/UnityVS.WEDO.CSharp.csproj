@@ -12,14 +12,12 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>4.1.0f4</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +52,9 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Plugins.Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="libpxcclr.unity">
       <HintPath>Assets\Plugins.Managed\libpxcclr.unity.dll</HintPath>
     </Reference>
@@ -64,6 +65,17 @@
     <Compile Include="Assets\MyScript\Base\ColorTable.cs" />
     <Compile Include="Assets\MyScript\Base\Name.cs" />
     <Compile Include="Assets\MyScript\Base\RayHit.cs" />
+    <Compile Include="Assets\MyScript\Client\ClientLayer.cs" />
+    <Compile Include="Assets\MyScript\Client\ClientMaterial.cs" />
+    <Compile Include="Assets\MyScript\Client\Connect.cs" />
+    <Compile Include="Assets\MyScript\Client\FileControl.cs" />
+    <Compile Include="Assets\MyScript\Client\Program.cs" />
+    <Compile Include="Assets\MyScript\Client\ProxyInterface.cs" />
+    <Compile Include="Assets\MyScript\Client\RoomChat.cs" />
+    <Compile Include="Assets\MyScript\Client\RoomInterface.cs" />
+    <Compile Include="Assets\MyScript\Client\RoomLayer.cs" />
+    <Compile Include="Assets\MyScript\Client\RoomUser.cs" />
+    <Compile Include="Assets\MyScript\Client\StaticConfiguration.cs" />
     <Compile Include="Assets\MyScript\Entry\EntryStatic.cs" />
     <Compile Include="Assets\MyScript\Entry\Entry_logout.cs" />
     <Compile Include="Assets\MyScript\Entry\Entry_person.cs" />
@@ -88,11 +100,11 @@
     <Compile Include="Assets\MyScript\Login\Login_password.cs" />
     <Compile Include="Assets\MyScript\Login\Login_signtext.cs" />
     <Compile Include="Assets\MyScript\Login\Signup_NPC.cs" />
-    <Compile Include="Assets\MyScript\Login\Signup_repassword.cs" />
     <Compile Include="Assets\MyScript\Login\Signup_SignupButton.cs" />
     <Compile Include="Assets\MyScript\Login\Signup_account.cs" />
     <Compile Include="Assets\MyScript\Login\Signup_back.cs" />
     <Compile Include="Assets\MyScript\Login\Signup_password.cs" />
+    <Compile Include="Assets\MyScript\Login\Signup_repassword.cs" />
     <Compile Include="Assets\MyScript\Person\PersonStatic.cs" />
     <Compile Include="Assets\MyScript\Person\Person_Information.cs" />
     <Compile Include="Assets\MyScript\Person\Person_back.cs" />

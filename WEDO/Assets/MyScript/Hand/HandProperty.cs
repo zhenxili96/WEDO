@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class HandProperty : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class HandProperty : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        JsonConvert.Equals("A", "B");
     }
 
     // Update is called once per frame

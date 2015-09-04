@@ -9,20 +9,20 @@ public class aaaction : BaseAction
     public static Dictionary<string, bool> hitMap = new Dictionary<string, bool>(); //UIÔªËØÊÇ·ñ±»µã»÷map
     private bool isFist = false;
 
-    void Start()
-    {
-        CleanSupportedTriggers();
-        SetDefaultTriggers();
+    //void Start()
+    //{
+    //    CleanSupportedTriggers();
+    //    SetDefaultTriggers();
 
-        if (SupportedTriggers != null)
-        {
-            for (int i = 0; i < SupportedTriggers.Length; i++)
-            {
-                SupportedTriggers[i].CleanRules();
-                SetDefaultTriggerValues(i, SupportedTriggers[i]);
-            }
-        }
-    }
+    //    if (SupportedTriggers != null)
+    //    {
+    //        for (int i = 0; i < SupportedTriggers.Length; i++)
+    //        {
+    //            SupportedTriggers[i].CleanRules();
+    //            SetDefaultTriggerValues(i, SupportedTriggers[i]);
+    //        }
+    //    }
+    //}
 
     void Update()
     {
