@@ -67,7 +67,7 @@
      <None Include="Assets\ReflectionMirror\MirrorReflection.shader" />
      <None Include="Assets\RSUnityToolkit\Internals\Materials\Occlusion.shader" />
  <Reference Include="Newtonsoft.Json">
- <HintPath>Assets\Plugins\x86_64\Newtonsoft.Json.dll</HintPath>
+ <HintPath>Assets\Plugins.Managed\Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="libpxcclr.unity">
  <HintPath>Assets\Plugins.Managed\libpxcclr.unity.dll</HintPath>
@@ -81,10 +81,6 @@
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-vs.csproj">
-      <Project>{9DE72573-9136-58BD-0C9D-0AD9F3CA8B1F}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
