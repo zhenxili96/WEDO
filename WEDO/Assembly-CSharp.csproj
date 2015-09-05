@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -49,17 +49,6 @@
      <Compile Include="Assets\MyScript\Base\ColorTable.cs" />
      <Compile Include="Assets\MyScript\Base\Name.cs" />
      <Compile Include="Assets\MyScript\Base\RayHit.cs" />
-     <Compile Include="Assets\MyScript\Client\ClientLayer.cs" />
-     <Compile Include="Assets\MyScript\Client\ClientMaterial.cs" />
-     <Compile Include="Assets\MyScript\Client\Connect.cs" />
-     <Compile Include="Assets\MyScript\Client\FileControl.cs" />
-     <Compile Include="Assets\MyScript\Client\Program.cs" />
-     <Compile Include="Assets\MyScript\Client\ProxyInterface.cs" />
-     <Compile Include="Assets\MyScript\Client\RoomChat.cs" />
-     <Compile Include="Assets\MyScript\Client\RoomInterface.cs" />
-     <Compile Include="Assets\MyScript\Client\RoomLayer.cs" />
-     <Compile Include="Assets\MyScript\Client\RoomUser.cs" />
-     <Compile Include="Assets\MyScript\Client\StaticConfiguration.cs" />
      <Compile Include="Assets\MyScript\Entry\EntryStatic.cs" />
      <Compile Include="Assets\MyScript\Entry\Entry_logout.cs" />
      <Compile Include="Assets\MyScript\Entry\Entry_person.cs" />
@@ -92,6 +81,9 @@
      <Compile Include="Assets\MyScript\Person\PersonStatic.cs" />
      <Compile Include="Assets\MyScript\Person\Person_Information.cs" />
      <Compile Include="Assets\MyScript\Person\Person_back.cs" />
+     <Compile Include="Assets\MyScript\Person\Person_image.cs" />
+     <Compile Include="Assets\MyScript\Person\Person_imageplaneconfirm.cs" />
+     <Compile Include="Assets\MyScript\Person\Person_userimage.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\EnterProject.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfoStatic.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_bottomback.cs" />
