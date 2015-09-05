@@ -33,12 +33,12 @@ public class Entry_projection : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
+                Application.LoadLevel(Name.HOMEPAGENAME);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
+                Application.LoadLevel(Name.HOMEPAGENAME);
                 RightHandProperty.clickUsed = true;
             }
         }

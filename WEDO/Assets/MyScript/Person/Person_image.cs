@@ -30,9 +30,9 @@ public class Person_image : MonoBehaviour
 
     private void checkImage()
     {
-        if (!Person_userimage.chooseUserImage.Equals(""))
+        if (!WholeStatic.curUser.Avatar.Equals(""))
         {
-            string imagePath = "UserImage/" + Person_userimage.chooseUserImage;
+            string imagePath = "UserImage/" + WholeStatic.curUser.Avatar;
             renderer.material = (Material)Resources.Load(imagePath);
         }
         else

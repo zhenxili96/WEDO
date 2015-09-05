@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
 public class Person_imageplaneconfirm : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Person_imageplaneconfirm : MonoBehaviour
     public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
+    public string PersonNPCName = "Person_NPC";
 
     // Use this for initialization
     void Start()
@@ -33,15 +35,38 @@ public class Person_imageplaneconfirm : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Person_userimage.chooseUserImage = Person_userimage.tempImage;
-                transform.parent.gameObject.SetActive(false);
+                if (!ProxyInterface.User_EditBaseInfo(WholeStatic.curUser.Guid, Person_userimage.tempImage,
+                    WholeStatic.curUser.MailBox, WholeStatic.curUser.Sex))
+                {
+                    AttentionStatic.callAttention(PersonNPCName, "修改失败！");
+                }
+                else
+                {
+                    Person_userimage.chooseUserImage = Person_userimage.tempImage;
+                    transform.parent.gameObject.SetActive(false);
+                }
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Person_userimage.chooseUserImage = Person_userimage.tempImage;
-                transform.parent.gameObject.SetActive(false);
+                if (!ProxyInterface.User_EditBaseInfo(WholeStatic.curUser.Guid, Person_userimage.tempImage,
+                    WholeStatic.curUser.MailBox, WholeStatic.curUser.Sex))
+                {
+                    AttentionStatic.callAttention(PersonNPCName, "修改失败！");
+                }
+                else
+                {
+                    Person_userimage.chooseUserImage = Person_userimage.tempImage;
+                    transform.parent.gameObject.SetActive(false);
+                }
                 RightHandProperty.clickUsed = true;
+            }
+        }
+        else
+        {
+            if (LeftHandProperty.isClosed || RightHandProperty.isClosed)
+            {
+                transform.parent.gameObject.SetActive(false);
             }
         }
     }

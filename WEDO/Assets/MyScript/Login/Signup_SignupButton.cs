@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Wedo_ClientSide;
 
 public class Signup_SignupButton : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Signup_SignupButton : MonoBehaviour
     public float scaleRate = 2;
     public float originZ;
     public float hoverZ;
+    public string NPCName = "NPC";
+    public string UNSET = "UNSET";
 
     // Use this for initialization
     void Start()
@@ -37,11 +40,7 @@ public class Signup_SignupButton : MonoBehaviour
                 LeftHandProperty.clickUsed = true;
                 if (checkSignup())
                 {
-                    //TODO 弹出注册成功窗
-                }
-                else
-                {
-                    //TODO 弹出注册失败信息窗
+                    AttentionStatic.callAttention(NPCName, "注册成功");
                 }
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
@@ -49,11 +48,7 @@ public class Signup_SignupButton : MonoBehaviour
                 RightHandProperty.clickUsed = true;
                 if (checkSignup())
                 {
-                    //TODO 弹出注册成功窗
-                }
-                else
-                {
-                    //TODO 弹出注册失败信息窗
+                    AttentionStatic.callAttention(NPCName, "注册成功");
                 }
             }
         }
@@ -65,6 +60,27 @@ public class Signup_SignupButton : MonoBehaviour
         string password = Signup_password.signupPassword;
         string repassword = Signup_repassword.signupRePassword;
         //TODO 检测并注册账号
+        if (account.Length == 0)
+        {
+            AttentionStatic.callAttention(NPCName, "账号为空，请重新输入！");
+            return false;
+        }
+        if (password.Length == 0)
+        {
+            AttentionStatic.callAttention(NPCName, "密码为空，请重新输入！");
+            return false;
+        }
+        if (!password.Equals(repassword))
+        {
+            AttentionStatic.callAttention(NPCName, "两次输入密码不同，请重新输入！");
+            return false;
+        }
+        ClientUser user = ProxyInterface.User_Register(account, password, UNSET, UNSET, UNSET);
+        if (user == null)
+        {
+            AttentionStatic.callAttention(NPCName, "注册失败！");
+            return false;
+        }
         return true;
     }
 

@@ -12,6 +12,12 @@ public class Keyboard : MonoBehaviour
     public static bool isOpen = false;
     public static string curSentence = "";
 
+    public static void init()
+    {
+        isOut = false;
+        isOpen = false;
+    }
+
     // Use this for initialization
     void Start()
     {

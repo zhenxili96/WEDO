@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Wedo_ClientSide;
 
 public class Login_LoginButton : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Login_LoginButton : MonoBehaviour
     public float scaleRate = 2;
     public float originZ;
     public float hoverZ;
+    public string NPCName = "NPC";
 
     // Use this for initialization
     void Start()
@@ -39,15 +41,14 @@ public class Login_LoginButton : MonoBehaviour
                 {
                     Application.LoadLevel(Name.ENTRYPAGENAME);
                 }
-                else
-                {
-                    //TODO 弹出登录失败提示窗
-                }
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.ENTRYPAGENAME);
                 RightHandProperty.clickUsed = true;
+                if (checkLogin())
+                {
+                    Application.LoadLevel(Name.ENTRYPAGENAME);
+                }
             }
         }
     }
@@ -57,6 +58,23 @@ public class Login_LoginButton : MonoBehaviour
         string account = Login_account.account;
         string password = Login_password.password;
         //TODO 登陆校验查询，若登陆成功则存储当前用户信息
+        if (account.Length == 0)
+        {
+            AttentionStatic.callAttention(NPCName, "账号为空，请重新输入！");
+            return false;
+        }
+        if (password.Length == 0)
+        {
+            AttentionStatic.callAttention(NPCName, "密码为空，请重新输入！");
+            return false;
+        }
+        ClientUser user = ProxyInterface.User_Login(account, password);
+        if (user == null)
+        {
+            AttentionStatic.callAttention(NPCName, "用户名或密码错误，请重新输入！");
+            return false;
+        }
+        WholeStatic.curUser = user;
         return true;
     }
 
