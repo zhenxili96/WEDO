@@ -33,13 +33,13 @@ public class Entry_person : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PERSONPAGENAME);
                 LeftHandProperty.clickUsed = true;
+                Application.LoadLevel(Name.PERSONPAGENAME);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PERSONPAGENAME);
                 RightHandProperty.clickUsed = true;
+                Application.LoadLevel(Name.PERSONPAGENAME);
             }
         }
     }

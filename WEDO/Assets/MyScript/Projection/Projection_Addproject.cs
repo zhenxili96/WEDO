@@ -2,7 +2,7 @@
 using System.Collections;
 using Wedo_ClientSide;
 
-public class Home_Addproject : MonoBehaviour
+public class Projection_Addproject : MonoBehaviour
 {
     public string CancelButton = "cancelbutton";
     public string InputLine = "inputline";
@@ -22,14 +22,14 @@ public class Home_Addproject : MonoBehaviour
     public float cancelHoverZ;
     public GameObject cancelbutton;
 
-    public Vector3 inPos = new Vector3(-57, 65, -20);
-    public Vector3 outPos = new Vector3(-57, 10, -20);
-    public float inSpeed = 60;
-    public float outSpeed = 70;
+    public Vector3 inPos = new Vector3(-9, 10, 21);
+    public Vector3 outPos = new Vector3(-9, 0, 21);
+    public float inSpeed = 15;
+    public float outSpeed = 20;
     public static bool isOut = true;
     public GameObject nameTextObject;
     public string name = "";
-    public string HomeNPCName = "Home_NPC";
+    public string ProjectionNPCName = "Projection_NPC";
 
     // Use this for initialization
     void Start()
@@ -110,7 +110,7 @@ public class Home_Addproject : MonoBehaviour
             ClientProject tempProject = ProxyInterface.Project_Create(WholeStatic.curUser.Guid, name);
             if (tempProject == null)
             {
-                AttentionStatic.callAttention(HomeNPCName, "新建项目失败！");
+                AttentionStatic.callAttention(ProjectionNPCName, "新建项目失败！");
             }
             else
             {
@@ -120,7 +120,7 @@ public class Home_Addproject : MonoBehaviour
                 Debug.Log(tempProject.OwnerAccount);
                 Debug.Log(tempProject.OwnerAvatar);
                 Debug.Log(tempProject.OwnerGuid);
-                HomeStatic.addProjection(name, tempProject);
+                ProjectionStatic.addProjection(name, tempProject);
             }
             gameObject.SetActive(false);
         }

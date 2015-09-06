@@ -15,6 +15,8 @@ public class PersonStatic : MonoBehaviour
         Keyboard.init();
         getUserInfomation();
         LayRay.rayStyle = RayStyle.Ortho;
+        LeftHandProperty.HandInit();
+        RightHandProperty.HandInit();
     }
 
     private void getUserInfomation()

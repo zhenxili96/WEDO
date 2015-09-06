@@ -33,12 +33,12 @@ public class Projection_enterbutton : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
                 LeftHandProperty.clickUsed = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.PROJECTIONINFOPAGE);
+                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
                 RightHandProperty.clickUsed = true;
             }
         }

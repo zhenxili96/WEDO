@@ -10,6 +10,8 @@ public class LoginStatic : MonoBehaviour
     void Start()
     {
         LayRay.rayStyle = RayStyle.Ortho;
+        LeftHandProperty.HandInit();
+        RightHandProperty.HandInit();
     }
 
     // Update is called once per frame

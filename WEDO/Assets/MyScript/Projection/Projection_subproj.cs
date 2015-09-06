@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
 public class Projection_subproj : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Projection_subproj : MonoBehaviour
     public float originZ;
     public float hoverZ;
     public string curSubProjID = "";
+    public ClientProject projectObject = null;
 
     // Use this for initialization
     void Start()

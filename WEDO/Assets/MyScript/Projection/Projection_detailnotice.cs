@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Wedo_ClientSide;
 
-public class Entry_projection : MonoBehaviour
+public class Projection_detailnotice : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -10,6 +12,7 @@ public class Entry_projection : MonoBehaviour
     public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
+    public string ProjectionNPCName = "Projection_NPC";
 
     // Use this for initialization
     void Start()
@@ -34,12 +37,16 @@ public class Entry_projection : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
-                Application.LoadLevel(Name.HOMEPAGENAME);
+                //TODO 呼出展示公告窗
+                List<ClientMessage> notice = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
+                AttentionStatic.callAttention(ProjectionNPCName, notice.ToString());
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
-                Application.LoadLevel(Name.HOMEPAGENAME);
+                //TODO 呼出展示公告窗
+                List<ClientMessage> notice = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
+                AttentionStatic.callAttention(ProjectionNPCName, notice.ToString());
             }
         }
     }

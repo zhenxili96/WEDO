@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
-public class EnterButton : BaseButton
+public class Projection_subitem : MonoBehaviour
 {
-
 
     // Use this for initialization
     void Start()
@@ -15,14 +13,6 @@ public class EnterButton : BaseButton
     // Update is called once per frame
     void Update()
     {
-        base.DrawManage();
+
     }
-
-
-    public override void run()
-    {
-        Application.LoadLevel(Name.PROJECTIONINFOPAGE);
-    }
-
 }
-

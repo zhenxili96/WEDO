@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
-public class Entry_projection : MonoBehaviour
+public class Projection_subadd : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -10,6 +11,8 @@ public class Entry_projection : MonoBehaviour
     public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
+    public string ProjectionNPCName = "Projection_NPC";
+    public string AddprojectName = "Addproject";
 
     // Use this for initialization
     void Start()
@@ -34,12 +37,24 @@ public class Entry_projection : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
-                Application.LoadLevel(Name.HOMEPAGENAME);
+                //权限检查
+                if (!WholeStatic.curUser.Account.Equals(ProjectionStatic.curProjectionLeader))
+                {
+                    AttentionStatic.callAttention(ProjectionNPCName, "非项目发起人无权限添加子项目！");
+                    return;
+                }
+                GameObject.Find(ProjectionNPCName).transform.FindChild(AddprojectName).gameObject.SetActive(true);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
-                Application.LoadLevel(Name.HOMEPAGENAME);
+                //权限检查
+                if (!WholeStatic.curUser.Account.Equals(ProjectionStatic.curProjectionLeader))
+                {
+                    AttentionStatic.callAttention(ProjectionNPCName, "非项目发起人无权限添加子项目！");
+                    return;
+                }
+                GameObject.Find(ProjectionNPCName).transform.FindChild(AddprojectName).gameObject.SetActive(true);
             }
         }
     }

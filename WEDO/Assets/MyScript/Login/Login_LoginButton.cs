@@ -32,23 +32,20 @@ public class Login_LoginButton : MonoBehaviour
 
     private void checkClick()
     {
-        if (isHover)
+        if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
         {
-            if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+            LeftHandProperty.clickUsed = true;
+            if (checkLogin())
             {
-                LeftHandProperty.clickUsed = true;
-                if (checkLogin())
-                {
-                    Application.LoadLevel(Name.ENTRYPAGENAME);
-                }
+                Application.LoadLevel(Name.ENTRYPAGENAME);
             }
-            if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+        }
+        if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+        {
+            RightHandProperty.clickUsed = true;
+            if (checkLogin())
             {
-                RightHandProperty.clickUsed = true;
-                if (checkLogin())
-                {
-                    Application.LoadLevel(Name.ENTRYPAGENAME);
-                }
+                Application.LoadLevel(Name.ENTRYPAGENAME);
             }
         }
     }

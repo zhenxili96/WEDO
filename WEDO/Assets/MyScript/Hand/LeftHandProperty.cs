@@ -41,6 +41,11 @@ public class LeftHandProperty : MonoBehaviour
         }
     }
 
+    public static void HandInit()
+    {
+        isClosed = false;
+    }
+
     public void handClosed()
     {
         isClosed = true;

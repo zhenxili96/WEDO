@@ -15,6 +15,8 @@ public class HomeStatic : MonoBehaviour
     public static string HOMEPROJECTIONPREFABNAME = "homeprojectionprefab";
     public static string PROJBARNAME = "ProjBar";
     public static string projectnametext = "projectiontext";
+    public static string projectimage = "projectionimage";
+    public static string otherprojimage = "ProjectionImage/otherprojprefab";
 
     // Use this for initialization
     void Start()
@@ -24,13 +26,15 @@ public class HomeStatic : MonoBehaviour
         ProjectionCount = AllProjection.Count;
         initAllProjection();
         Keyboard.init();
-        Debug.Log(ProjectionCount);
+        LeftHandProperty.HandInit();
+        RightHandProperty.HandInit();
     }
 
-    public static void addProjection(string name)
+    public static void addProjection(string name, ClientProject project)
     {
         ProjectionCount++;
         GameObject tempProjection = (GameObject)Instantiate(Resources.Load(HOMEPROJECTIONPREFABNAME));
+        tempProjection.GetComponent<Home_project>().projectObject = project;
         tempProjection.transform.FindChild(projectnametext).gameObject.GetComponent<TextMesh>().text = name;
         tempProjection.transform.parent = GameObject.Find(PROJBARNAME).transform;
         tempProjection.name = PROJBARNAME + "_" + name;
@@ -49,6 +53,12 @@ public class HomeStatic : MonoBehaviour
         {
             GameObject tempProjection = (GameObject)Instantiate(Resources.Load(HOMEPROJECTIONPREFABNAME));
             tempProjection.transform.FindChild(projectnametext).gameObject.GetComponent<TextMesh>().text = AllProjection[i].Name;
+            tempProjection.GetComponent<Home_project>().projectObject = AllProjection[i];
+            if (!AllProjection[i].OwnerAccount.Equals(WholeStatic.curUser.Account))
+            {
+                tempProjection.transform.FindChild(projectimage).gameObject.renderer.material =
+                    (Material)Instantiate(Resources.Load(otherprojimage));
+            }
             tempProjection.transform.parent = GameObject.Find(PROJBARNAME).transform;
             tempProjection.name = PROJBARNAME + "_" + AllProjection[i].Name;
             tempProjection.transform.position = AddbuttonPos + (i + 1) * ProjectionSpace;
@@ -60,6 +70,5 @@ public class HomeStatic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ProxyInterface.Project_ByUser(WholeStatic.curUser.Guid).Count);
     }
 }
