@@ -127,6 +127,7 @@
      <Compile Include="Assets\MyScript\Projection\Projection_Disk.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_backbutton.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_detail.cs" />
+     <Compile Include="Assets\MyScript\Projection\Projection_detailmember.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_detailnotice.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_enterbutton.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_subadd.cs" />
@@ -145,6 +146,7 @@
      <Compile Include="Assets\MyScript\Room\LayerItemManager.cs" />
      <Compile Include="Assets\MyScript\Room\LayerManager.cs" />
      <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
+     <Compile Include="Assets\MyScript\Room\MessageBar.cs" />
      <Compile Include="Assets\MyScript\Room\RoomStatic.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
@@ -153,6 +155,10 @@
      <Compile Include="Assets\MyScript\Room\TextButton.cs" />
      <Compile Include="Assets\MyScript\Room\TextInstance.cs" />
      <Compile Include="Assets\MyScript\Room\UpButton.cs" />
+     <Compile Include="Assets\MyScript\Room\message_member.cs" />
+     <Compile Include="Assets\MyScript\Room\message_memberInstance.cs" />
+     <Compile Include="Assets\MyScript\Room\message_notice.cs" />
+     <Compile Include="Assets\MyScript\Room\message_record.cs" />
      <Compile Include="Assets\MyScript\Text\text.cs" />
      <Compile Include="Assets\MyScript\Text\text11.cs" />
      <Compile Include="Assets\MyScript\aa.cs" />

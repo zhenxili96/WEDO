@@ -11,7 +11,7 @@ public class MenuBar : MonoBehaviour
     private Vector3 inPos = new Vector3(-190f, 0, 40);
     private float outSpeed = 40f;
     private float inSpeed = 50f;
-    private string barName = "menubar";
+    private string planeName = "menuplane";
     private Color originBarColor;
     private Color barNewColor = Color.red;
 
@@ -19,7 +19,7 @@ public class MenuBar : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        originBarColor = GameObject.Find(barName).renderer.material.color;
+        originBarColor = GameObject.Find(planeName).renderer.material.color;
     }
 
     // Update is called once per frame
@@ -35,12 +35,12 @@ public class MenuBar : MonoBehaviour
         Vector3 curPos = transform.position;
         if (statue && curPos.x <= outPos.x)
         {
-            GameObject.Find(barName).renderer.material.color = barNewColor;
+            GameObject.Find(planeName).renderer.material.color = barNewColor;
             transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * outSpeed);
         }
         else
         {
-            GameObject.Find(barName).renderer.material.color = originBarColor;
+            GameObject.Find(planeName).renderer.material.color = originBarColor;
         }
         if (!statue && curPos.x >= inPos.x)
         {
