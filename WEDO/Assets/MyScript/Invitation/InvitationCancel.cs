@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
 public class InvitationCancel : MonoBehaviour
 {
@@ -34,15 +35,13 @@ public class InvitationCancel : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
-                //TODO 拒绝邀请
-
+                ProxyInterface.Notification_SetIsRead(InvitationStatic.curGUID, false);
                 transform.parent.gameObject.SetActive(false);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
-                //TODO 拒绝邀请
-
+                ProxyInterface.Notification_SetIsRead(InvitationStatic.curGUID, false);
                 transform.parent.gameObject.SetActive(false);
             }
         }

@@ -41,10 +41,14 @@ public class Projection_subproj : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
+                WholeStatic.curProject = projectObject;
+                ProjectionStatic.reFreshProject();
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
+                WholeStatic.curProject = projectObject;
+                ProjectionStatic.reFreshProject();
             }
         }
     }

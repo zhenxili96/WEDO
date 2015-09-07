@@ -81,13 +81,13 @@
      <Compile Include="Assets\MyScript\Hand\LayRay.cs" />
      <Compile Include="Assets\MyScript\Hand\LeftHandProperty.cs" />
      <Compile Include="Assets\MyScript\Hand\RightHandProperty.cs" />
-     <Compile Include="Assets\MyScript\Home\AddButton.cs" />
      <Compile Include="Assets\MyScript\Home\HomeStatic.cs" />
      <Compile Include="Assets\MyScript\Home\Home_Addproject.cs" />
      <Compile Include="Assets\MyScript\Home\Home_Addprojectioninvite.cs" />
      <Compile Include="Assets\MyScript\Home\Home_Addprojectionnotice.cs" />
      <Compile Include="Assets\MyScript\Home\Home_Addprojectname.cs" />
      <Compile Include="Assets\MyScript\Home\Home_addbutton.cs" />
+     <Compile Include="Assets\MyScript\Home\Home_backbutton.cs" />
      <Compile Include="Assets\MyScript\Home\Home_project.cs" />
      <Compile Include="Assets\MyScript\Invitation\InvitationCancel.cs" />
      <Compile Include="Assets\MyScript\Invitation\InvitationOK.cs" />
@@ -136,7 +136,6 @@
      <Compile Include="Assets\MyScript\Projection\Projection_detailnotice.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_enterbutton.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_subadd.cs" />
-     <Compile Include="Assets\MyScript\Projection\Projection_subitem.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_subproj.cs" />
      <Compile Include="Assets\MyScript\Room\AddLayerButton.cs" />
      <Compile Include="Assets\MyScript\Room\AnotherDelete.cs" />
@@ -153,6 +152,7 @@
      <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
      <Compile Include="Assets\MyScript\Room\MessageBar.cs" />
      <Compile Include="Assets\MyScript\Room\RoomStatic.cs" />
+     <Compile Include="Assets\MyScript\Room\Room_savebutton.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeInstance.cs" />
@@ -164,6 +164,7 @@
      <Compile Include="Assets\MyScript\Room\message_memberInstance.cs" />
      <Compile Include="Assets\MyScript\Room\message_notice.cs" />
      <Compile Include="Assets\MyScript\Room\message_record.cs" />
+     <Compile Include="Assets\MyScript\Text\TextSort.cs" />
      <Compile Include="Assets\MyScript\Text\text.cs" />
      <Compile Include="Assets\MyScript\Text\text11.cs" />
      <Compile Include="Assets\MyScript\aa.cs" />

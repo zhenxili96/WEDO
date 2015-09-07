@@ -26,6 +26,8 @@ public class Projection_MemberList : MonoBehaviour
     public string AddMemberName = "Addmember";
     public List<ClientMenber> memberList = new List<ClientMenber>();
     public string MemberNameName = "Username";
+    public Vector3 memberRotation = new Vector3(0, 0, 0);
+    public Vector3 memberScale = new Vector3(1, 1, 1);
 
     // Use this for initialization
     void Start()
@@ -51,12 +53,15 @@ public class Projection_MemberList : MonoBehaviour
         {
             memberList = tempDetail.Menbers;
         }
+        Debug.Log("MEMBERLIST " + memberList.Count);
         for (int i = 0; i < memberList.Count; i++)
         {
             GameObject memberObject = (GameObject)Instantiate(Resources.Load(MemberPrefab));
             memberObject.transform.parent = gameObject.transform;
             memberObject.transform.FindChild(MemberNameName).GetComponent<TextMesh>().text = memberList[i].NowUser.Account;
             memberObject.transform.localPosition = firstPos + i * memberSpace;
+            memberObject.transform.localEulerAngles = memberRotation;
+            memberObject.transform.localScale = memberScale;
         }
     }
 

@@ -34,11 +34,13 @@ public class Entry_projection : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
+                EntryStatic.isTransPage = true;
                 Application.LoadLevel(Name.HOMEPAGENAME);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
+                EntryStatic.isTransPage = true;
                 Application.LoadLevel(Name.HOMEPAGENAME);
             }
         }

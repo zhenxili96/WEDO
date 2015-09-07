@@ -15,10 +15,12 @@ public class ProjectionStatic : MonoBehaviour
     public static Vector3 ProjectSpace = new Vector3(17, 0, 0);
     public static Vector3 ProjRotation = new Vector3(0, 0, 0);
     public static Vector3 ProjScale = new Vector3(1, 1, 1);
-    public static string SUBPROJECTPREFABNAME = "subprojectionprefab";
+    public static string SUBPROJECTPREFABNAME = "ProjectionPrefab/subprojectionprefab";
     public static string ProjectionSubItemName = "Projection_subitem";
     public static string SubProjectNameName = "subproject_name";
     public static string ProjectionNPCName = "Projection_NPC";
+    public static string SubAddName = "subadd";
+    public static bool isTransPage = false;
 
     // Use this for initialization
     void Start()
@@ -31,7 +33,13 @@ public class ProjectionStatic : MonoBehaviour
         RightHandProperty.HandInit();
     }
 
-    private void initProjectionInfo()
+    public static void reFreshProject()
+    {
+        initProjectionInfo();
+        initSubProjection();
+    }
+
+    private static void initProjectionInfo()
     {
         curProjectionName = WholeStatic.curProject.Name;
         curProjectionLeader = WholeStatic.curProject.OwnerAccount;
@@ -49,20 +57,35 @@ public class ProjectionStatic : MonoBehaviour
         tempProjection.GetComponent<Projection_subproj>().projectObject = project;
         tempProjection.transform.parent = GameObject.Find(ProjectionSubItemName).transform;
         tempProjection.name = ProjectionSubItemName + "_" + name;
-        tempProjection.transform.eulerAngles = ProjRotation;
+        tempProjection.transform.localEulerAngles = ProjRotation;
         tempProjection.transform.localScale = ProjScale;
         if (subProjectCount % 2 == 1)
         {
-            tempProjection.transform.localPosition = UpLinePos + subProjectCount * ProjectSpace;
+            tempProjection.transform.localPosition = UpLinePos + (subProjectCount - 1) * ProjectSpace;
         }
         else
         {
-            tempProjection.transform.localPosition = DownLinePos + subProjectCount * ProjectSpace;
+            tempProjection.transform.localPosition = DownLinePos + (subProjectCount - 1) * ProjectSpace;
         }
     }
 
-    private void initSubProjection()
+    private static void removeSubProj()
     {
+        GameObject subItems = GameObject.Find(ProjectionSubItemName).gameObject;
+        foreach (Transform child in subItems.transform)
+        {
+            if (child.name.Equals(SubAddName))
+            {
+                continue;
+            }
+            Destroy(child.gameObject);
+        }
+        subProjectCount = 0;
+    }
+
+    private static void initSubProjection()
+    {
+        removeSubProj();
         subProjects = ProxyInterface.Project_GetChildren(WholeStatic.curProject.Guid);
         subProjectCount = subProjects.Count;
         for (int i = 0; i < subProjectCount; i++)
@@ -89,5 +112,18 @@ public class ProjectionStatic : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void OnDestroy()
+    {
+        if (!isTransPage)
+        {
+            Debug.Log("exit");
+            ProxyInterface.Connect_End();
+        }
+        else
+        {
+            isTransPage = false;
+        }
     }
 }

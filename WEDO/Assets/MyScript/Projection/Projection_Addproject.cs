@@ -22,11 +22,6 @@ public class Projection_Addproject : MonoBehaviour
     public float cancelHoverZ;
     public GameObject cancelbutton;
 
-    public Vector3 inPos = new Vector3(-9, 10, 21);
-    public Vector3 outPos = new Vector3(-9, 0, 21);
-    public float inSpeed = 15;
-    public float outSpeed = 20;
-    public static bool isOut = true;
     public GameObject nameTextObject;
     public string name = "";
     public string ProjectionNPCName = "Projection_NPC";
@@ -49,7 +44,6 @@ public class Projection_Addproject : MonoBehaviour
         nameTextObject = transform.FindChild(InputLine).GetChild(0).gameObject;
         Keyboard.curSentence = "";
         Keyboard.isOut = true;
-        isOut = false;
     }
 
 
@@ -60,7 +54,6 @@ public class Projection_Addproject : MonoBehaviour
         checkConfirmClick();
         checkConfirmHover();
         checkCancelHover();
-        checkOut();
         checkInput();
     }
 
@@ -68,28 +61,6 @@ public class Projection_Addproject : MonoBehaviour
     {
         nameTextObject.GetComponent<TextMesh>().text = Keyboard.curSentence;
         name = Keyboard.curSentence;
-    }
-
-    private void checkOut()
-    {
-        if (!Keyboard.isOut)
-        {
-            isOut = true;
-        }
-        if (isOut)
-        {
-            if (transform.position.y > outPos.y)
-            {
-                transform.Translate(new Vector3(0, -1, 0) * Time.deltaTime * outSpeed);
-            }
-        }
-        else
-        {
-            if (transform.position.y < inPos.y)
-            {
-                transform.Translate(new Vector3(0, 1, 0) * Time.deltaTime * inSpeed);
-            }
-        }
     }
 
     private void checkCancelClick()
@@ -107,7 +78,7 @@ public class Projection_Addproject : MonoBehaviour
         if ((RayHit.LeftHitName.Equals(ConfirmButton) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             || (RayHit.RightHitName.Equals(ConfirmButton) && RightHandProperty.isClosed && !RightHandProperty.clickUsed))
         {
-            ClientProject tempProject = ProxyInterface.Project_Create(WholeStatic.curUser.Guid, name);
+            ClientProject tempProject = ProxyInterface.Project_Create(WholeStatic.curUser.Guid, name, WholeStatic.curProject.Guid);
             if (tempProject == null)
             {
                 AttentionStatic.callAttention(ProjectionNPCName, "新建项目失败！");

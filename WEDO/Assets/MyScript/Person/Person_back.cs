@@ -36,13 +36,15 @@ public class Person_back : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.ENTRYPAGENAME);
                 LeftHandProperty.clickUsed = true;
+                PersonStatic.isTransPage = true;
+                Application.LoadLevel(Name.ENTRYPAGENAME);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.ENTRYPAGENAME);
                 RightHandProperty.clickUsed = true;
+                PersonStatic.isTransPage = true;
+                Application.LoadLevel(Name.ENTRYPAGENAME);
             }
         }
     }

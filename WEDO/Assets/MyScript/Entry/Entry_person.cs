@@ -34,11 +34,13 @@ public class Entry_person : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
+                EntryStatic.isTransPage = true;
                 Application.LoadLevel(Name.PERSONPAGENAME);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
+                EntryStatic.isTransPage = true;
                 Application.LoadLevel(Name.PERSONPAGENAME);
             }
         }

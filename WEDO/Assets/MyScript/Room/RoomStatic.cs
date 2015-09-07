@@ -22,10 +22,7 @@ public class RoomStatic : MonoBehaviour
     public static string Message_MemberName = "message_member";
     public static string Message_NoticeName = "message_notice";
     public static string Message_RecordName = "message_record";
-
-
-    public static string WEDOGUID = "d7be4e74-ae0b-4b22-a68d-c29b978ccb48";
-    public static string ADESIGNGUID = "f0d154e4-4b37-49f8-8526-288f64937a74";
+    public static bool isTransPage = false;
 
     // Use this for initialization
     void Start()
@@ -41,12 +38,12 @@ public class RoomStatic : MonoBehaviour
 
     private void initInformation()
     {
-        notices = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Announcements;
-        records = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Records;
-        members = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Menbers;
-        //notices = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
-        //records = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Records;
-        //members = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Menbers;
+        //notices = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Announcements;
+        //records = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Records;
+        //members = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Menbers;
+        notices = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
+        records = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Records;
+        members = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Menbers;
         noticeCount = notices.Count;
         recordCount = records.Count;
         memberCount = members.Count;
@@ -62,6 +59,19 @@ public class RoomStatic : MonoBehaviour
         Debug.Log("noticeCount + " + noticeCount);
         Debug.Log("recordCount + " + recordCount);
         Debug.Log("memberCount + " + memberCount);
+    }
+
+    void OnDestroy()
+    {
+        if (!isTransPage)
+        {
+            Debug.Log("exit");
+            ProxyInterface.Connect_End();
+        }
+        else
+        {
+            isTransPage = false;
+        }
     }
 }
 

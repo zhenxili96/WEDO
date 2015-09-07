@@ -5,13 +5,24 @@ using Wedo_ClientSide;
 public class Home_project : MonoBehaviour
 {
 
-    public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
     public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
     public ClientProject projectObject = null;
+    public bool isPress = false;
+    public HAND pressHand;
+    public Vector3 pressPos;
+    public float posChangeThreshold = 100;
+    public bool isDrag = false;
+    public HAND dragHand;
+    public Vector3 dragBeginPos;
+    public Vector3 barBeginPos;
+    public string ProjBarName = "ProjBar";
+    public bool isLHover = false;
+    public bool isRHover = false;
+    public bool prepareClick = false;
 
     // Use this for initialization
     void Start()
@@ -31,45 +42,155 @@ public class Home_project : MonoBehaviour
     {
         checkHover();
         checkClick();
+        checkPress();
+        checkDrag();
+    }
+
+    private void checkDrag()
+    {
+        if (isDrag)
+        {
+            switch (dragHand)
+            {
+                case HAND.LEFTHAND:
+                    Vector3 handMove = GameObject.Find(LeftHandProperty.HANDNAME).transform.position
+                        - dragBeginPos;
+                    GameObject.Find(ProjBarName).transform.position = new Vector3(barBeginPos.x + handMove.x,
+                        barBeginPos.y, barBeginPos.z);
+                    break;
+                case HAND.RIGHTHAND:
+                    Vector3 handMove_ = GameObject.Find(RightHandProperty.HANDNAME).transform.position
+                        - dragBeginPos;
+                    GameObject.Find(ProjBarName).transform.position = new Vector3(barBeginPos.x + handMove_.x,
+                        barBeginPos.y, barBeginPos.z);
+                    break;
+            }
+        }
+    }
+
+    private void checkPress()
+    {
+        if (isPress)
+        {
+            switch (pressHand)
+            {
+                case HAND.LEFTHAND:
+                    Vector3 handCurPos = GameObject.Find(LeftHandProperty.HANDNAME).transform.position;
+                    float distance = ((handCurPos.x - pressPos.x) * (handCurPos.x - pressPos.x)
+                        + (handCurPos.y - pressPos.y) * (handCurPos.y - pressPos.y));
+                    if (distance < posChangeThreshold)
+                    {
+                        prepareClick = true;
+                    }
+                    else
+                    {
+                        prepareClick = false;
+                        if (!isDrag)
+                        {
+                            dragBeginPos = GameObject.Find(LeftHandProperty.HANDNAME).transform.position;
+                            barBeginPos = GameObject.Find(ProjBarName).transform.position;
+                            dragHand = HAND.LEFTHAND;
+                        }
+                        isDrag = true;
+                        //Debug.Log("C");
+                    }
+                    break;
+                case HAND.RIGHTHAND:
+                    Vector3 handCurPos_ = GameObject.Find(RightHandProperty.HANDNAME).transform.position;
+                    float distance_ = ((handCurPos_.x - pressPos.x) * (handCurPos_.x - pressPos.x)
+                        + (handCurPos_.y - pressPos.y) * (handCurPos_.y - pressPos.y));
+                    if (distance_ < posChangeThreshold)
+                    {
+                        prepareClick = true;
+                    }
+                    else
+                    {
+                        prepareClick = false;
+                        if (!isDrag)
+                        {
+                            dragBeginPos = GameObject.Find(RightHandProperty.HANDNAME).transform.position;
+                            barBeginPos = GameObject.Find(ProjBarName).transform.position;
+                            dragHand = HAND.RIGHTHAND;
+                        }
+                        isDrag = true;
+                    }
+                    break;
+            }
+        }
+        else
+        {
+            isDrag = false;
+            if (prepareClick)
+            {
+                prepareClick = false;
+                WholeStatic.curProject = projectObject;
+                HomeStatic.isTransPage = true;
+                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
+            }
+        }
     }
 
     private void checkClick()
     {
-        if (isHover)
+        if (isLHover && LeftHandProperty.isClosed)
         {
-            if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+            //Debug.Log("isclosed + " + LeftHandProperty.isClosed);
+            if (!isPress)
             {
-                LeftHandProperty.clickUsed = true;
-                WholeStatic.curProject = projectObject;
-                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
+                pressHand = HAND.LEFTHAND;
+                pressPos = GameObject.Find(LeftHandProperty.HANDNAME).transform.position;
             }
-            if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+            isPress = true;
+        } 
+        else if (isRHover && RightHandProperty.isClosed)
+        {
+            //Debug.Log("isclosed__ + " + RightHandProperty.isClosed);
+            if (!isPress)
             {
-                RightHandProperty.clickUsed = true;
-                WholeStatic.curProject = projectObject;
-                Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
+                pressHand = HAND.RIGHTHAND;
+                pressPos = GameObject.Find(RightHandProperty.HANDNAME).transform.position;
             }
+            isPress = true;
+        }
+        else
+        {
+            isPress = false;
         }
     }
 
     private void checkHover()
     {
-        isHover = false;
-        if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
+        isLHover = false;
+        isRHover = false;
+        if (RayHit.LeftHitName.Equals(name))
         {
-            isHover = true;
+            isLHover = true;
         }
         else
         {
             foreach (Transform child in transform)
             {
-                if (RayHit.LeftHitName.Equals(child.name) || RayHit.RightHitName.Equals(child.name))
+                if (RayHit.LeftHitName.Equals(child.name))
                 {
-                    isHover = true;
+                    isLHover = true;
                 }
             }
         }
-        if (isHover)
+        if (RayHit.RightHitName.Equals(name))
+        {
+            isRHover = true;
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                if (RayHit.RightHitName.Equals(child.name))
+                {
+                    isRHover = true;
+                }
+            }
+        }
+        if (isLHover || isRHover)
         {
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,

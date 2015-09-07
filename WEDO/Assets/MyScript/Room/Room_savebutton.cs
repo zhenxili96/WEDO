@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Projection_enterbutton : MonoBehaviour
+public class Room_savebutton : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -34,14 +34,10 @@ public class Projection_enterbutton : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
-                ProjectionStatic.isTransPage = true;
-                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
-                ProjectionStatic.isTransPage = true;
-                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
             }
         }
     }

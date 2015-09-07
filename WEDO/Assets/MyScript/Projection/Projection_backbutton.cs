@@ -33,13 +33,15 @@ public class Projection_backbutton : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.ENTRYPAGENAME);
                 LeftHandProperty.clickUsed = true;
+                ProjectionStatic.isTransPage = true;
+                Application.LoadLevel(Name.HOMEPAGENAME);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                Application.LoadLevel(Name.ENTRYPAGENAME);
                 RightHandProperty.clickUsed = true;
+                ProjectionStatic.isTransPage = true;
+                Application.LoadLevel(Name.HOMEPAGENAME);
             }
         }
     }

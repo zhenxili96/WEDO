@@ -17,12 +17,13 @@ public class HomeStatic : MonoBehaviour
     public static string projectnametext = "projectiontext";
     public static string projectimage = "projectionimage";
     public static string otherprojimage = "ProjectionImage/otherprojprefab";
+    public static bool isTransPage = false;
 
     // Use this for initialization
     void Start()
     {
         LayRay.rayStyle = RayStyle.Ortho;
-        AllProjection = ProxyInterface.Project_ByUser(WholeStatic.curUser.Guid);
+        AllProjection = ProxyInterface.Project_ByUser(WholeStatic.curUser.Guid);/*******/
         ProjectionCount = AllProjection.Count;
         initAllProjection();
         Keyboard.init();
@@ -54,7 +55,7 @@ public class HomeStatic : MonoBehaviour
             GameObject tempProjection = (GameObject)Instantiate(Resources.Load(HOMEPROJECTIONPREFABNAME));
             tempProjection.transform.FindChild(projectnametext).gameObject.GetComponent<TextMesh>().text = AllProjection[i].Name;
             tempProjection.GetComponent<Home_project>().projectObject = AllProjection[i];
-            if (!AllProjection[i].OwnerAccount.Equals(WholeStatic.curUser.Account))
+            if (!AllProjection[i].OwnerAccount.Equals(WholeStatic.curUser.Account))  /*******/
             {
                 tempProjection.transform.FindChild(projectimage).gameObject.renderer.material =
                     (Material)Instantiate(Resources.Load(otherprojimage));
@@ -70,5 +71,18 @@ public class HomeStatic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    void OnDestroy()
+    {
+        if (!isTransPage)
+        {
+            Debug.Log("exit");
+            ProxyInterface.Connect_End();
+        }
+        else
+        {
+            isTransPage = false;
+        }
     }
 }

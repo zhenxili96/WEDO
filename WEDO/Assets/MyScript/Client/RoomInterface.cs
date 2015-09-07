@@ -78,6 +78,13 @@ namespace Wedo_ClientSide
         {
             try
             {
+                if (infos["Mess"].ToString() != "Ok")
+                {
+                    NowUser = null;
+                    RoomUsers = null;
+                    RoomChats = null;
+                    RoomLayers = null;
+                }
                 RoomUser tempNowUser = null;
                 var tempRoomUsers = new List<RoomUser>();
                 var tempRoomLayers = new List<RoomLayer>();

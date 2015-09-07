@@ -22,6 +22,7 @@ public class Home_addbutton : MonoBehaviour
     public Vector3 dragBeginPos;
     public Vector3 barBeginPos;
     public string ProjBarName = "ProjBar";
+    public bool prepareClick = false;
 
     // Use this for initialization
     void Start()
@@ -39,8 +40,6 @@ public class Home_addbutton : MonoBehaviour
         checkClick();
         checkPress();
         checkDrag();
-        Debug.Log("ispress + " + isPress);
-        Debug.Log("isdrag + " + isDrag);
     }
 
     private void checkDrag()
@@ -77,33 +76,18 @@ public class Home_addbutton : MonoBehaviour
                         + (handCurPos.y - pressPos.y) * (handCurPos.y - pressPos.y))
                         < posChangeThreshold)
                     {
-                        if (!LeftHandProperty.isClosed && !isDrag)
-                        {
-                            GameObject.Find(HOMENPCNAME).transform.FindChild(AddprojectName).gameObject.SetActive(true);
-                            isPress = false;
-                            Debug.Log("A");
-                        }
-                        Debug.Log("B");
+                        prepareClick = true;
                     }
                     else
                     {
-                        if (LeftHandProperty.isClosed)
+                        prepareClick = false;
+                        if (!isDrag)
                         {
-                            if (!isDrag)
-                            {
-                                dragBeginPos = GameObject.Find(LeftHandProperty.HANDNAME).transform.position;
-                                barBeginPos = GameObject.Find(ProjBarName).transform.position;
-                                dragHand = HAND.LEFTHAND;
-                            }
-                            isDrag = true;
-                            Debug.Log("C");
+                            dragBeginPos = GameObject.Find(LeftHandProperty.HANDNAME).transform.position;
+                            barBeginPos = GameObject.Find(ProjBarName).transform.position;
+                            dragHand = HAND.LEFTHAND;
                         }
-                        else
-                        {
-                            isDrag = false;
-                            isPress = false;
-                            Debug.Log("D");
-                        }
+                        isDrag = true;
                     }
                     break;
                 case HAND.RIGHTHAND:
@@ -112,29 +96,18 @@ public class Home_addbutton : MonoBehaviour
                         + (handCurPos_.y - pressPos.y) * (handCurPos_.y - pressPos.y))
                         < posChangeThreshold)
                     {
-                        if (!RightHandProperty.isClosed && !isDrag)
-                        {
-                            GameObject.Find(HOMENPCNAME).transform.FindChild(AddprojectName).gameObject.SetActive(true);
-                            isPress = false;
-                        }
+                        prepareClick = true;
                     }
                     else
                     {
-                        if (RightHandProperty.isClosed)
+                        prepareClick = false;
+                        if (!isDrag)
                         {
-                            if (!isDrag)
-                            {
-                                dragBeginPos = GameObject.Find(RightHandProperty.HANDNAME).transform.position;
-                                barBeginPos = GameObject.Find(ProjBarName).transform.position;
-                                dragHand = HAND.RIGHTHAND;
-                            }
-                            isDrag = true;
+                            dragBeginPos = GameObject.Find(RightHandProperty.HANDNAME).transform.position;
+                            barBeginPos = GameObject.Find(ProjBarName).transform.position;
+                            dragHand = HAND.RIGHTHAND;
                         }
-                        else
-                        {
-                            isDrag = false;
-                            isPress = false;
-                        }
+                        isDrag = true;
                     }
                     break;
             }
@@ -142,32 +115,39 @@ public class Home_addbutton : MonoBehaviour
         else
         {
             isDrag = false;
+            if (prepareClick)
+            {
+                prepareClick = false;
+                GameObject.Find(HOMENPCNAME).transform.FindChild(AddprojectName).gameObject.SetActive(true);
+            }
         }
     }
 
     private void checkClick()
     {
-        if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+        if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
         {
-            Debug.Log("isclosed + " + LeftHandProperty.isClosed);
+            //Debug.Log("isclosed + " + LeftHandProperty.isClosed);
             if (!isPress)
             {
                 pressHand = HAND.LEFTHAND;
                 pressPos = GameObject.Find(LeftHandProperty.HANDNAME).transform.position;
             }
             isPress = true;
-            LeftHandProperty.clickUsed = true;
         }
-        if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+        else if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed)
         {
-            Debug.Log("isclosed__ + " + RightHandProperty.isClosed);
+            //Debug.Log("isclosed__ + " + RightHandProperty.isClosed);
             if (!isPress)
             {
                 pressHand = HAND.RIGHTHAND;
                 pressPos = GameObject.Find(RightHandProperty.HANDNAME).transform.position;
             }
             isPress = true;
-            RightHandProperty.clickUsed = true;
+        }
+        else
+        {
+            isPress = false;
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
 public class PersonStatic : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PersonStatic : MonoBehaviour
     public static string userimage = "";
     public static string email = "";
     public static string sex = "";
+    public static bool isTransPage = false;
 
     // Use this for initialization
     void Start()
@@ -51,6 +53,19 @@ public class PersonStatic : MonoBehaviour
     void Update()
     {
 
+    }
+
+    void OnDestroy()
+    {
+        if (!isTransPage)
+        {
+            Debug.Log("exit");
+            ProxyInterface.Connect_End();
+        }
+        else
+        {
+            isTransPage = false;
+        }
     }
 }
 
