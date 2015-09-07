@@ -89,6 +89,9 @@
      <Compile Include="Assets\MyScript\Home\Home_Addprojectname.cs" />
      <Compile Include="Assets\MyScript\Home\Home_addbutton.cs" />
      <Compile Include="Assets\MyScript\Home\Home_project.cs" />
+     <Compile Include="Assets\MyScript\Invitation\InvitationCancel.cs" />
+     <Compile Include="Assets\MyScript\Invitation\InvitationOK.cs" />
+     <Compile Include="Assets\MyScript\Invitation\InvitationStatic.cs" />
      <Compile Include="Assets\MyScript\Keyboard\DeleteKey.cs" />
      <Compile Include="Assets\MyScript\Keyboard\DownKey.cs" />
      <Compile Include="Assets\MyScript\Keyboard\Keyboard.cs" />
@@ -123,8 +126,10 @@
      <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_topaddbutton.cs" />
      <Compile Include="Assets\MyScript\ProjectInfo\ProjectionInfo_topprojection.cs" />
      <Compile Include="Assets\MyScript\Projection\ProjectionStatic.cs" />
+     <Compile Include="Assets\MyScript\Projection\Projection_Addmember.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_Addproject.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_Disk.cs" />
+     <Compile Include="Assets\MyScript\Projection\Projection_MemberList.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_backbutton.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_detail.cs" />
      <Compile Include="Assets\MyScript\Projection\Projection_detailmember.cs" />

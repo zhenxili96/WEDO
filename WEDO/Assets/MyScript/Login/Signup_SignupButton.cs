@@ -14,6 +14,7 @@ public class Signup_SignupButton : MonoBehaviour
     public float hoverZ;
     public string NPCName = "NPC";
     public string UNSET = "UNSET";
+    public string DEFAULTSEX = "0";
 
     // Use this for initialization
     void Start()
@@ -75,10 +76,11 @@ public class Signup_SignupButton : MonoBehaviour
             AttentionStatic.callAttention(NPCName, "两次输入密码不同，请重新输入！");
             return false;
         }
-        ClientUser user = ProxyInterface.User_Register(account, password, UNSET, UNSET, UNSET);
+        ClientUser user = ProxyInterface.User_Register(account, password, UNSET, UNSET, DEFAULTSEX);
         if (user == null)
         {
             AttentionStatic.callAttention(NPCName, "注册失败！");
+            Debug.Log(account + " " + password + " 注册失败");
             return false;
         }
         return true;

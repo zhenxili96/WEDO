@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using Wedo_ClientSide;
 
-public class Projection_detailmember : MonoBehaviour
+public class InvitationCancel : MonoBehaviour
 {
 
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 1.1f;
+    public float scaleRate = 1.3f;
     public float originZ;
     public float hoverZ;
-    public string ProjectionNPCName = "Projection_NPC";
-    public string MemberListName = "MemberList";
 
     // Use this for initialization
     void Start()
@@ -38,14 +34,16 @@ public class Projection_detailmember : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
-                GameObject.Find(ProjectionNPCName).transform.FindChild(MemberListName).gameObject.SetActive(true);
-                Keyboard.isOut = true;
+                //TODO 拒绝邀请
+
+                transform.parent.gameObject.SetActive(false);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
-                GameObject.Find(ProjectionNPCName).transform.FindChild(MemberListName).gameObject.SetActive(true);
-                Keyboard.isOut = true;
+                //TODO 拒绝邀请
+
+                transform.parent.gameObject.SetActive(false);
             }
         }
     }

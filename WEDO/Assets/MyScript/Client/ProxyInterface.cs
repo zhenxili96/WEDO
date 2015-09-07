@@ -114,6 +114,33 @@ namespace Wedo_ClientSide
         }
 
         /// <summary>
+        /// 获取用户详细信息（项目，邮箱）
+        /// </summary>
+        /// <param name="account">用户账号</param>
+        /// <returns>详细信息</returns>
+        static public ClientUser User_GetDetailByAccount(string account)
+        {
+            try
+            {
+                lock (LockObj)
+                {
+                    Connect.SendMessage(
+                        BaseProcess(new Dictionary<string, object>
+                    {
+                        {"Oper", "GetUserDetail"},
+                        {"Account", account}
+                    }));
+                    JObject jsonJObject = JObject.Parse(Connect.ReceiveMessage());
+                    return jsonJObject["Mess"].ToString() == "Ok" ? ClientUser.CreateClientUser(jsonJObject) : null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 修改用户基础信息
         /// </summary>
         /// <param name="guid">用户Guid</param>
