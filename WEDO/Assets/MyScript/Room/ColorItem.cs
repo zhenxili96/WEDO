@@ -12,6 +12,7 @@ public class ColorItem : MonoBehaviour
     private float hoverZ;
     private bool isHover = false;
     public static Color curColor;
+    public static string curColorString;
     private string CURCOLORBOARDNAME = "CurColor";
 
     // Use this for initialization
@@ -54,6 +55,7 @@ public class ColorItem : MonoBehaviour
         int rowNum = name.ToCharArray()[0] - 'a';
         int colNum = name.ToCharArray()[1] - '1';
         curColor = ColorTable.Table[rowNum, colNum];
+        curColorString = name;
     }
 
 

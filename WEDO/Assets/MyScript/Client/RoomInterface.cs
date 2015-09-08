@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Wedo_ClientSide
 {
-    class RoomInterface
+    public class RoomInterface
     {
         public Guid ProjectGuid { get; private set; }
         public Guid NowUserGuid { get; private set; }
@@ -37,9 +37,9 @@ namespace Wedo_ClientSide
             {
                 while (_flagEnd)
                 {
-                    Thread.Sleep(300);
                     if (_operationsList.Count == 0)
                     {
+                        Thread.Sleep(100);
                         Connect.SendMessage(
                             BaseProcess(new Dictionary<string, object>
                             {

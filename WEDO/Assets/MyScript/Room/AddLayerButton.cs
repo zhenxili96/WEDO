@@ -9,7 +9,6 @@ public class AddLayerButton : MonoBehaviour
     private Color hoverColor = Color.red;
     private string LAYERTEXTNAME = "LayerText";
     private int ZMIN = 35;  //创建层最小Z值
-    private int ZMAX = 24;  //创建曾最大Z值
     private Vector3 originScale;
     private Vector3 hoverScale;
     private float scaleRate = 2;
@@ -34,31 +33,16 @@ public class AddLayerButton : MonoBehaviour
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
         {
             LeftHandProperty.clickUsed = true;
-            ((Layer)RoomStatic.layerArray[RoomStatic.curLayer]).isActive = false;
-            RoomStatic.LayerCount++;
-            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.curLayer, ZMIN - 1 - RoomStatic.curLayer));
-            GameObject layerObject = new GameObject();
-            layerObject.name = "Layer" + RoomStatic.LayerCount;
-            layerObject.transform.position = new Vector3(0, 0, 0);
-            GameObject shapeObject = new GameObject();
-            shapeObject.name = "ShapeInstance";
-            shapeObject.transform.position = new Vector3(0, 0, 0);
-            shapeObject.transform.parent = layerObject.transform;
-            GameObject textObject = new GameObject();
-            textObject.name = "TextInstance";
-            textObject.transform.position = new Vector3(0, 0, 0);
-            textObject.transform.parent = layerObject.transform;
+            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.LayerCount, RoomStatic.UNSETGUID));
+            WholeStatic.curRoomInterface.AddLayer(RoomStatic.LayerCount, 0, 0, ZMIN + 1 - RoomStatic.LayerCount);
             RoomStatic.curLayer = RoomStatic.LayerCount;
-            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.LayerCount;
-            layerObject.transform.parent = GameObject.Find("Layer").transform;
-            layerObject.AddComponent<LayerItemManager>();
         }
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             RightHandProperty.clickUsed = true;
-            RoomStatic.LayerCount++;
+            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.LayerCount, RoomStatic.UNSETGUID));
+            WholeStatic.curRoomInterface.AddLayer(RoomStatic.LayerCount, 0, 0, ZMIN + 1 - RoomStatic.LayerCount);
             RoomStatic.curLayer = RoomStatic.LayerCount;
-            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.LayerCount;
         }
     }
 

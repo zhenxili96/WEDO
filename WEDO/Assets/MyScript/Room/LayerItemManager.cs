@@ -27,7 +27,7 @@ public class LayerItemManager : MonoBehaviour
         layerBack.transform.parent = gameObject.transform;
         if (RoomStatic.layerArray.Count > selfLayer)
         {
-            layerZ = ((Layer)RoomStatic.layerArray[selfLayer]).ZMAXPos;
+            layerZ = ((Layer)RoomStatic.layerArray[selfLayer]).ZMINPos;
             layerBack.transform.localPosition = new Vector3(layerBack.transform.position.x, layerBack.transform.position.y, layerZ);
         }
         originPos = transform.position;
@@ -40,7 +40,7 @@ public class LayerItemManager : MonoBehaviour
     {
         if (RoomStatic.layerArray.Count > selfLayer)
         {
-            layerZ = ((Layer)RoomStatic.layerArray[selfLayer]).ZMAXPos;
+            layerZ = ((Layer)RoomStatic.layerArray[selfLayer]).ZMINPos;
             layerBack.transform.localPosition = new Vector3(layerBack.transform.position.x, layerBack.transform.position.y, layerZ);
         }
         checkHover();
@@ -60,6 +60,7 @@ public class LayerItemManager : MonoBehaviour
             {
                 RoomStatic.layerArray.RemoveAt(selfLayer);
                 Destroy(gameObject);
+                RoomStatic.LayerCount--;
             }
         }
     }

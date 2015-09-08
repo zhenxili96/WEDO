@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LayerBackButton : MonoBehaviour
+public class AspectBackButton : MonoBehaviour
 {
 
     private static string MODECHANGENAME = "ModeChange";

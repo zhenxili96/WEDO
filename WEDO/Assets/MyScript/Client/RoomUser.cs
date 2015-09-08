@@ -1,6 +1,6 @@
 ﻿namespace Wedo_ClientSide
 {
-    class RoomUser
+    public class RoomUser
     {
         public string UserGuid { get; private set; }
         public string UserNickName { get; private set; }

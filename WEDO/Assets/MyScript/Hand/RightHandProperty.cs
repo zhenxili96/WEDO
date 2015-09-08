@@ -14,6 +14,8 @@ public class RightHandProperty : MonoBehaviour
     public string handOpenMaterialName = "BlackRightHand";
     public Material handCloseMaterial;
     public string handCloseMaterialName = "BlackRightHandFist";
+    public static Vector3 curPos;
+    public static bool isShow = true;
 
     // Use this for initialization
     void Start()
@@ -26,6 +28,7 @@ public class RightHandProperty : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        curPos = transform.position;
         //记录每次手初闭合时的位置
         if (!closePosTemp && isClosed)
         {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LayerButton : MonoBehaviour
+public class AspectChangeButton : MonoBehaviour
 {
 
     private static string MODECHANGENAME = "ModeChange";

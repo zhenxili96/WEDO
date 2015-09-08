@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
 public enum SHAPE { CIRCLE, TRIANGLE, RECTANGLE, ROUND_RECTANGLE };
 
@@ -15,8 +16,9 @@ public class ShapeClass : MonoBehaviour
     private static int rectangleInstanceCount = 0;
     private static int roundRectangleInstanceCount = 0;
     private static int triangleInstanceCount = 0;
-    private static Vector3 initPos = new Vector3(0, 0, 23);
-    private static Vector3 initScale = new Vector3(1, 1, 1);
+    public static Vector3 initPos = new Vector3(0, 0, 23);
+    public static Vector3 initScale = new Vector3(1, 1, 1);
+    public static Vector3 initRotate = new Vector3(0, 0, 0);
     private static string SHAPEPARETNNAME = "ShapeInstance";
     private Vector3 originScale;
     private Vector3 hoverScale;
@@ -65,51 +67,49 @@ public class ShapeClass : MonoBehaviour
                 {
                     RightHandProperty.clickUsed = true;
                 }
-                GameObject temp;
                 switch (shape)
                 {
                     case SHAPE.CIRCLE:
                         circleInstanceCount++;
-                        temp = (GameObject)Instantiate(Resources.Load("shape_circle"));
-                        temp.name = "CircleInstance_" + circleInstanceCount;
-                        temp.transform.position = initPos;
-                        temp.transform.localScale = initScale;
-                        string curLayer = "Layer" + RoomStatic.curLayer;
-                        GameObject parent = GameObject.Find(curLayer).transform.Find(SHAPEPARETNNAME).gameObject;
-                        temp.transform.parent = parent.transform;
+                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_CIRCLE);
+                        WholeStatic.curRoomInterface.AddBoardMaterial(
+                            WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
+                            initPos.x, initPos.y, initPos.z,
+                            initScale.x, initScale.y, initScale.z,
+                            initRotate.x, initRotate.y, initRotate.z,
+                            "A3", RoomStatic.SHAPE_CIRCLE, "", 0, "");
                         break;
                     case SHAPE.RECTANGLE:
                         rectangleInstanceCount++;
-                        temp = (GameObject)Instantiate(Resources.Load("shape_rectangle"));
-                        temp.name = "RectangleInstance_" + rectangleInstanceCount;
-                        temp.transform.position = initPos;
-                        temp.transform.localScale = initScale;
-                        string curLayer1 = "Layer" + RoomStatic.curLayer;
-                        GameObject parent1 = GameObject.Find(curLayer1).transform.Find(SHAPEPARETNNAME).gameObject;
-                        temp.transform.parent = parent1.transform;
+                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_RECTANGLE);
+                        WholeStatic.curRoomInterface.AddBoardMaterial(
+                            WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
+                            initPos.x, initPos.y, initPos.z,
+                            initScale.x, initScale.y, initScale.z,
+                            initRotate.x, initRotate.y, initRotate.z,
+                            "A3", RoomStatic.SHAPE_RECTANGLE, "", 0, "");
                         break;
                     case SHAPE.ROUND_RECTANGLE:
                         roundRectangleInstanceCount++;
-                        temp = (GameObject)Instantiate(Resources.Load("shape_round_rectangle"));
-                        temp.name = "RoundRectangleInstance_" + roundRectangleInstanceCount;
-                        temp.transform.position = initPos;
-                        temp.transform.localScale = initScale;
-                        string curLayer2 = "Layer" + RoomStatic.curLayer;
-                        GameObject parent2 = GameObject.Find(curLayer2).transform.Find(SHAPEPARETNNAME).gameObject;
-                        temp.transform.parent = parent2.transform;
+                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_ROUNDRECTANGLE);
+                        WholeStatic.curRoomInterface.AddBoardMaterial(
+                            WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
+                            initPos.x, initPos.y, initPos.z,
+                            initScale.x, initScale.y, initScale.z,
+                            initRotate.x, initRotate.y, initRotate.z,
+                            "A3", RoomStatic.SHAPE_ROUNDRECTANGLE, "", 0, "");
                         break;
                     case SHAPE.TRIANGLE:
                         triangleInstanceCount++;
-                        temp = (GameObject)Instantiate(Resources.Load("shape_triangle"));
-                        temp.name = "TriangleInstance_" + triangleInstanceCount;
-                        temp.transform.position = initPos;
-                        temp.transform.localScale = initScale;
-                        string curLayer3 = "Layer" + RoomStatic.curLayer;
-                        GameObject parent3 = GameObject.Find(curLayer3).transform.Find(SHAPEPARETNNAME).gameObject;
-                        temp.transform.parent = parent3.transform;
+                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_TRIANGLE);
+                        WholeStatic.curRoomInterface.AddBoardMaterial(
+                            WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
+                            initPos.x, initPos.y, initPos.z,
+                            initScale.x, initScale.y, initScale.z,
+                            initRotate.x, initRotate.y, initRotate.z,
+                            "A3", RoomStatic.SHAPE_TRIANGLE, "", 0, "");
                         break;
                     default:
-                        temp = null;
                         break;
                 }
             }

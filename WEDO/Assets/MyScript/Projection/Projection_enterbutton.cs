@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
 public class Projection_enterbutton : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Projection_enterbutton : MonoBehaviour
     public float scaleRate = 2;
     public float originZ;
     public float hoverZ;
+    public string ProjectionNPCName = "Projection_NPC";
 
     // Use this for initialization
     void Start()
@@ -34,8 +36,39 @@ public class Projection_enterbutton : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
-                ProjectionStatic.isTransPage = true;
-                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
+                //判断当前项目设计页活动状态
+                if (ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).IsInRoom)
+                {
+                    //设计页面已开启，直接进入
+                    Debug.Log("设计页面已开启，直接进入");
+                    WholeStatic.curRoomInterface = RoomInterface.EnterRoom(WholeStatic.curUser.Guid,
+                        WholeStatic.curProject.Guid);
+                    ProjectionStatic.isTransPage = true;
+                    Application.LoadLevel(Name.DESIGNROOMPAGENAME);
+                }
+                else
+                {
+                    if (WholeStatic.curProject.OwnerGuid == null
+                        || WholeStatic.curProject.OwnerGuid == ""
+                        || WholeStatic.curProject.OwnerGuid.Equals(WholeStatic.curUser.Guid))
+                    {
+                        //设计页面未开启，拥有者开启并进入
+                        Debug.Log("设计页面经拥有者开启");
+                        WholeStatic.curRoomInterface = RoomInterface.CreateRoom(WholeStatic.curUser.Guid,
+                            WholeStatic.curProject.Guid);
+                        //若开启时无图层（第一次开启）,则默认添加一个图层
+                        if (WholeStatic.curRoomInterface.RoomLayers.Count == 0)
+                        {
+                            WholeStatic.curRoomInterface.AddLayer(1, 0, 0, 35);
+                        }
+                        ProjectionStatic.isTransPage = true;
+                        Application.LoadLevel(Name.DESIGNROOMPAGENAME);
+                    }
+                    else
+                    {
+                        AttentionStatic.callAttention(ProjectionNPCName, "当前项目设计未开启，请等待管理员开启后进入！");
+                    }
+                }
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {

@@ -5,6 +5,7 @@ public class WholeStatic
 {
     public static ClientUser curUser = null;
     public static ClientProject curProject = null;
+    public static RoomInterface curRoomInterface = null;
 
     public static string WEDOACCOUNT = "wedo";
     public static string WEDOGUID = "d7be4e74-ae0b-4b22-a68d-c29b978ccb48";

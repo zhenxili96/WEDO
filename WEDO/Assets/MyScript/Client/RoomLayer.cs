@@ -2,7 +2,7 @@
 
 namespace Wedo_ClientSide
 {
-    class RoomLayer
+    public class RoomLayer
     {
         public ClientLayer NowLayer { get; private set; }
         public List<ClientMaterial> BoardMaterials { get; private set; }

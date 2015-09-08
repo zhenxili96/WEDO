@@ -25,24 +25,28 @@ public class HandManager : MonoBehaviour
     public void showLeftHand()
     {
         RayHit.LeftHitName = "";
+        LeftHandProperty.isShow = true;
         LeftHandObject.SetActive(true);
     }
 
     public void showRightHand()
     {
         RayHit.RightHitName = "";
+        RightHandProperty.isShow = true;
         RightHandObject.SetActive(true);
     }
 
     public void hideLeftHand()
     {
         RayHit.LeftHitName = "";
+        LeftHandProperty.isShow = false;
         LeftHandObject.SetActive(false);
     }
 
     public void hideRightHand()
     {
         RayHit.RightHitName = "";
+        RightHandProperty.isShow = false;
         RightHandObject.SetActive(false);
     }
 }

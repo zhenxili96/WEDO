@@ -20,11 +20,12 @@ public class TextInstance : MonoBehaviour
         RoomStatic.curFocus = name;
         isFocus = true;
         ColorItem.curColor = renderer.material.color;
+        ColorItem.curColorString = GetComponent<InstanceType>().colorString;
         gameObject.AddComponent<BoxCollider>();
         belongLayer = RoomStatic.curLayer;
         ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount++;
         int objcount = ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount;
-        layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMAXPos
+        layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMINPos
             - objcount * ((Layer)RoomStatic.layerArray[belongLayer]).ZSPACE;
         transform.position = new Vector3(transform.position.x,
             transform.position.y, layerZ);
@@ -35,7 +36,7 @@ public class TextInstance : MonoBehaviour
     {
         GetComponent<ScaleAction>().enabled = true;
         GetComponent<RotationAction>().enabled = true;
-        if (!((Layer)RoomStatic.layerArray[belongLayer]).isActive)
+        if (RoomStatic.curLayer != belongLayer)
         {
             GetComponent<ScaleAction>().enabled = false;
             GetComponent<RotationAction>().enabled = false;

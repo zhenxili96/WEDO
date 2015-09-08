@@ -4,27 +4,28 @@ using System.Collections;
 public class ShapeInstance : MonoBehaviour
 {
     public bool isFocus = false;
-    private Color originColor;
-    private static float warnHigh = 70f;
-    private static float deleteHigh = 80f;
-    private static string DELETEBUTTONNAME = "Room_delete";
-    private int belongLayer;
-    private float layerZ;
+    public Color originColor;
+    public static float warnHigh = 70f;
+    public static float deleteHigh = 80f;
+    //private static string DELETEBUTTONNAME = "Room_delete"; 
+    public int belongLayer;
+    public float layerZ;
 
     // Use this for initialization
     void Start()
     {
         originColor = transform.GetChild(0).renderer.material.color;
-        RoomStatic.curFocus = name;
+        RoomStatic.curFocus = "";
         isFocus = true;
         ColorItem.curColor = transform.GetChild(0).renderer.material.color;
+        ColorItem.curColorString = GetComponent<InstanceType>().colorString;
         belongLayer = RoomStatic.curLayer;
         ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount++;
         int objcount = ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount;
-        layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMAXPos
+        layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMINPos
             - objcount * ((Layer)RoomStatic.layerArray[belongLayer]).ZSPACE;
-        transform.position = new Vector3(transform.position.x,
-            transform.position.y, layerZ);
+        transform.localPosition = new Vector3(transform.localPosition.x,
+            transform.localPosition.y, layerZ);
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class ShapeInstance : MonoBehaviour
     {
         GetComponent<ScaleAction>().enabled = true;
         GetComponent<RotationAction>().enabled = true;
-        if (!((Layer)RoomStatic.layerArray[belongLayer]).isActive)
+        if (RoomStatic.curLayer != belongLayer)
         {
             GetComponent<ScaleAction>().enabled = false;
             GetComponent<RotationAction>().enabled = false;
@@ -51,9 +52,9 @@ public class ShapeInstance : MonoBehaviour
 
     private void normalRotation()
     {
-        float zRotate = transform.eulerAngles.z;
+        float zRotate = transform.localEulerAngles.z;
         int zRate = (int)zRotate / 15;
-        transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, zRate);
+        transform.localEulerAngles = new Vector3(transform.localRotation.x, transform.localRotation.y, zRate);
     }
 
     private void checkDelete()
@@ -97,6 +98,7 @@ public class ShapeInstance : MonoBehaviour
         {
             isFocus = true;
             transform.GetChild(0).renderer.material.color = ColorItem.curColor;
+            GetComponent<InstanceType>().colorString = ColorItem.curColorString;
         }
         else if ((RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
             || (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed))
@@ -104,6 +106,7 @@ public class ShapeInstance : MonoBehaviour
             isFocus = true;
             RoomStatic.curFocus = name;
             ColorItem.curColor = transform.GetChild(0).renderer.material.color;
+            ColorItem.curColorString = GetComponent<InstanceType>().colorString;
         }
         else
         {

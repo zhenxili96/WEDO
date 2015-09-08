@@ -2,7 +2,7 @@
 
 namespace Wedo_ClientSide
 {
-    class RoomChat
+    public class RoomChat
     {
         public string ChatGuid { get; private set; }
         public string Content { get; private set; }
