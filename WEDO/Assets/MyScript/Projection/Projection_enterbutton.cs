@@ -41,8 +41,16 @@ public class Projection_enterbutton : MonoBehaviour
                 {
                     //设计页面已开启，直接进入
                     Debug.Log("设计页面已开启，直接进入");
+                    WholeStatic.curAnnouncements = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
+                    WholeStatic.curRecords = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Records;
+                    WholeStatic.curMembers = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Menbers;
                     WholeStatic.curRoomInterface = RoomInterface.EnterRoom(WholeStatic.curUser.Guid,
                         WholeStatic.curProject.Guid);
+                    if (WholeStatic.curRoomInterface == null)
+                    {
+                        Debug.Log("ERROR roominterface get null");
+                        Debug.Log("---" + WholeStatic.curUser.Guid + " ---" + WholeStatic.curProject.Guid);
+                    }
                     ProjectionStatic.isTransPage = true;
                     Application.LoadLevel(Name.DESIGNROOMPAGENAME);
                 }
@@ -54,8 +62,16 @@ public class Projection_enterbutton : MonoBehaviour
                     {
                         //设计页面未开启，拥有者开启并进入
                         Debug.Log("设计页面经拥有者开启");
+                        WholeStatic.curAnnouncements = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
+                        WholeStatic.curRecords = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Records;
+                        WholeStatic.curMembers = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Menbers;
                         WholeStatic.curRoomInterface = RoomInterface.CreateRoom(WholeStatic.curUser.Guid,
                             WholeStatic.curProject.Guid);
+                        if (WholeStatic.curRoomInterface == null)
+                        {
+                            Debug.Log("ERROR roominterface get null");
+                            Debug.Log("---" + WholeStatic.curUser.Guid + " ---" + WholeStatic.curProject.Guid);
+                        }
                         //若开启时无图层（第一次开启）,则默认添加一个图层
                         if (WholeStatic.curRoomInterface.RoomLayers.Count == 0)
                         {
@@ -72,9 +88,60 @@ public class Projection_enterbutton : MonoBehaviour
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                RightHandProperty.clickUsed = true;
-                ProjectionStatic.isTransPage = true;
-                Application.LoadLevel(Name.DESIGNROOMPAGENAME);
+                RightHandProperty.clickUsed = true;                //判断当前项目设计页活动状态
+                if (ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).IsInRoom)
+                {
+                    //设计页面已开启，直接进入
+                    Debug.Log("设计页面已开启，直接进入");
+                    WholeStatic.curAnnouncements = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
+                    WholeStatic.curRecords = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Records;
+                    WholeStatic.curMembers = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Menbers;
+                    WholeStatic.curRoomInterface = RoomInterface.EnterRoom(WholeStatic.curUser.Guid,
+                        WholeStatic.curProject.Guid);
+                    if (WholeStatic.curRoomInterface == null)
+                    {
+                        Debug.Log("ERROR roominterface get null");
+                        Debug.Log("---" + WholeStatic.curUser.Guid + " ---" + WholeStatic.curProject.Guid);
+                        //Debug.Log("try close the exited roominterface to open a new one:");
+
+                    }
+                    ProjectionStatic.isTransPage = true;
+                    Application.LoadLevel(Name.DESIGNROOMPAGENAME);
+                }
+                else
+                {
+                    if (WholeStatic.curProject.OwnerGuid == null
+                        || WholeStatic.curProject.OwnerGuid == ""
+                        || WholeStatic.curProject.OwnerGuid.Equals(WholeStatic.curUser.Guid))
+                    {
+                        //设计页面未开启，拥有者开启并进入
+                        Debug.Log("设计页面经拥有者开启");
+                        WholeStatic.curAnnouncements = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
+                        WholeStatic.curRecords = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Records;
+                        WholeStatic.curMembers = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Menbers;
+                        WholeStatic.curRoomInterface = RoomInterface.CreateRoom(WholeStatic.curUser.Guid,
+                            WholeStatic.curProject.Guid);
+                        if (WholeStatic.curRoomInterface == null)
+                        {
+                            Debug.Log("ERROR roominterface get null");
+                            Debug.Log("---" + WholeStatic.curUser.Guid + " ---" + WholeStatic.curProject.Guid);
+                        }
+                        Debug.Log("curRoomInterface layers count before enter design page "
+                            + WholeStatic.curRoomInterface.RoomLayers.Count);
+                        //若开启时无图层（第一次开启）,则默认添加一个图层
+                        if (WholeStatic.curRoomInterface.RoomLayers.Count == 0)
+                        {
+                            WholeStatic.curRoomInterface.AddLayer(1, 0, 0, 35);
+                            Debug.Log("owner default build a first layer " + WholeStatic.curRoomInterface.RoomLayers.Count);
+                        }
+                        ProjectionStatic.isTransPage = true;
+                        Application.LoadLevel(Name.DESIGNROOMPAGENAME);
+                    }
+                    else
+                    {
+                        AttentionStatic.callAttention(ProjectionNPCName, "当前项目设计未开启，请等待管理员开启后进入！");
+                    }
+                }
             }
         }
     }

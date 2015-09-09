@@ -413,7 +413,7 @@ namespace Wedo_ClientSide
                     BaseProcess(new Dictionary<string, object>
                 {
                     {"Oper", "ExitRoom"},
-                    {"Guid", Guid.Empty.ToString()},
+                    {"Guid", NowUserGuid.ToString()},
                     {"ProjectGuid", ProjectGuid}
                 }));
                 JObject jsonJObject = JObject.Parse(Connect.ReceiveMessage());

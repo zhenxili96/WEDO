@@ -33,16 +33,16 @@ public class AddLayerButton : MonoBehaviour
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
         {
             LeftHandProperty.clickUsed = true;
-            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.LayerCount, RoomStatic.UNSETGUID));
-            WholeStatic.curRoomInterface.AddLayer(RoomStatic.LayerCount, 0, 0, ZMIN + 1 - RoomStatic.LayerCount);
-            RoomStatic.curLayer = RoomStatic.LayerCount;
+            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
+            WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
+            RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
         }
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             RightHandProperty.clickUsed = true;
-            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.LayerCount, RoomStatic.UNSETGUID));
-            WholeStatic.curRoomInterface.AddLayer(RoomStatic.LayerCount, 0, 0, ZMIN + 1 - RoomStatic.LayerCount);
-            RoomStatic.curLayer = RoomStatic.LayerCount;
+            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
+            WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
+            RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
         }
     }
 

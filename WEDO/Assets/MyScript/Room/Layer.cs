@@ -6,7 +6,7 @@ using System.Reflection;
 using System;
 using System.Threading;
 
-public class Layer : MonoBehaviour
+public class Layer
 {
     public float ZMINPos = 35;
     public float ZSPACE = 0.01f;
@@ -36,10 +36,9 @@ public class Layer : MonoBehaviour
     public Layer(float zmin, string myguid)
     {
         ZMINPos = zmin;
-        layerObject = (GameObject)Instantiate(Resources.Load(LayerPrefab));
-        RoomStatic.LayerCount++;
+        layerObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(LayerPrefab));
         layerObject.transform.position = new Vector3(0, 0, 0);
-        layerObject.name = "Layer" + RoomStatic.LayerCount;
+        layerObject.name = "Layer" + RoomStatic.layerArray.Count;
         layerObject.transform.parent = GameObject.Find(ParentName).transform;
         guid = myguid;
     }
@@ -95,44 +94,69 @@ public class Layer : MonoBehaviour
         {
             if (isFindArray[i] == 0)
             {
-                Destroy(instanceArray[i]);
-                instanceArray.RemoveAt(i);
+                //MonoBehaviour.Destroy(instanceArray[i]);
+                //instanceArray.RemoveAt(i);
+                DeleteInstance(instanceArray[i]);
             }
         }
     }
 
+    public void DeleteInstance(GameObject objectT)
+    {
+        MyLayerGameObject temp = new MyLayerGameObject();
+        temp.key = this;
+        temp.value = objectT;
+        RoomStatic.UnDeleteMaterial.Enqueue(temp);
+    }
+
     public void AddInstance(int type)
+    {
+        MyLayerInt temp = new MyLayerInt();
+        temp.key = this;
+        temp.value = type;
+        RoomStatic.UnAddRawMaterial.Enqueue(temp);
+    }
+
+    public void AddInstance(ClientMaterial tempInstance)
+    {
+        MyLayerClientMaterial temp = new MyLayerClientMaterial();
+        temp.key = this;
+        temp.value = tempInstance;
+        RoomStatic.UnAddServerMaterial.Enqueue(temp);
+    }
+
+    public void AddInstancePrivate(int type)
     {
         GameObject tempObject;
         switch (type)
         {
             case RoomStatic.SHAPE_CIRCLE:
                 RoomStatic.CircleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(CirclePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(CirclePrefab));
                 tempObject.name = "CircleInstance_" + RoomStatic.CircleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.SHAPE_RECTANGLE:
                 RoomStatic.RectangleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(RectanglePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RectanglePrefab));
                 tempObject.name = "RectangleInstance_" + RoomStatic.RectangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.SHAPE_ROUNDRECTANGLE:
                 RoomStatic.RoundRectangleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(RoungRectanglePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RoungRectanglePrefab));
                 tempObject.name = "RoundRectangleInstance_" + RoomStatic.RoundRectangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.SHAPE_TRIANGLE:
                 RoomStatic.TriangleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(TrianglePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TrianglePrefab));
                 tempObject.name = "TriangleInstance_" + RoomStatic.TriangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.TEXT:
                 RoomStatic.TextInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(TextPrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TextPrefab));
                 tempObject.name = "TextInstance_" + RoomStatic.TextInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(TextInstanceName);
                 break;
@@ -140,6 +164,7 @@ public class Layer : MonoBehaviour
                 tempObject = null;
                 break;
         }
+        Debug.Log("add a object in button");
         tempObject.transform.localPosition = initPos;
         tempObject.transform.localEulerAngles = initRotate;
         tempObject.transform.localScale = initScale;
@@ -149,38 +174,38 @@ public class Layer : MonoBehaviour
         ObjectCount++;
     }
 
-    public void AddInstance(ClientMaterial tempInstance)
+    public void AddInstancePrivate(ClientMaterial tempInstance)
     {
         GameObject tempObject;
         switch (tempInstance.Type)
         {
             case RoomStatic.SHAPE_CIRCLE:
                 RoomStatic.CircleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(CirclePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(CirclePrefab));
                 tempObject.name = "CircleInstance_" + RoomStatic.CircleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.SHAPE_RECTANGLE:
                 RoomStatic.RectangleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(RectanglePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RectanglePrefab));
                 tempObject.name = "RectangleInstance_" + RoomStatic.RectangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.SHAPE_ROUNDRECTANGLE:
                 RoomStatic.RoundRectangleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(RoungRectanglePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RoungRectanglePrefab));
                 tempObject.name = "RoundRectangleInstance_" + RoomStatic.RoundRectangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.SHAPE_TRIANGLE:
                 RoomStatic.TriangleInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(TrianglePrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TrianglePrefab));
                 tempObject.name = "TriangleInstance_" + RoomStatic.TriangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
                 break;
             case RoomStatic.TEXT:
                 RoomStatic.TextInstanceCount++;
-                tempObject = (GameObject)Instantiate(Resources.Load(TextPrefab));
+                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TextPrefab));
                 tempObject.name = "TextInstance_" + RoomStatic.TextInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(TextInstanceName);
                 break;
@@ -188,6 +213,7 @@ public class Layer : MonoBehaviour
                 tempObject = null;
                 break;
         }
+        Debug.Log("add a object in server");
         tempObject.transform.localPosition = new Vector3(
             tempInstance.CoordX, tempInstance.CoordY, tempInstance.CoordZ);
         tempObject.transform.localEulerAngles = new Vector3(

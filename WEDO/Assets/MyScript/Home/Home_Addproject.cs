@@ -107,6 +107,7 @@ public class Home_Addproject : MonoBehaviour
         if ((RayHit.LeftHitName.Equals(ConfirmButton) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             || (RayHit.RightHitName.Equals(ConfirmButton) && RightHandProperty.isClosed && !RightHandProperty.clickUsed))
         {
+            Keyboard.isOut = false;
             ClientProject tempProject = ProxyInterface.Project_Create(WholeStatic.curUser.Guid, name);
             if (tempProject == null)
             {

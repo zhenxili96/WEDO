@@ -35,14 +35,14 @@ public class message_member : MonoBehaviour
         for (int i = 0; i < RoomStatic.memberCount; i++)
         {
             GameObject tempObject = (GameObject)Instantiate(Resources.Load(memberObjectPath));
-            tempObject.name = "member_" + RoomStatic.members[i].NowUser.Account;
+            tempObject.name = "member_" + WholeStatic.curMembers[i].NowUser.Account;
             foreach(Transform child in tempObject.transform)
             {
                 child.name = tempObject.name + "_" + child.name;
             }
             tempObject.transform.parent = memberObject.transform;
             tempObject.transform.FindChild(tempObject.name + "_name").GetComponent<TextMesh>().text
-                = RoomStatic.members[i].NowUser.Account;
+                = WholeStatic.curMembers[i].NowUser.Account;
             tempObject.transform.localPosition = firstPos + i * memberSpace;
             tempObject.transform.eulerAngles = memberRotation;
             tempObject.transform.localScale = memberScale;

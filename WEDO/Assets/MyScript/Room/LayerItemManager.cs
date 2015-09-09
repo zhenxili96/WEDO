@@ -60,7 +60,6 @@ public class LayerItemManager : MonoBehaviour
             {
                 RoomStatic.layerArray.RemoveAt(selfLayer);
                 Destroy(gameObject);
-                RoomStatic.LayerCount--;
             }
         }
     }

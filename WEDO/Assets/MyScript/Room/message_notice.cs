@@ -31,7 +31,7 @@ public class message_notice : MonoBehaviour
         noticeObject = transform.GetChild(0).gameObject;
         for (int i = 0; i < RoomStatic.noticeCount; i++)
         {
-            notice += (RoomStatic.notices[i].Cont + "\n");
+            notice += (WholeStatic.curAnnouncements[i].Cont + "\n");
         }
         noticeObject.transform.FindChild(noticeContentName).GetComponent<TextMesh>().text
             = notice;

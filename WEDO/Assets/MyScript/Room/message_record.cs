@@ -41,7 +41,7 @@ public class message_record : MonoBehaviour
                 child.name = tempObject.name + "_" + child.name;
             }
             tempObject.transform.FindChild(tempObject.name + "_content").GetComponent<TextMesh>().text
-                = RoomStatic.records[i].Cont;
+                = WholeStatic.curRecords[i].Cont;
             tempObject.transform.parent = recordObject.transform;
             tempObject.transform.localPosition = firstPos + i * recordSpace;
             tempObject.transform.eulerAngles = recordRotate;

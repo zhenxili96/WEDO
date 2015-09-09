@@ -7,18 +7,31 @@ using System;
 using System.Threading;
 
 public enum RoomMode { Mode1, Mode2};
+public class MyLayerInt
+{
+    public Layer key = null;
+    public int value = 0;
+}
+
+public class MyLayerClientMaterial
+{
+    public Layer key = null;
+    public ClientMaterial value = null;
+}
+
+public class MyLayerGameObject
+{
+    public Layer key = null;
+    public GameObject value = null;
+}
 
 public class RoomStatic : MonoBehaviour
 {
 
     public static string curFocus = "";
-    public static int LayerCount = 0;
     public static int curLayer = 0;
     public static List<Layer> layerArray = new List<Layer>();
     public static RoomMode curMode = RoomMode.Mode1;
-    public static List<ClientMessage> notices = new List<ClientMessage>();
-    public static List<ClientMessage> records = new List<ClientMessage>();
-    public static List<ClientMenber> members = new List<ClientMenber>();
     public static int noticeCount = 0;
     public static int recordCount = 0;
     public static int memberCount = 0;
@@ -40,6 +53,11 @@ public class RoomStatic : MonoBehaviour
     public Timer uploadTimer;
     public Timer downloadTimer;
     public static string UNSETGUID = "---";
+    public static Queue<RoomLayer> UnAddLayer = new Queue<RoomLayer>();
+    public static Queue<Layer> UnDeleteLayer = new Queue<Layer>();
+    public static Queue<MyLayerInt> UnAddRawMaterial = new Queue<MyLayerInt>();
+    public static Queue<MyLayerClientMaterial> UnAddServerMaterial = new Queue<MyLayerClientMaterial>();
+    public static Queue<MyLayerGameObject> UnDeleteMaterial = new Queue<MyLayerGameObject>();
 
     // Use this for initialization
     void Start()
@@ -120,17 +138,20 @@ public class RoomStatic : MonoBehaviour
             //服务器有新Layer 添加到场景中
             if (!isFind)
             {
-                addLayer(WholeStatic.curRoomInterface.RoomLayers[i]);
+                Debug.Log("将服务器中的新layer添加到场景中");
+                //addLayer(WholeStatic.curRoomInterface.RoomLayers[i]);
+                UnAddLayer.Enqueue(WholeStatic.curRoomInterface.RoomLayers[i]);
             }
         }
         //服务器中不存在的Layer 删除
-        for (int i = 0; i < isFindArray.Length; i++)
+        for (int i = 1; i < isFindArray.Length; i++)
         {
             if (isFindArray[i] == 0)
             {
-                Destroy(RoomStatic.layerArray[i].layerObject);
-                RoomStatic.layerArray.RemoveAt(i);
-                RoomStatic.LayerCount--;
+                Debug.Log("删除服务器中不存在的layer");
+                //Destroy(RoomStatic.layerArray[i].layerObject);
+                UnDeleteLayer.Enqueue(RoomStatic.layerArray[i]);
+                //***RoomStatic.layerArray.RemoveAt(i);
             }
         }
     }
@@ -146,6 +167,17 @@ public class RoomStatic : MonoBehaviour
 
     private void initLayer()
     {
+        if (WholeStatic.curRoomInterface == null)
+        {
+            Debug.Log("ERROR curroominterface null");
+            return;
+        }
+        if (WholeStatic.curRoomInterface.RoomLayers == null)
+        {
+            Debug.Log("ERROR curRoomInterface Roomlayers null");
+            return;
+        }
+        Debug.Log("curRoomInterface Roomlayers count " + WholeStatic.curRoomInterface.RoomLayers.Count);
         for (int i = 0; i < WholeStatic.curRoomInterface.RoomLayers.Count; i++)
         {
             addLayer(WholeStatic.curRoomInterface.RoomLayers[i]);
@@ -154,12 +186,11 @@ public class RoomStatic : MonoBehaviour
 
     private void addLayer(RoomLayer tempLayer)
     {
-        Layer newLayer = new Layer(LAYERZMIN - RoomStatic.LayerCount, tempLayer.NowLayer.Guid);
+        Layer newLayer = new Layer(LAYERZMIN - RoomStatic.layerArray.Count, tempLayer.NowLayer.Guid);
         foreach (ClientMaterial cm in tempLayer.BoardMaterials)
         {
             newLayer.AddInstance(cm);
         }
-        LayerCount++;
         layerArray.Add(newLayer);
     }
 
@@ -168,12 +199,9 @@ public class RoomStatic : MonoBehaviour
         //notices = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Announcements;
         //records = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Records;
         //members = ProxyInterface.Project_GetInfo("f0d154e4-4b37-49f8-8526-288f64937a74").Menbers;
-        notices = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
-        records = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Records;
-        members = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Menbers;
-        noticeCount = notices.Count;
-        recordCount = records.Count;
-        memberCount = members.Count;
+        noticeCount = WholeStatic.curAnnouncements.Count;
+        recordCount = WholeStatic.curRecords.Count;
+        memberCount = WholeStatic.curMembers.Count;
         GameObject.Find(Message_MemberName).GetComponent<message_member>().initMember();
         GameObject.Find(Message_NoticeName).GetComponent<message_notice>().initNotice();
         GameObject.Find(Message_RecordName).GetComponent<message_record>().initRecord();
@@ -186,8 +214,44 @@ public class RoomStatic : MonoBehaviour
         //Debug.Log("noticeCount + " + noticeCount);
         //Debug.Log("recordCount + " + recordCount);
         //Debug.Log("memberCount + " + memberCount);
+        checkLayerChange();
+        checkMaterialChange();
+    }
 
-        
+    private void checkMaterialChange()
+    {
+        while (UnAddRawMaterial.Count != 0)
+        {
+            MyLayerInt temp = UnAddRawMaterial.Dequeue();
+            temp.key.AddInstance(temp.value);
+        }
+        while (UnAddServerMaterial.Count != 0)
+        {
+            MyLayerClientMaterial temp = UnAddServerMaterial.Dequeue();
+            temp.key.AddInstance(temp.value);
+        }
+        while (UnDeleteMaterial.Count != 0)
+        {
+            MyLayerGameObject temp = UnDeleteMaterial.Dequeue();
+            MonoBehaviour.Destroy(temp.value);
+            temp.key.instanceArray.Remove(temp.value);
+        }
+    }
+
+    private void checkLayerChange()
+    {
+        while (UnAddLayer.Count != 0)
+        {
+            Debug.Log("服务器layer添加到场景ing...");
+            addLayer(UnAddLayer.Dequeue());
+        }
+        while (UnDeleteLayer.Count != 0)
+        {
+            Debug.Log("场景内无效layer删除ing...");
+            Layer temp = UnDeleteLayer.Dequeue();
+            Destroy(temp.layerObject);
+            RoomStatic.layerArray.Remove(temp);
+        }
     }
 
     private int checkHandState()
@@ -234,10 +298,27 @@ public class RoomStatic : MonoBehaviour
         if (!isTransPage)
         {
             Debug.Log("exit room");
-            WholeStatic.curRoomInterface.ExitRoom();
-            if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+            if (WholeStatic.curRoomInterface == null)
             {
-                WholeStatic.curRoomInterface.CloseRoom();
+                Debug.Log("ERROR room interface null & 退出房间失败");
+            }
+            else
+            {
+                if (!WholeStatic.curRoomInterface.ExitRoom())
+                {
+                    Debug.Log("ERROR 退出房间失败");
+                }
+                if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                {
+                    if (!WholeStatic.curRoomInterface.CloseRoom())
+                    {
+                        Debug.Log("ERROR close room fail");
+                    }
+                    else
+                    {
+                        Debug.Log("room 无人， 关闭room");
+                    }
+                }
             }
             ProxyInterface.Connect_End();
         }
