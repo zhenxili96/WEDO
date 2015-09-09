@@ -164,6 +164,7 @@
      <Compile Include="Assets\MyScript\Room\TextButton.cs" />
      <Compile Include="Assets\MyScript\Room\TextInstance.cs" />
      <Compile Include="Assets\MyScript\Room\UpButton.cs" />
+     <Compile Include="Assets\MyScript\Room\UserHand.cs" />
      <Compile Include="Assets\MyScript\Room\message_member.cs" />
      <Compile Include="Assets\MyScript\Room\message_memberInstance.cs" />
      <Compile Include="Assets\MyScript\Room\message_notice.cs" />

@@ -186,6 +186,7 @@
     <Compile Include="Assets\MyScript\Room\TextInstance.cs" />
     <Compile Include="Assets\MyScript\Room\InstanceType.cs" />
     <Compile Include="Assets\MyScript\Room\UpButton.cs" />
+    <Compile Include="Assets\MyScript\Room\UserHand.cs" />
     <Compile Include="Assets\MyScript\Text\text.cs" />
     <Compile Include="Assets\MyScript\Text\text11.cs" />
     <Compile Include="Assets\MyScript\aa.cs" />

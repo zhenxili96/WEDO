@@ -58,6 +58,10 @@ public class RoomStatic : MonoBehaviour
     public static Queue<MyLayerInt> UnAddRawMaterial = new Queue<MyLayerInt>();
     public static Queue<MyLayerClientMaterial> UnAddServerMaterial = new Queue<MyLayerClientMaterial>();
     public static Queue<MyLayerGameObject> UnDeleteMaterial = new Queue<MyLayerGameObject>();
+    public string OtherHandsName = "OtherHandsName";
+    public List<UserHand> curUserHands = new List<UserHand>();  //本地users
+    public static Queue<RoomUser> UnAddUser = new Queue<RoomUser>();
+    public static Queue<UserHand> UnDeleteUser = new Queue<UserHand>();
 
     // Use this for initialization
     void Start()
@@ -79,7 +83,7 @@ public class RoomStatic : MonoBehaviour
 
     private void uploadData(object data)
     {
-        //一直同步手势
+        //一直同步上传手势
         WholeStatic.curRoomInterface.EditUser(
            LeftHandProperty.curPos.x, LeftHandProperty.curPos.y, LeftHandProperty.curPos.z,
            RightHandProperty.curPos.x, RightHandProperty.curPos.y, RightHandProperty.curPos.z,
@@ -120,6 +124,54 @@ public class RoomStatic : MonoBehaviour
 
     private void downloadData(object data)
     {
+        downloadHandData();
+        downloadLayerData();
+    }
+
+    private void downloadHandData()
+    {
+        //server hands 信息同步处理
+        int[] isFindArray = new int[curUserHands.Count];
+        for (int i = 0; i < WholeStatic.curRoomInterface.RoomUsers.Count; i++)
+        {
+            if (WholeStatic.curRoomInterface.RoomUsers[i].UserGuid.Equals(
+                WholeStatic.curUser.Guid))
+            {
+                continue;
+            }
+            bool isFind = false;
+            for (int j = 0; j < curUserHands.Count; j++)
+            {
+                if (WholeStatic.curRoomInterface.RoomUsers[i].UserGuid.Equals(
+                    curUserHands[j].userGuid))
+                {
+                    isFind = true;
+                    isFindArray[j] = 1;
+                    curUserHands[i].refreshHand(WholeStatic.curRoomInterface.RoomUsers[i]);
+                }
+            }
+            //server 有 新的手 加入本地
+            if (!isFind)
+            {
+                Debug.Log("new user find");
+                UnAddUser.Enqueue(WholeStatic.curRoomInterface.RoomUsers[i]);
+            }
+        }
+        //服务器中不存在的手删除
+        for (int i = 0; i < isFindArray.Length; i++)
+        {
+            if (isFindArray[i] == 0)
+            {
+                Debug.Log("old user delete");
+                UnDeleteUser.Enqueue(curUserHands[i]);
+            }
+        }
+
+    }
+
+    private void downloadLayerData()
+    {
+        //server layer 信息同步处理
         int[] isFindArray = new int[RoomStatic.layerArray.Count];
         for (int i = 0; i < WholeStatic.curRoomInterface.RoomLayers.Count; i++)
         {
@@ -216,6 +268,19 @@ public class RoomStatic : MonoBehaviour
         //Debug.Log("memberCount + " + memberCount);
         checkLayerChange();
         checkMaterialChange();
+        checkUserHandChange();
+    }
+
+    private void checkUserHandChange()
+    {
+        while (UnAddUser.Count != 0)
+        {
+            curUserHands.Add(new UserHand(UnAddUser.Dequeue()));
+        }
+        while (UnDeleteUser.Count != 0)
+        {
+            curUserHands.Remove(UnDeleteUser.Dequeue());
+        }
     }
 
     private void checkMaterialChange()
