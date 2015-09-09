@@ -25,6 +25,12 @@ public class MyLayerGameObject
     public GameObject value = null;
 }
 
+public class MyHandServerUser
+{
+    public UserHand key = null;
+    public RoomUser value = null;
+}
+
 public class RoomStatic : MonoBehaviour
 {
 
@@ -62,6 +68,7 @@ public class RoomStatic : MonoBehaviour
     public List<UserHand> curUserHands = new List<UserHand>();  //本地users
     public static Queue<RoomUser> UnAddUser = new Queue<RoomUser>();
     public static Queue<UserHand> UnDeleteUser = new Queue<UserHand>();
+    public static Queue<MyHandServerUser> UnRefreshUser = new Queue<MyHandServerUser>();
 
     // Use this for initialization
     void Start()
@@ -147,7 +154,10 @@ public class RoomStatic : MonoBehaviour
                 {
                     isFind = true;
                     isFindArray[j] = 1;
-                    curUserHands[i].refreshHand(WholeStatic.curRoomInterface.RoomUsers[i]);
+                    MyHandServerUser temp = new MyHandServerUser();
+                    temp.key = curUserHands[i];
+                    temp.value = WholeStatic.curRoomInterface.RoomUsers[i];
+                    UnRefreshUser.Enqueue(temp);
                 }
             }
             //server 有 新的手 加入本地
@@ -269,6 +279,16 @@ public class RoomStatic : MonoBehaviour
         checkLayerChange();
         checkMaterialChange();
         checkUserHandChange();
+        checkRefreshHand();
+    }
+
+    private void checkRefreshHand()
+    {
+        while (UnRefreshUser.Count != 0)
+        {
+            MyHandServerUser temp = UnRefreshUser.Dequeue();
+            temp.key.refreshHand(temp.value);
+        }
     }
 
     private void checkUserHandChange()
