@@ -28,7 +28,7 @@ public class UserHand
 
     public void initHand(RoomUser tempUser)
     {
-        userName = tempUser.UserAvatar;
+        userName = tempUser.UserNickName;
         userGuid = tempUser.UserGuid;
         leftHandObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(leftHandPrefab));
         rightHandObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(rightHandPrefab));
@@ -95,7 +95,7 @@ public class UserHand
         if (LS == 1)
         {
             leftHandObject.renderer.material = (Material)MonoBehaviour.Instantiate(Resources.Load(leftOpenHandMetrialPrefab));
-        }
+        } 
         else
         {
             leftHandObject.renderer.material = (Material)MonoBehaviour.Instantiate(Resources.Load(leftCloseHandMetrialPrefab));
