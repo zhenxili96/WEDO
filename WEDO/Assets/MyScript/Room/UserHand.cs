@@ -46,10 +46,11 @@ public class UserHand
         RightName = "RighHand_" + userName;
         leftHandObject.name = LeftName;
         rightHandObject.name = RightName;
-        int LO = tempUser.Color / 1000;
-        int LS = (tempUser.Color - LO * 1000) / 100;
-        int RS = tempUser.Color % 10;
-        int RO = (tempUser.Color % 100 - RS) / 10;
+        int tc = tempUser.Color - 10000;
+        int LO = tc / 1000;
+        int LS = (tc - LO * 1000) / 100;
+        int RS = tc % 10;
+        int RO = (tc % 100 - RS) / 10;
         if (LS == 1)
         {
             leftHandObject.renderer.material = (Material)MonoBehaviour.Instantiate(Resources.Load(leftOpenHandMetrialPrefab));
@@ -88,10 +89,11 @@ public class UserHand
 
     public void refreshHand(RoomUser tempUser)
     {
-        int LO = tempUser.Color / 1000;
-        int LS = (tempUser.Color - LO * 1000) / 100;
-        int RS = tempUser.Color % 10;
-        int RO = (tempUser.Color % 100 - RS) / 10;
+        int tc = tempUser.Color - 10000;
+        int LO = tc / 1000;
+        int LS = (tc - LO * 1000) / 100;
+        int RS = tc % 10;
+        int RO = (tc % 100 - RS) / 10;
         if (LS == 1)
         {
             leftHandObject.renderer.material = (Material)MonoBehaviour.Instantiate(Resources.Load(leftOpenHandMetrialPrefab));
@@ -128,5 +130,8 @@ public class UserHand
             tempUser.LeftCoordX, tempUser.LeftCoordY, tempUser.LeftCoordZ);
         rightHandObject.transform.localPosition = new Vector3(
             tempUser.RightCoordX, tempUser.RightCoordY, tempUser.RightCoordZ);
+        Debug.Log(tempUser.Color);
+        Debug.Log("refresh " + LeftName + " " + leftHandObject.transform.localPosition);
+        Debug.Log("refresh " + RightName + " " + rightHandObject.transform.localPosition);
     }
 }

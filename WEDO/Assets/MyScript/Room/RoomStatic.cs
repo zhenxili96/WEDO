@@ -95,6 +95,7 @@ public class RoomStatic : MonoBehaviour
            LeftHandProperty.curPos.x, LeftHandProperty.curPos.y, LeftHandProperty.curPos.z,
            RightHandProperty.curPos.x, RightHandProperty.curPos.y, RightHandProperty.curPos.z,
            checkHandState());
+        Debug.Log("my hand upload :" + LeftHandProperty.curPos + " " + RightHandProperty.curPos + checkHandState());
 
         //同步当前focus物体动态
         GameObject focusObject = GameObject.Find(curFocus);
@@ -377,7 +378,7 @@ public class RoomStatic : MonoBehaviour
         {
             RightHand += 00;
         }
-        return (LeftHand * 100 + RightHand);
+        return (10000 + LeftHand * 100 + RightHand);
     }
 
     void OnDestroy()
@@ -395,17 +396,21 @@ public class RoomStatic : MonoBehaviour
                 {
                     Debug.Log("ERROR 退出房间失败");
                 }
-                if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                if (!WholeStatic.curRoomInterface.CloseRoom())
                 {
-                    if (!WholeStatic.curRoomInterface.CloseRoom())
-                    {
-                        Debug.Log("ERROR close room fail");
-                    }
-                    else
-                    {
-                        Debug.Log("room 无人， 关闭room");
-                    }
+                    Debug.Log("ERROR close room fail");
                 }
+                //if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                //{
+                //    if (!WholeStatic.curRoomInterface.CloseRoom())
+                //    {
+                //        Debug.Log("ERROR close room fail");
+                //    }
+                //    else
+                //    {
+                //        Debug.Log("room 无人， 关闭room");
+                //    }
+                //}
             }
             ProxyInterface.Connect_End();
         }
