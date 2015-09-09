@@ -163,7 +163,7 @@ public class RoomStatic : MonoBehaviour
             //server 有 新的手 加入本地
             if (!isFind)
             {
-                Debug.Log("new user find");
+                Debug.Log("new user find" + WholeStatic.curRoomInterface.RoomUsers[i].UserAvatar);
                 UnAddUser.Enqueue(WholeStatic.curRoomInterface.RoomUsers[i]);
             }
         }
@@ -172,7 +172,7 @@ public class RoomStatic : MonoBehaviour
         {
             if (isFindArray[i] == 0)
             {
-                Debug.Log("old user delete");
+                Debug.Log("old user delete" + curUserHands[i].userName);
                 UnDeleteUser.Enqueue(curUserHands[i]);
             }
         }

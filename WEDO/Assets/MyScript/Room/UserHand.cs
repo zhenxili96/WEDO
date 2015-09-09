@@ -19,6 +19,8 @@ public class UserHand
     public string rightCloseHandMetrialPrefab = "YellowRightHandFist";
     public string userName = "";
     public string userGuid = "";
+    public string LeftName = "";
+    public string RightName = "";
 
     public UserHand()
     {
@@ -40,8 +42,10 @@ public class UserHand
             tempUser.RightCoordX, tempUser.RightCoordY, tempUser.RightCoordZ);
         rightHandObject.transform.localScale = new Vector3(1, 1, 1);
         rightHandObject.transform.localEulerAngles = new Vector3(270, 0, 0);
-        leftHandObject.name = "LeftHand_" + userName;
-        rightHandObject.name = "RighHand_" + userName;
+        LeftName = "LeftHand_" + userName;
+        RightName = "RighHand_" + userName;
+        leftHandObject.name = LeftName;
+        rightHandObject.name = RightName;
         int LO = tempUser.Color / 1000;
         int LS = (tempUser.Color - LO * 1000) / 100;
         int RS = tempUser.Color % 10;
@@ -56,11 +60,11 @@ public class UserHand
         }
         if (LO == 1)
         {
-            leftHandObject.SetActive(true);
+            GameObject.Find(ParentName).transform.FindChild(LeftName).gameObject.SetActive(true);
         }
         else
         {
-            leftHandObject.SetActive(false);
+            GameObject.Find(ParentName).transform.FindChild(LeftName).gameObject.SetActive(false);
         }
         if (RS == 1)
         {
@@ -72,11 +76,11 @@ public class UserHand
         }
         if (RO == 1)
         {
-            rightHandObject.SetActive(true);
+            GameObject.Find(ParentName).transform.FindChild(RightName).gameObject.SetActive(true);
         }
         else
         {
-            rightHandObject.SetActive(false);
+            GameObject.Find(ParentName).transform.FindChild(RightName).gameObject.SetActive(true);
         }
     }
 
@@ -84,10 +88,6 @@ public class UserHand
 
     public void refreshHand(RoomUser tempUser)
     {
-        leftHandObject.transform.localPosition = new Vector3(
-            tempUser.LeftCoordX, tempUser.LeftCoordY, tempUser.LeftCoordZ);
-        rightHandObject.transform.localPosition = new Vector3(
-            tempUser.RightCoordX, tempUser.RightCoordY, tempUser.RightCoordZ);
         int LO = tempUser.Color / 1000;
         int LS = (tempUser.Color - LO * 1000) / 100;
         int RS = tempUser.Color % 10;
@@ -102,11 +102,11 @@ public class UserHand
         }
         if (LO == 1)
         {
-            leftHandObject.SetActive(true);
+            GameObject.Find(ParentName).transform.FindChild(LeftName).gameObject.SetActive(true);
         }
         else
         {
-            leftHandObject.SetActive(false);
+            GameObject.Find(ParentName).transform.FindChild(LeftName).gameObject.SetActive(false);
         }
         if (RS == 1)
         {
@@ -118,11 +118,15 @@ public class UserHand
         }
         if (RO == 1)
         {
-            rightHandObject.SetActive(true);
+            GameObject.Find(ParentName).transform.FindChild(RightName).gameObject.SetActive(true);
         }
         else
         {
-            rightHandObject.SetActive(false);
+            GameObject.Find(ParentName).transform.FindChild(RightName).gameObject.SetActive(true);
         }
+        leftHandObject.transform.localPosition = new Vector3(
+            tempUser.LeftCoordX, tempUser.LeftCoordY, tempUser.LeftCoordZ);
+        rightHandObject.transform.localPosition = new Vector3(
+            tempUser.RightCoordX, tempUser.RightCoordY, tempUser.RightCoordZ);
     }
 }
