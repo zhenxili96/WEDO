@@ -20,7 +20,11 @@ public class UserHand
     public string userName = "";
     public string userGuid = "";
 
-    public UserHand(RoomUser tempUser)
+    public UserHand()
+    {
+    }
+
+    public void initHand(RoomUser tempUser)
     {
         userName = tempUser.UserAvatar;
         userGuid = tempUser.UserGuid;
@@ -75,6 +79,8 @@ public class UserHand
             rightHandObject.SetActive(false);
         }
     }
+
+
 
     public void refreshHand(RoomUser tempUser)
     {

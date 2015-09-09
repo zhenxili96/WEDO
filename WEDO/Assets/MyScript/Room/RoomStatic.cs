@@ -275,7 +275,9 @@ public class RoomStatic : MonoBehaviour
     {
         while (UnAddUser.Count != 0)
         {
-            curUserHands.Add(new UserHand(UnAddUser.Dequeue()));
+            UserHand temp = new UserHand();
+            temp.initHand(UnAddUser.Dequeue());
+            curUserHands.Add(temp);
         }
         while (UnDeleteUser.Count != 0)
         {
