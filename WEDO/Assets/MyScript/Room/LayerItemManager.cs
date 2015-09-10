@@ -181,12 +181,14 @@ public class LayerItemManager : MonoBehaviour
 
     public void callChange()
     {
+        Debug.Log("call this layer item change aspect");
         layerBack.SetActive(true);
         transform.position = originPos + (selfLayer - 1) * changePosBase;
     }
 
     public void backChange()
     {
+        Debug.Log("back this layer item change  aspect");
         transform.position = originPos;
         layerBack.SetActive(false);
     }

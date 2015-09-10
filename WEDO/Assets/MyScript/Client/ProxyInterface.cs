@@ -370,6 +370,35 @@ namespace Wedo_ClientSide
         }
 
         /// <summary>
+        /// 删除项目
+        /// </summary>
+        /// <param name="projectGuid">项目Guid</param>
+        /// <param name="userGuid">操作人Guid</param>
+        /// <returns>操作是否成功</returns>
+        static public bool Project_Delete(string projectGuid, string userGuid)
+        {
+            try
+            {
+                lock (LockObj)
+                {
+                    Connect.SendMessage(
+                        BaseProcess(new Dictionary<string, object>
+                    {
+                        {"Oper", "DeleteProjectInfo"},
+                        {"ProjectGuid", projectGuid},
+                        {"Guid", userGuid}
+                    }));
+                    JObject jsonJObject = JObject.Parse(Connect.ReceiveMessage());
+                    return jsonJObject["Mess"].ToString() == "Ok";
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 申请项目
         /// </summary>
         /// <param name="guid">申请人Guid</param>

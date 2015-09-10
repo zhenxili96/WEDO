@@ -62,7 +62,7 @@ public class ProjectionStatic : MonoBehaviour
         tempProjection.transform.localScale = ProjScale;
         if (subProjectCount % 2 == 1)
         {
-            tempProjection.transform.localPosition = UpLinePos + (subProjectCount - 1) * ProjectSpace;
+            tempProjection.transform.localPosition = UpLinePos + ((subProjectCount - 1) / 2) * ProjectSpace;
         }
         else
         {

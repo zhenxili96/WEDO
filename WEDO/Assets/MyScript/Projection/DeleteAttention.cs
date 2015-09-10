@@ -20,6 +20,7 @@ public class DeleteAttention : MonoBehaviour
     public float cancelHoverZ;
     public float cancelOriginZ;
     public string AttentTextName = "attentiontext";
+    public string ProjectionNPCName = "Projection_NPC";
 
     // Use this for initialization
     void Start()
@@ -70,16 +71,30 @@ public class DeleteAttention : MonoBehaviour
         {
             LeftHandProperty.clickUsed = true;
             //TODO 删除项目
-
-            Application.LoadLevel(Name.HOMEPAGENAME);
+            if (!ProxyInterface.Project_Delete(WholeStatic.curProject.Guid, WholeStatic.curUser.Guid))
+            {
+                AttentionStatic.callAttention(ProjectionNPCName, "删除项目失败，非项目创建者无权限删除项目！");
+                Debug.Log("删除项目失败，非项目创建者无权限删除项目！");
+            }
+            else
+            {
+                Application.LoadLevel(Name.HOMEPAGENAME);
+            }
         }
         if (RayHit.RightHitName.Equals(OKButtonName)
             && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             LeftHandProperty.clickUsed = true;
             //TODO 删除项目
-
-            Application.LoadLevel(Name.HOMEPAGENAME);
+            if (!ProxyInterface.Project_Delete(WholeStatic.curProject.Guid, WholeStatic.curUser.Guid))
+            {
+                AttentionStatic.callAttention(ProjectionNPCName, "删除项目失败，非项目创建者无权限删除项目！");
+                Debug.Log("删除项目失败，非项目创建者无权限删除项目！");
+            }
+            else
+            {
+                Application.LoadLevel(Name.HOMEPAGENAME);
+            }
         }
     }
 
