@@ -46,8 +46,17 @@ public class ColorTable
         {
             col = 1;
         }
-        
-        return Table[row, col];
+        Color result;
+        if (row < 3 && col < 8)
+        {
+            result = Table[row, col];
+        }
+        else
+        {
+            result = Table[2, 6];
+            Debug.Log("ColorTable fail " + colorname);
+        }
+        return result;
     }
 
 
