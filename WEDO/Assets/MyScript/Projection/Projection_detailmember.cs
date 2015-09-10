@@ -39,13 +39,11 @@ public class Projection_detailmember : MonoBehaviour
             {
                 LeftHandProperty.clickUsed = true;
                 GameObject.Find(ProjectionNPCName).transform.FindChild(MemberListName).gameObject.SetActive(true);
-                Keyboard.isOut = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
                 GameObject.Find(ProjectionNPCName).transform.FindChild(MemberListName).gameObject.SetActive(true);
-                Keyboard.isOut = true;
             }
         }
     }

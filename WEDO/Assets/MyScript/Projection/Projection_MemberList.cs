@@ -101,6 +101,7 @@ public class Projection_MemberList : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 GameObject.Find(ProjectionNPCName).transform.FindChild(AddMemberName).gameObject.SetActive(true);
+                Keyboard.isOut = true;
             }
             else
             {
@@ -116,6 +117,7 @@ public class Projection_MemberList : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 GameObject.Find(ProjectionNPCName).transform.FindChild(AddMemberName).gameObject.SetActive(true);
+                Keyboard.isOut = true;
             }
             else
             {

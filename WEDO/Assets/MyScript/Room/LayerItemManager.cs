@@ -22,7 +22,8 @@ public class LayerItemManager : MonoBehaviour
     void Start()
     {
         selfLayer = int.Parse(name.Remove(0, 5));
-        layerBack = (GameObject)Instantiate(Resources.Load(name));
+        //layerBack = (GameObject)Instantiate(Resources.Load(name));
+        layerBack = (GameObject)Instantiate(Resources.Load("Layer1"));
         layerBack.name = name + "_back";
         layerBack.transform.parent = gameObject.transform;
         if (RoomStatic.layerArray.Count > selfLayer)

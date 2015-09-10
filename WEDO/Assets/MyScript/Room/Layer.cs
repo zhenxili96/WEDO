@@ -234,7 +234,8 @@ public class Layer
                 tempObject = null;
                 break;
         }
-        Debug.Log("add a object from server");
+        Debug.Log("add a object from server " + tempInstance.Type
+            + " " + tempInstance.CoordX + "," + tempInstance.CoordY + "," + tempInstance.CoordZ);
         tempObject.GetComponent<ShapeInstance>().parentLayer = this;
         tempObject.transform.localPosition = new Vector3(
             tempInstance.CoordX, tempInstance.CoordY, tempInstance.CoordZ);

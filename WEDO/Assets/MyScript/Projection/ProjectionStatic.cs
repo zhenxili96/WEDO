@@ -13,7 +13,7 @@ public class ProjectionStatic : MonoBehaviour
     public static Vector3 UpLinePos = new Vector3(-7, 20, 65);
     public static Vector3 DownLinePos = new Vector3(-7, 0, 65);
     public static Vector3 ProjectSpace = new Vector3(17, 0, 0);
-    public static Vector3 ProjRotation = new Vector3(0, 0, 0);
+    public static Vector3 ProjRotation = new Vector3(0, 11, 0);
     public static Vector3 ProjScale = new Vector3(1, 1, 1);
     public static string SUBPROJECTPREFABNAME = "ProjectionPrefab/subprojectionprefab";
     public static string ProjectionSubItemName = "Projection_subitem";
@@ -65,7 +65,7 @@ public class ProjectionStatic : MonoBehaviour
         }
         else
         {
-            tempProjection.transform.localPosition = DownLinePos + (subProjectCount - 1) * ProjectSpace;
+            tempProjection.transform.localPosition = DownLinePos + (subProjectCount/2 - 1) * ProjectSpace;
         }
     }
 

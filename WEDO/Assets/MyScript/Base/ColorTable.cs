@@ -37,7 +37,16 @@ public class ColorTable
     public static Color getColor(string colorname)
     {
         int row = colorname.ToCharArray()[0] - 'A';
-        int col = colorname.ToCharArray()[1] - '1';
+        int col;
+        if (colorname.Length == 2)
+        {
+            col = colorname.ToCharArray()[1] - '1';
+        }
+        else
+        {
+            col = 1;
+        }
+        
         return Table[row, col];
     }
 
