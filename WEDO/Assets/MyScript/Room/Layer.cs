@@ -23,7 +23,7 @@ public class Layer
     public Vector3 initPos = new Vector3(0, 0, 23);
     public Vector3 initScale = new Vector3(1, 1, 1);
     public Vector3 initRotate = new Vector3(0, 0, 0);
-    public Color initColor = ColorTable.A3;
+    public Color initColor = ColorTable.C7;
     public int ObjectCount = 1; //默认为1 为plane预留位置
     public string guid;
     public List<GameObject> instanceArray = new List<GameObject>();
@@ -70,17 +70,17 @@ public class Layer
                             tempLayer.BoardMaterials[i].ScalingZ);
                     instanceArray[j].transform.GetChild(0).renderer.material.color = ColorTable.getColor(tempLayer.BoardMaterials[i].Color);
 
-                    Debug.Log("download curfocus data:"
-                        + tempLayer.BoardMaterials[i].CoordX + ","
-                        + tempLayer.BoardMaterials[i].CoordY + ","
-                        + tempLayer.BoardMaterials[i].CoordZ + ","
-                        + tempLayer.BoardMaterials[i].RotateX + ","
-                        + tempLayer.BoardMaterials[i].RotateY + ","
-                        + tempLayer.BoardMaterials[i].RotateZ + ","
-                        + tempLayer.BoardMaterials[i].ScalingX + ","
-                        + tempLayer.BoardMaterials[i].ScalingY + ","
-                        + tempLayer.BoardMaterials[i].ScalingZ + ","
-                        + tempLayer.BoardMaterials[i].Color);
+                    //Debug.Log("download curfocus data:"
+                    //    + tempLayer.BoardMaterials[i].CoordX + ","
+                    //    + tempLayer.BoardMaterials[i].CoordY + ","
+                    //    + tempLayer.BoardMaterials[i].CoordZ + ","
+                    //    + tempLayer.BoardMaterials[i].RotateX + ","
+                    //    + tempLayer.BoardMaterials[i].RotateY + ","
+                    //    + tempLayer.BoardMaterials[i].RotateZ + ","
+                    //    + tempLayer.BoardMaterials[i].ScalingX + ","
+                    //    + tempLayer.BoardMaterials[i].ScalingY + ","
+                    //    + tempLayer.BoardMaterials[i].ScalingZ + ","
+                    //    + tempLayer.BoardMaterials[i].Color);
 
                     if (instanceArray[j].GetComponent<InstanceType>().Type == RoomStatic.TEXT)
                     {

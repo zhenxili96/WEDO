@@ -135,11 +135,6 @@ public class RoomStatic : MonoBehaviour
             }
             if (curFocusObject.GetComponent<InstanceType>().Type == TEXT)
             {
-                string a = curFocusObject.GetComponent<InstanceType>().MyGuid;
-                string b = curFocusObject.GetComponent<InstanceType>().LayerGuid;
-                float c = curFocusObject.transform.localPosition.x;
-                string d = curFocusObject.GetComponent<InstanceType>().colorString;
-                string e = curFocusObject.transform.GetChild(0).GetComponent<TextMesh>().text;
                 WholeStatic.curRoomInterface.EditBoardMaterial(
                     curFocusObject.GetComponent<InstanceType>().MyGuid, curFocusObject.GetComponent<InstanceType>().LayerGuid,
                     curFocusObject.transform.localPosition.x, curFocusObject.transform.localPosition.y, curFocusObject.transform.localPosition.z,
@@ -160,11 +155,11 @@ public class RoomStatic : MonoBehaviour
                     "", 0, "");
             }
 
-            Debug.Log("upload cur focus data:"
-                + curFocusObject.transform.localPosition + " "
-                + curFocusObject.transform.localEulerAngles + " "
-                + curFocusObject.transform.localScale + " "
-                + curFocusObject.GetComponent<InstanceType>().colorString);
+            //Debug.Log("upload cur focus data:"
+            //    + curFocusObject.transform.localPosition + " "
+            //    + curFocusObject.transform.localEulerAngles + " "
+            //    + curFocusObject.transform.localScale + " "
+            //    + curFocusObject.GetComponent<InstanceType>().colorString);
         }
     }
 
@@ -176,6 +171,9 @@ public class RoomStatic : MonoBehaviour
         //    + "," + WholeStatic.curRoomInterface.NowUser.RightCoordY);
         downloadHandData();
         downloadLayerData();
+        Debug.Log("server data check:["
+            + "cur layerobject count :" + WholeStatic.curRoomInterface.RoomLayers[curLayer - 1].BoardMaterials.Count
+            + "]");
     }
 
     private void downloadHandData()
@@ -200,7 +198,6 @@ public class RoomStatic : MonoBehaviour
                     MyHandServerUser temp = new MyHandServerUser();
                     temp.key = curUserHands[i];
                     temp.value = WholeStatic.curRoomInterface.RoomUsers[i];
-                    Debug.Log("refreshing...");
                     UnRefreshUser.Enqueue(temp);
                 }
             }
