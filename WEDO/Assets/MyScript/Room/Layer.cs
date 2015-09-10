@@ -113,6 +113,10 @@ public class Layer
         RoomStatic.UnAddRawMaterial.Enqueue(temp);
     }
 
+    public void RemoveInstance()
+    { 
+    }
+
     public void AddInstance(ClientMaterial tempInstance)
     {
         MyLayerClientMaterial temp = new MyLayerClientMaterial();
@@ -160,7 +164,8 @@ public class Layer
                 tempObject = null;
                 break;
         }
-        Debug.Log("add a object in button");
+        Debug.Log("add a object from buttonclick");
+        tempObject.GetComponent<ShapeInstance>().parentLayer = this;
         tempObject.transform.localPosition = initPos;
         tempObject.transform.localEulerAngles = initRotate;
         tempObject.transform.localScale = initScale;
@@ -209,7 +214,8 @@ public class Layer
                 tempObject = null;
                 break;
         }
-        Debug.Log("add a object in server");
+        Debug.Log("add a object from server");
+        tempObject.GetComponent<ShapeInstance>().parentLayer = this;
         tempObject.transform.localPosition = new Vector3(
             tempInstance.CoordX, tempInstance.CoordY, tempInstance.CoordZ);
         tempObject.transform.localEulerAngles = new Vector3(

@@ -94,7 +94,7 @@ public class RoomStatic : MonoBehaviour
         initInformation();
         initLayer();
         curLayer = 1;
-        //uploadTimer = new Timer(uploadData, null, 0, 300);
+        uploadTimer = new Timer(uploadData, null, 0, 300);
         downloadTimer = new Timer(downloadData, null, 0, 300);
     }
 
@@ -164,6 +164,10 @@ public class RoomStatic : MonoBehaviour
 
     private void downloadData(object data)
     {
+        Debug.Log("cur user hands: " + WholeStatic.curRoomInterface.NowUser.LeftCoordX
+            + "," + WholeStatic.curRoomInterface.NowUser.LeftCoordY
+            + " " + WholeStatic.curRoomInterface.NowUser.RightCoordX
+            + "," + WholeStatic.curRoomInterface.NowUser.RightCoordY);
         downloadHandData();
         downloadLayerData();
     }
@@ -366,20 +370,20 @@ public class RoomStatic : MonoBehaviour
         {
             MyLayerInt temp = UnAddRawMaterial.Dequeue();
             temp.key.AddInstancePrivate(temp.value);
-            Debug.Log("shape create  raw material");
+            Debug.Log("get a shape from buttonclick unaddqueue");
         }
         while (UnAddServerMaterial.Count != 0)
         {
             MyLayerClientMaterial temp = UnAddServerMaterial.Dequeue();
             temp.key.AddInstancePrivate(temp.value);
-            Debug.Log("shape create server material");
+            Debug.Log("get a shape from server unaddqueue");
         }
         while (UnDeleteMaterial.Count != 0)
         {
             MyLayerGameObject temp = UnDeleteMaterial.Dequeue();
             MonoBehaviour.Destroy(temp.value);
             temp.key.instanceArray.Remove(temp.value);
-            Debug.Log("shape delete in raw");
+            Debug.Log("delete a raw shape");
         }
     }
 

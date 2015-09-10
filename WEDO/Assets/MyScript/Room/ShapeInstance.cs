@@ -10,6 +10,7 @@ public class ShapeInstance : MonoBehaviour
     //private static string DELETEBUTTONNAME = "Room_delete"; 
     public int belongLayer;
     public float layerZ;
+    public Layer parentLayer = null;
 
     // Use this for initialization
     void Start()

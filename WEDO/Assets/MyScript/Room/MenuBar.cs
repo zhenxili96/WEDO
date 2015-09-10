@@ -32,28 +32,47 @@ public class MenuBar : MonoBehaviour
 
     private void checkPlace()
     {
-        Vector3 curPos = transform.position;
-        if (statue && curPos.x <= outPos.x)
+        if (isHover)
         {
-            GameObject.Find(planeName).renderer.material.color = barNewColor;
-            transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * outSpeed);
+            if (transform.position.x < outPos.x)
+            {
+                transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * outSpeed);
+            }
+            else
+            {
+                isOut = true;
+            }
         }
         else
         {
-            GameObject.Find(planeName).renderer.material.color = originBarColor;
+            if (transform.position.x > inPos.x)
+            {
+                transform.Translate(new Vector3(-1, 0, 0) * Time.deltaTime * inSpeed);
+            }
         }
-        if (!statue && curPos.x >= inPos.x)
-        {
-            transform.Translate(new Vector3(-1, 0, 0) * Time.deltaTime * inSpeed);
-        }
-        if (curPos.x >= outPos.x)
-        {
-            isOut = true;
-        }
-        else
-        {
-            isOut = false;
-        }
+
+        //Vector3 curPos = transform.position;
+        //if (statue && curPos.x <= outPos.x)
+        //{
+        //    GameObject.Find(planeName).renderer.material.color = barNewColor;
+        //    transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * outSpeed);
+        //}
+        //else
+        //{
+        //    GameObject.Find(planeName).renderer.material.color = originBarColor;
+        //}
+        //if (!statue && curPos.x >= inPos.x)
+        //{
+        //    transform.Translate(new Vector3(-1, 0, 0) * Time.deltaTime * inSpeed);
+        //}
+        //if (curPos.x >= outPos.x)
+        //{
+        //    isOut = true;
+        //}
+        //else
+        //{
+        //    isOut = false;
+        //}
     }
 
     private void checkStatue()
