@@ -75,7 +75,7 @@ public class RoomStatic : MonoBehaviour
     public static Queue<RoomUser> UnAddUser = new Queue<RoomUser>();
     public static Queue<UserHand> UnDeleteUser = new Queue<UserHand>();
     public static Queue<MyHandServerUser> UnRefreshUser = new Queue<MyHandServerUser>();
-    public GameObject curFocusObject = null;
+    public static GameObject curFocusObject = null;
     public GameObject curFocusChild = null;
     public int curFocusRefresh = 0;
     public static Queue<MyLayerRoomLayer> UnRefreshLayer = new Queue<MyLayerRoomLayer>();
