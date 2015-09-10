@@ -86,13 +86,20 @@ public class Projection_Disk : MonoBehaviour
 
     private void checkHover()
     {
+        isHover = false;
         if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
         {
             isHover = true;
         }
         else
         {
-            isHover = false;
+            foreach (Transform child in transform)
+            {
+                if (RayHit.LeftHitName.Equals(child.name) || RayHit.RightHitName.Equals(child.name))
+                {
+                    isHover = true;
+                }
+            }
         }
     }
 }

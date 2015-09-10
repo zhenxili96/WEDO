@@ -17,13 +17,14 @@ public class LayerItemManager : MonoBehaviour
     public float warnHight = 100f;
     public float deleteHight = 120f;
     public float minHight = -60f;
+    public string LayerBackPrefab = "LayerPrefab/";
 
     // Use this for initialization
     void Start()
     {
         selfLayer = int.Parse(name.Remove(0, 5));
-        //layerBack = (GameObject)Instantiate(Resources.Load(name));
-        layerBack = (GameObject)Instantiate(Resources.Load("Layer1"));
+        layerBack = (GameObject)Instantiate(Resources.Load(LayerBackPrefab + name));
+        //layerBack = (GameObject)Instantiate(Resources.Load("Layer1"));
         layerBack.name = name + "_back";
         layerBack.transform.parent = gameObject.transform;
         if (RoomStatic.layerArray.Count > selfLayer)

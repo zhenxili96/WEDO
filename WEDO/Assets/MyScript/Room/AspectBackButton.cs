@@ -4,18 +4,15 @@ using System.Collections;
 public class AspectBackButton : MonoBehaviour
 {
 
-    private static string MODECHANGENAME = "ModeChange";
-    private static string CURMODENAME = "Mode2";
-    private static string ANOTHERMODENAME = "Mode1";
-    private static string LAYERNAME = "Layer";
-    private bool isHover = false;
-    private Color originColor;
-    private Color newColor = Color.red;
+    public static string MODECHANGENAME = "ModeChange";
+    public static string CURMODENAME = "Mode2";
+    public static string ANOTHERMODENAME = "Mode1";
+    public static string LAYERNAME = "Layer";
+    public bool isHover = false;
 
     // Use this for initialization
     void Start()
     {
-        originColor = renderer.material.color;
     }
 
     // Update is called once per frame
@@ -52,12 +49,10 @@ public class AspectBackButton : MonoBehaviour
             || RayHit.RightHitName.Equals(name) && !RightHandProperty.isClosed)
         {
             isHover = true;
-            renderer.material.color = newColor;
         }
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
         }
     }
 }
