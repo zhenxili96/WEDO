@@ -35,10 +35,32 @@ public class BackButton : MonoBehaviour
             {
                 LeftHandProperty.clickUsed = true;
                 RoomStatic.isTransPage = true;
-                WholeStatic.curRoomInterface.ExitRoom();
-                if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                Debug.Log("exit room");
+                if (WholeStatic.curRoomInterface == null)
                 {
-                    WholeStatic.curRoomInterface.CloseRoom();
+                    Debug.Log("ERROR room interface null & 退出房间失败");
+                }
+                else
+                {
+                    if (!WholeStatic.curRoomInterface.ExitRoom())
+                    {
+                        Debug.Log("ERROR 退出房间失败");
+                    }
+                    if (!WholeStatic.curRoomInterface.CloseRoom())
+                    {
+                        Debug.Log("ERROR close room fail");
+                    }
+                    //if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                    //{
+                    //    if (!WholeStatic.curRoomInterface.CloseRoom())
+                    //    {
+                    //        Debug.Log("ERROR close room fail");
+                    //    }
+                    //    else
+                    //    {
+                    //        Debug.Log("room 无人， 关闭room");
+                    //    }
+                    //}
                 }
                 Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
             }
@@ -46,10 +68,32 @@ public class BackButton : MonoBehaviour
             {
                 RightHandProperty.clickUsed = true;
                 RoomStatic.isTransPage = true;
-                WholeStatic.curRoomInterface.ExitRoom();
-                if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                Debug.Log("exit room");
+                if (WholeStatic.curRoomInterface == null)
                 {
-                    WholeStatic.curRoomInterface.CloseRoom();
+                    Debug.Log("ERROR room interface null & 退出房间失败");
+                }
+                else
+                {
+                    if (!WholeStatic.curRoomInterface.ExitRoom())
+                    {
+                        Debug.Log("ERROR 退出房间失败");
+                    }
+                    if (!WholeStatic.curRoomInterface.CloseRoom())
+                    {
+                        Debug.Log("ERROR close room fail");
+                    }
+                    //if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                    //{
+                    //    if (!WholeStatic.curRoomInterface.CloseRoom())
+                    //    {
+                    //        Debug.Log("ERROR close room fail");
+                    //    }
+                    //    else
+                    //    {
+                    //        Debug.Log("room 无人， 关闭room");
+                    //    }
+                    //}
                 }
                 Application.LoadLevel(Name.MAINPROJECTIONPAGENAME);
             }

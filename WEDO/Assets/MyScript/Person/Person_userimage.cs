@@ -11,7 +11,6 @@ public class Person_userimage : MonoBehaviour
     public float originZ;
     public float hoverZ;
     public static string tempImage = "";
-    public static string chooseUserImage = "";
 
     // Use this for initialization
     void Start()

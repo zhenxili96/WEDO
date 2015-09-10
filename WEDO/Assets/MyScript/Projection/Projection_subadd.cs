@@ -42,8 +42,11 @@ public class Projection_subadd : MonoBehaviour
                 {
                     AttentionStatic.callAttention(ProjectionNPCName, "非项目发起人无权限添加子项目！");
                     return;
-                }
-                GameObject.Find(ProjectionNPCName).transform.FindChild(AddprojectName).gameObject.SetActive(true);
+                } 
+                GameObject addProjectWindows = GameObject.Find(ProjectionNPCName).transform.FindChild(AddprojectName).gameObject;
+                addProjectWindows.SetActive(true);
+                addProjectWindows.GetComponent<Projection_Addproject>().ProjectionNPCName = "";
+                Keyboard.isOut = true;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
@@ -54,7 +57,10 @@ public class Projection_subadd : MonoBehaviour
                     AttentionStatic.callAttention(ProjectionNPCName, "非项目发起人无权限添加子项目！");
                     return;
                 }
-                GameObject.Find(ProjectionNPCName).transform.FindChild(AddprojectName).gameObject.SetActive(true);
+                GameObject addProjectWindows = GameObject.Find(ProjectionNPCName).transform.FindChild(AddprojectName).gameObject;
+                addProjectWindows.SetActive(true);
+                addProjectWindows.GetComponent<Projection_Addproject>().ProjectionNPCName = "";
+                Keyboard.isOut = true;
             }
         }
     }

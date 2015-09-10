@@ -37,8 +37,8 @@ public class Home_addbutton : MonoBehaviour
     void Update()
     {
         checkHover();
-        checkClick();
         checkPress();
+        checkClick();
         checkDrag();
     }
 
@@ -64,7 +64,7 @@ public class Home_addbutton : MonoBehaviour
         }
     }
 
-    private void checkPress()
+    private void checkClick()
     {
         if (isPress)
         {
@@ -119,11 +119,12 @@ public class Home_addbutton : MonoBehaviour
             {
                 prepareClick = false;
                 GameObject.Find(HOMENPCNAME).transform.FindChild(AddprojectName).gameObject.SetActive(true);
+                Keyboard.isOut = true;
             }
         }
     }
 
-    private void checkClick()
+    private void checkPress()
     {
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
         {

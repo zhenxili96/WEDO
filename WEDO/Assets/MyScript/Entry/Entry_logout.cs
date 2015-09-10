@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Wedo_ClientSide;
 
 public class Entry_logout : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class Entry_logout : MonoBehaviour
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 2;
+    public float scaleRate = 1.2f;
     public float originZ;
     public float hoverZ;
 
@@ -34,10 +35,18 @@ public class Entry_logout : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
+                ProxyInterface.Connect_End();
+                Debug.Log("退出登录，关闭连接");
+                EntryStatic.isTransPage = true;
+                Application.LoadLevel(Name.LOGINPAGENAME);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
+                ProxyInterface.Connect_End();
+                Debug.Log("退出登录，关闭连接");
+                EntryStatic.isTransPage = true;
+                Application.LoadLevel(Name.LOGINPAGENAME);
             }
         }
     }

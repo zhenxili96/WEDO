@@ -42,7 +42,7 @@ public class Person_imageplaneconfirm : MonoBehaviour
                 }
                 else
                 {
-                    Person_userimage.chooseUserImage = Person_userimage.tempImage;
+                    PersonStatic.userimage = Person_userimage.tempImage;
                     transform.parent.gameObject.SetActive(false);
                 }
                 LeftHandProperty.clickUsed = true;
@@ -56,7 +56,7 @@ public class Person_imageplaneconfirm : MonoBehaviour
                 }
                 else
                 {
-                    Person_userimage.chooseUserImage = Person_userimage.tempImage;
+                    PersonStatic.userimage = Person_userimage.tempImage;
                     transform.parent.gameObject.SetActive(false);
                 }
                 RightHandProperty.clickUsed = true;
@@ -64,10 +64,10 @@ public class Person_imageplaneconfirm : MonoBehaviour
         }
         else
         {
-            if (LeftHandProperty.isClosed || RightHandProperty.isClosed)
-            {
-                transform.parent.gameObject.SetActive(false);
-            }
+            //if (LeftHandProperty.isClosed || RightHandProperty.isClosed)
+            //{
+            //    transform.parent.gameObject.SetActive(false);
+            //}
         }
     }
 

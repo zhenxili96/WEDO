@@ -7,7 +7,7 @@ public class Person_back : MonoBehaviour
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 2;
+    public float scaleRate = 1.4f;
     public float originZ;
     public float hoverZ;
     public Color originColor;

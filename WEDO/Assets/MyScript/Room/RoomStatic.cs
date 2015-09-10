@@ -300,6 +300,7 @@ public class RoomStatic : MonoBehaviour
             newLayer.AddInstance(cm);
         }
         layerArray.Add(newLayer);
+        curLayer = layerArray.Count - 1;
     }
 
     private void initInformation()

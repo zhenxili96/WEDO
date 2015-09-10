@@ -84,7 +84,7 @@ public class ShapeClass : MonoBehaviour
                     case SHAPE.CIRCLE:
                         circleInstanceCount++;
                         Debug.Log("shape queue add a circle");
-                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_CIRCLE);
+                        //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_CIRCLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,
@@ -96,7 +96,7 @@ public class ShapeClass : MonoBehaviour
                     case SHAPE.RECTANGLE:
                         rectangleInstanceCount++;
                         Debug.Log("shape queue add a rectangle");
-                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_RECTANGLE);
+                        //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_RECTANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,
@@ -108,7 +108,7 @@ public class ShapeClass : MonoBehaviour
                     case SHAPE.ROUND_RECTANGLE:
                         roundRectangleInstanceCount++;
                         Debug.Log("shapa queue add a round rectangle");
-                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_ROUNDRECTANGLE);
+                        //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_ROUNDRECTANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,
@@ -120,7 +120,7 @@ public class ShapeClass : MonoBehaviour
                     case SHAPE.TRIANGLE:
                         triangleInstanceCount++;
                         Debug.Log("shape queue add a triangle");
-                        RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_TRIANGLE);
+                        //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_TRIANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,

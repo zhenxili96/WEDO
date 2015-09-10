@@ -10,9 +10,9 @@ public class ProjectionStatic : MonoBehaviour
     public static string curProjectionLeader = "";
     public static List<ClientProject> subProjects = new List<ClientProject>();
     public static int subProjectCount = 0;
-    public static Vector3 UpLinePos = new Vector3(-7, 20, 65);
-    public static Vector3 DownLinePos = new Vector3(-7, 0, 65);
-    public static Vector3 ProjectSpace = new Vector3(17, 0, 0);
+    public static Vector3 UpLinePos = new Vector3(-11, 20, 65);
+    public static Vector3 DownLinePos = new Vector3(-11, 3, 65);
+    public static Vector3 ProjectSpace = new Vector3(6, 0, 0);
     public static Vector3 ProjRotation = new Vector3(0, 11, 0);
     public static Vector3 ProjScale = new Vector3(1, 1, 1);
     public static string SUBPROJECTPREFABNAME = "ProjectionPrefab/subprojectionprefab";

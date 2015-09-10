@@ -33,18 +33,20 @@ public class AddLayerButton : MonoBehaviour
         {
             LeftHandProperty.clickUsed = true;
             GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.curLayer;
-            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
-            WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
-            RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
+            //RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
+            //WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
+            WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count + 1, 0, 0, ZMIN - RoomStatic.layerArray.Count);
+            //RoomStatic.curLayer = RoomStatic.layerArray.Count;
             Debug.Log("add layer raw and server");
         }
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             RightHandProperty.clickUsed = true;
             GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.curLayer;
-            RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
-            WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
-            RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
+            //RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
+            //WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
+            WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count + 1, 0, 0, ZMIN - RoomStatic.layerArray.Count);
+            //RoomStatic.curLayer = RoomStatic.layerArray.Count;
             Debug.Log("add layer raw and server");
         }
     }

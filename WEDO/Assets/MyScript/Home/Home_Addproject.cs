@@ -48,7 +48,6 @@ public class Home_Addproject : MonoBehaviour
 
         nameTextObject = transform.FindChild(InputLine).GetChild(0).gameObject;
         Keyboard.curSentence = "";
-        Keyboard.isOut = true;
         isOut = false;
     }
 
