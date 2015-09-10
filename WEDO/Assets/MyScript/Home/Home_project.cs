@@ -23,6 +23,12 @@ public class Home_project : MonoBehaviour
     public bool isLHover = false;
     public bool isRHover = false;
     public bool prepareClick = false;
+    public string DeleteName = "delete";
+    public bool isDeleteHover = false;
+    public GameObject DeleteObject;
+    public Vector3 deleteOriginScale;
+    public Vector3 deleteHoverScale;
+    public float deleteScaleRate = 1.3f;
 
     // Use this for initialization
     void Start()
@@ -35,6 +41,10 @@ public class Home_project : MonoBehaviour
         {
             child.name = name + child.name;
         }
+        DeleteName = name + DeleteName;
+        DeleteObject = transform.FindChild(DeleteName).gameObject;
+        deleteOriginScale = DeleteObject.transform.localScale;
+        deleteHoverScale = deleteOriginScale * deleteScaleRate;
     }
 
     // Update is called once per frame
@@ -44,6 +54,17 @@ public class Home_project : MonoBehaviour
         checkClick();
         checkPress();
         checkDrag();
+        checkDeleteHover();
+        checkDeleteClick();
+    }
+
+    private void checkDeleteClick()
+    {
+        //if (RayHit.LeftHitName.Equals(DeleteName)
+        //    && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+        //{
+        //    if (!ProxyInterface.Project_Delete())
+        //}
     }
 
     private void checkDrag()
@@ -158,6 +179,20 @@ public class Home_project : MonoBehaviour
         }
     }
 
+    private void checkDeleteHover()
+    {
+        if (RayHit.LeftHitName.Equals(DeleteName) || RayHit.RightHitName.Equals(DeleteName))
+        {
+            isDeleteHover = true;
+            DeleteObject.transform.localScale = deleteHoverScale;
+        }
+        else
+        {
+            isDeleteHover = false;
+            DeleteObject.transform.localScale = originScale;
+        }
+    }
+
     private void checkHover()
     {
         isLHover = false;
@@ -170,6 +205,10 @@ public class Home_project : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
+                if (child.name.Equals(DeleteName))
+                {
+                    continue;
+                }
                 if (RayHit.LeftHitName.Equals(child.name))
                 {
                     isLHover = true;
@@ -184,6 +223,10 @@ public class Home_project : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
+                if (child.name.Equals(DeleteName))
+                {
+                    continue;
+                }
                 if (RayHit.RightHitName.Equals(child.name))
                 {
                     isRHover = true;

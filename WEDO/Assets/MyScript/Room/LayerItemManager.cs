@@ -31,7 +31,7 @@ public class LayerItemManager : MonoBehaviour
             layerZ = ((Layer)RoomStatic.layerArray[selfLayer]).ZMINPos;
             layerBack.transform.localPosition = new Vector3(layerBack.transform.position.x, layerBack.transform.position.y, layerZ);
         }
-        originPos = transform.position;
+        originPos = transform.localPosition;
         originColor = layerBack.transform.GetChild(0).renderer.material.color;
         layerBack.SetActive(false);
     }
@@ -183,13 +183,13 @@ public class LayerItemManager : MonoBehaviour
     {
         Debug.Log("call this layer item change aspect");
         layerBack.SetActive(true);
-        transform.position = originPos + (selfLayer - 1) * changePosBase;
+        transform.localPosition = originPos + (selfLayer - 1) * changePosBase;
     }
 
     public void backChange()
     {
         Debug.Log("back this layer item change  aspect");
-        transform.position = originPos;
+        transform.localPosition = originPos;
         layerBack.SetActive(false);
     }
 }

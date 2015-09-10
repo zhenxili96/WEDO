@@ -7,13 +7,16 @@ public class ShapeMenuBackButton : MonoBehaviour
     public static string MENUBARNAME = "MenuBar";
     public static string MENUSHAPENAME = "menu_shape";
     private bool isHover = false;
-    private Color originColor;
-    private Color hoverColor = Color.red;
+    public Color originColor;
+    public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
     private Vector3 originScale;
     private Vector3 hoverScale;
     private float scaleRate = 2;
     private float originZ;
     private float hoverZ;
+    public Vector3 moveSpace = new Vector3(0, 10, 0);
+    public Vector3 UpBorder = new Vector3(0, 16, 0);
+    public Vector3 DownBorder = new Vector3(0, -14, 0);
 
     // Use this for initialization
     void Start()
@@ -65,6 +68,34 @@ public class ShapeMenuBackButton : MonoBehaviour
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
+        }
+    }
+
+    public void getDownOrder()
+    {
+        transform.localPosition = transform.localPosition - moveSpace;
+        checkShow();
+    }
+
+    public void getUpOrder()
+    {
+        transform.localPosition = transform.localPosition + moveSpace;
+        checkShow();
+    }
+
+    private void checkShow()
+    {
+        if (transform.localPosition.y > UpBorder.y)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (transform.localPosition.y < DownBorder.y)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
         }
     }
 }

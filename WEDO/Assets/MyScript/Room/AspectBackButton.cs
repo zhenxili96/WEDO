@@ -34,11 +34,13 @@ public class AspectBackButton : MonoBehaviour
             GameObject.Find(CURMODENAME).SetActive(false);
             GameObject.Find(MODECHANGENAME).transform.Find(ANOTHERMODENAME).gameObject.SetActive(true);
             LayRay.rayStyle = RayStyle.Ortho;
+            GameObject.Find(LAYERNAME).GetComponent<LayerManager>().backChange();
             foreach (Transform child in GameObject.Find(LAYERNAME).transform)
             {
-                child.gameObject.SendMessage("backChange");
+                //child.gameObject.SendMessage("backChange");
+                child.gameObject.GetComponent<LayerItemManager>().backChange();
             }
-            GameObject.Find(LAYERNAME).SendMessage("backChange");
+            //GameObject.Find(LAYERNAME).SendMessage("backChange");
         }
     }
 

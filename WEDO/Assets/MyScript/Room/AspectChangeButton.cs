@@ -10,10 +10,9 @@ public class AspectChangeButton : MonoBehaviour
     private static string LAYERNAME = "Layer";
     private bool isHover = false;
     private Color originColor;
-    private Color newColor = Color.red;
     private Vector3 originScale;
     private Vector3 hoverScale;
-    private float scaleRate = 2;
+    private float scaleRate = 1.5f;
 
     // Use this for initialization
     void Start()
@@ -39,11 +38,13 @@ public class AspectChangeButton : MonoBehaviour
             GameObject.Find(CURMODENAME).SetActive(false);
             GameObject.Find(MODECHANGENAME).transform.Find(ANOTHERMODENAME).gameObject.SetActive(true);
             LayRay.rayStyle = RayStyle.Perspect;
+            GameObject.Find(LAYERNAME).GetComponent<LayerManager>().callChange();
             foreach (Transform child in GameObject.Find(LAYERNAME).transform)
             {
-                child.gameObject.SendMessage("callChange");
+                //child.gameObject.SendMessage("callChange");
+                child.gameObject.GetComponent<LayerItemManager>().callChange();
             }
-            GameObject.Find(LAYERNAME).SendMessage("callChange");
+            //GameObject.Find(LAYERNAME).SendMessage("callChange");
         }
     }
 
@@ -55,13 +56,11 @@ public class AspectChangeButton : MonoBehaviour
             || RayHit.RightHitName.Equals(name) && !RightHandProperty.isClosed)
         {
             isHover = true;
-            renderer.material.color = newColor;
             transform.localScale = hoverScale;
         }
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
         }
     }

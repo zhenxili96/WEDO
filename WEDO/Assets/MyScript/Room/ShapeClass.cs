@@ -8,7 +8,6 @@ public class ShapeClass : MonoBehaviour
 {
 
     private bool isHover = false;
-    private Color originColor;
     private bool shapeLock = false; //防止连续生成
     private float lockTime = 3.0f;
     public SHAPE shape;
@@ -25,6 +24,11 @@ public class ShapeClass : MonoBehaviour
     private float scaleRate = 2;
     private float originZ;
     private float hoverZ;
+    public Vector3 moveSpace = new Vector3(0, 10, 0);
+    public Vector3 UpBorder = new Vector3(0, 16, 0);
+    public Vector3 DownBorder = new Vector3(0, -14, 0);
+    public Color originColor;
+    public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
 
     // Use this for initialization
     void Start()
@@ -143,7 +147,7 @@ public class ShapeClass : MonoBehaviour
         if (MenuBar.isOut && RayHit.hitName.Equals(gameObject.name))
         {
             isHover = true;
-            renderer.material.color = Color.red;
+            renderer.material.color = hoverColor;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
@@ -155,6 +159,34 @@ public class ShapeClass : MonoBehaviour
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
+        }
+    }
+
+    public void getDownOrder()
+    {
+        transform.localPosition = transform.localPosition - moveSpace;
+        checkShow();
+    }
+
+    public void getUpOrder()
+    {
+        transform.localPosition = transform.localPosition + moveSpace;
+        checkShow();
+    }
+
+    private void checkShow()
+    {
+        if (transform.localPosition.y > UpBorder.y)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (transform.localPosition.y < DownBorder.y)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
         }
     }
 }

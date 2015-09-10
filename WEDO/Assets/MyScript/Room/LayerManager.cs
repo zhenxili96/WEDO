@@ -4,7 +4,7 @@ using System.Collections;
 public class LayerManager : MonoBehaviour
 {
 
-    public Vector3 changeRotate = new Vector3(0, 320, 0);
+    public Vector3 changeRotate = new Vector3(0, 330, 0);
     public Vector3 originRotate;
     public Vector3 changeScale = new Vector3(0.5f, 0.5f, 1);
     public Vector3 originScale;
@@ -28,15 +28,15 @@ public class LayerManager : MonoBehaviour
 
     public void callChange()
     {
-        transform.eulerAngles = changeRotate;
+        transform.localEulerAngles = changeRotate;
         transform.localScale = changeScale;
-        transform.position = changePos;
+        transform.localPosition = changePos;
     }
 
     public void backChange()
     {
-        transform.eulerAngles = originRotate;
+        transform.localEulerAngles = originRotate;
         transform.localScale = originScale;
-        transform.position = originPos;
+        transform.localPosition = originPos;
     }
 }

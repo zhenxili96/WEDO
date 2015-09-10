@@ -4,13 +4,19 @@ using System.Collections;
 public class ColorBack : MonoBehaviour
 {
 
-    private bool isHover = false;
-    private Color originColor;
+    public bool isHover = false;
+    public Color originColor;
+    public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
+    public Vector3 originScale;
+    public Vector3 hoverScale;
+    public float scaleRate = 1.3f;
 
     // Use this for initialization
     void Start()
     {
         originColor = renderer.material.color;
+        originScale = transform.localScale;
+        hoverScale = originScale * scaleRate;
     }
 
     // Update is called once per frame
@@ -43,12 +49,14 @@ public class ColorBack : MonoBehaviour
             && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
-            renderer.material.color = Color.red;
+            renderer.material.color = hoverColor;
+            transform.localScale = hoverScale;
         }
         else
         {
             isHover = false;
             renderer.material.color = originColor;
+            transform.localScale = originScale;
         }
     }
 }

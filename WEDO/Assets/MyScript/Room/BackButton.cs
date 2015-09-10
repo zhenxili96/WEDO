@@ -7,7 +7,7 @@ public class BackButton : MonoBehaviour
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 1.3f;
+    public float scaleRate = 1.5f;
     public float originZ;
     public float hoverZ;
 
