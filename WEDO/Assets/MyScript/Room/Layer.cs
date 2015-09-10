@@ -69,6 +69,19 @@ public class Layer
                             tempLayer.BoardMaterials[i].ScalingY,
                             tempLayer.BoardMaterials[i].ScalingZ);
                     instanceArray[j].transform.GetChild(0).renderer.material.color = ColorTable.getColor(tempLayer.BoardMaterials[i].Color);
+
+                    Debug.Log("download curfocus data:"
+                        + tempLayer.BoardMaterials[i].CoordX + ","
+                        + tempLayer.BoardMaterials[i].CoordY + ","
+                        + tempLayer.BoardMaterials[i].CoordZ + ","
+                        + tempLayer.BoardMaterials[i].RotateX + ","
+                        + tempLayer.BoardMaterials[i].RotateY + ","
+                        + tempLayer.BoardMaterials[i].RotateZ + ","
+                        + tempLayer.BoardMaterials[i].ScalingX + ","
+                        + tempLayer.BoardMaterials[i].ScalingY + ","
+                        + tempLayer.BoardMaterials[i].ScalingZ + ","
+                        + tempLayer.BoardMaterials[i].Color);
+
                     if (instanceArray[j].GetComponent<InstanceType>().Type == RoomStatic.TEXT)
                     {
                         instanceArray[j].transform.GetChild(0).GetComponent<TextMesh>().text =

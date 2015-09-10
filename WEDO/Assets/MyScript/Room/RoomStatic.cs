@@ -115,9 +115,9 @@ public class RoomStatic : MonoBehaviour
         curFocusRefresh++;
     }
 
-    private void refreshObject()
+    private void uploadRawFocusObject()
     {
-        //同步当前focus物体动态
+        //同步上传当前focus物体动态
         if (curFocusRefresh > 0)
         {
             curFocusRefresh--;
@@ -159,6 +159,12 @@ public class RoomStatic : MonoBehaviour
                     curFocusObject.GetComponent<InstanceType>().colorString, curFocusObject.GetComponent<InstanceType>().Type,
                     "", 0, "");
             }
+
+            Debug.Log("upload cur focus data:"
+                + curFocusObject.transform.localPosition + " "
+                + curFocusObject.transform.localEulerAngles + " "
+                + curFocusObject.transform.localScale + " "
+                + curFocusObject.GetComponent<InstanceType>().colorString);
         }
     }
 
@@ -329,7 +335,7 @@ public class RoomStatic : MonoBehaviour
         {
             curFocusChild = curFocusObject.transform.GetChild(0).gameObject;
         }
-        refreshObject();
+        uploadRawFocusObject();
     }
 
     private void checkRefreshLayer()
