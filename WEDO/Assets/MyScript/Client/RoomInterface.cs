@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using UnityEngine;
+using System.Collections;
 namespace Wedo_ClientSide
 {
     public class RoomInterface
@@ -186,8 +187,8 @@ namespace Wedo_ClientSide
                 {"LeftCoordY",leftCoordY},
                 {"LeftCoordZ",leftCoordZ},
                 {"RightCoordX",rightCoordX},
-                {"RightCoordX",rightCoordY},
-                {"RightCoordX",rightCoordZ},
+                {"RightCoordY",rightCoordY},
+                {"RightCoordZ",rightCoordZ},
                 {"Color",color},
             }));
         }

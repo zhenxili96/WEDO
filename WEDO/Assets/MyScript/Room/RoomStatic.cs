@@ -69,6 +69,9 @@ public class RoomStatic : MonoBehaviour
     public static Queue<RoomUser> UnAddUser = new Queue<RoomUser>();
     public static Queue<UserHand> UnDeleteUser = new Queue<UserHand>();
     public static Queue<MyHandServerUser> UnRefreshUser = new Queue<MyHandServerUser>();
+    public GameObject curFocusObject = null;
+    public GameObject curFocusChild = null;
+    public int curFocusRefresh = 0;
 
     // Use this for initialization
     void Start()
@@ -91,40 +94,60 @@ public class RoomStatic : MonoBehaviour
     private void uploadData(object data)
     {
         //一直同步上传手势
-        WholeStatic.curRoomInterface.EditUser(
-           LeftHandProperty.curPos.x, LeftHandProperty.curPos.y, LeftHandProperty.curPos.z,
-           RightHandProperty.curPos.x, RightHandProperty.curPos.y, RightHandProperty.curPos.z,
-           checkHandState());
-        Debug.Log("my hand upload :" + LeftHandProperty.curPos + " " + RightHandProperty.curPos + checkHandState());
+        int tempstate = checkHandState();
+        if (WholeStatic.curRoomInterface == null)
+        {
+            Debug.Log("ERROR curRommInterface null");
+        }
+        WholeStatic.curRoomInterface.EditUser(LeftHandProperty.curPos.x, LeftHandProperty.curPos.y, LeftHandProperty.curPos.z,
+            RightHandProperty.curPos.x, RightHandProperty.curPos.y, RightHandProperty.curPos.z, tempstate);
 
         //同步当前focus物体动态
-        GameObject focusObject = GameObject.Find(curFocus);
-        if (focusObject != null)
+        curFocusRefresh++;
+    }
+
+    private void refreshObject()
+    {
+        //同步当前focus物体动态
+        if (curFocusRefresh > 0)
         {
-            if (focusObject.GetComponent<InstanceType>().MyGuid.Equals(UNSETGUID))
+            curFocusRefresh--;
+        }
+        else
+        {
+            return;
+        }
+        if (curFocusObject != null)
+        {
+            if (curFocusObject.GetComponent<InstanceType>().MyGuid.Equals(UNSETGUID))
             {
-                Debug.Log("error! un set guid object occur!" + focusObject.name);
+                Debug.Log("error! un set guid object occur!" + curFocusObject.name);
                 return;
             }
-            if (focusObject.GetComponent<InstanceType>().Type == TEXT)
+            if (curFocusObject.GetComponent<InstanceType>().Type == TEXT)
             {
+                string a = curFocusObject.GetComponent<InstanceType>().MyGuid;
+                string b = curFocusObject.GetComponent<InstanceType>().LayerGuid;
+                float c = curFocusObject.transform.localPosition.x;
+                string d = curFocusObject.GetComponent<InstanceType>().colorString;
+                string e = curFocusObject.transform.GetChild(0).GetComponent<TextMesh>().text;
                 WholeStatic.curRoomInterface.EditBoardMaterial(
-                    focusObject.GetComponent<InstanceType>().MyGuid, focusObject.GetComponent<InstanceType>().LayerGuid,
-                    focusObject.transform.localPosition.x, focusObject.transform.localPosition.y, focusObject.transform.localPosition.z,
-                    focusObject.transform.localScale.x, focusObject.transform.localScale.y, focusObject.transform.localScale.z,
-                    focusObject.transform.localEulerAngles.x, focusObject.transform.localEulerAngles.y, focusObject.transform.localEulerAngles.z,
-                    focusObject.GetComponent<InstanceType>().colorString, TEXT,
-                    focusObject.transform.GetChild(0).GetComponent<TextMesh>().text,
-                    focusObject.transform.GetChild(0).GetComponent<TextMesh>().fontSize, "");
+                    curFocusObject.GetComponent<InstanceType>().MyGuid, curFocusObject.GetComponent<InstanceType>().LayerGuid,
+                    curFocusObject.transform.localPosition.x, curFocusObject.transform.localPosition.y, curFocusObject.transform.localPosition.z,
+                    curFocusObject.transform.localScale.x, curFocusObject.transform.localScale.y, curFocusObject.transform.localScale.z,
+                    curFocusObject.transform.localEulerAngles.x, curFocusObject.transform.localEulerAngles.y, curFocusObject.transform.localEulerAngles.z,
+                    curFocusObject.GetComponent<InstanceType>().colorString, TEXT,
+                    curFocusChild.GetComponent<TextMesh>().text,
+                    curFocusChild.GetComponent<TextMesh>().fontSize, "");
             }
             else
             {
                 WholeStatic.curRoomInterface.EditBoardMaterial(
-                    focusObject.GetComponent<InstanceType>().MyGuid, focusObject.GetComponent<InstanceType>().LayerGuid,
-                    focusObject.transform.localPosition.x, focusObject.transform.localPosition.y, focusObject.transform.localPosition.z,
-                    focusObject.transform.localScale.x, focusObject.transform.localScale.y, focusObject.transform.localScale.z,
-                    focusObject.transform.localEulerAngles.x, focusObject.transform.localEulerAngles.y, focusObject.transform.localEulerAngles.z,
-                    focusObject.GetComponent<InstanceType>().colorString, focusObject.GetComponent<InstanceType>().Type,
+                    curFocusObject.GetComponent<InstanceType>().MyGuid, curFocusObject.GetComponent<InstanceType>().LayerGuid,
+                    curFocusObject.transform.localPosition.x, curFocusObject.transform.localPosition.y, curFocusObject.transform.localPosition.z,
+                    curFocusObject.transform.localScale.x, curFocusObject.transform.localScale.y, curFocusObject.transform.localScale.z,
+                    curFocusObject.transform.localEulerAngles.x, curFocusObject.transform.localEulerAngles.y, curFocusObject.transform.localEulerAngles.z,
+                    curFocusObject.GetComponent<InstanceType>().colorString, curFocusObject.GetComponent<InstanceType>().Type,
                     "", 0, "");
             }
         }
@@ -281,6 +304,12 @@ public class RoomStatic : MonoBehaviour
         checkMaterialChange();
         checkUserHandChange();
         checkRefreshHand();
+        curFocusObject = GameObject.Find(curFocus);
+        if (curFocusObject != null)
+        {
+            curFocusChild = curFocusObject.transform.GetChild(0).gameObject;
+        }
+        refreshObject();
     }
 
     private void checkRefreshHand()

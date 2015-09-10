@@ -15,7 +15,7 @@ public class RightHandProperty : MonoBehaviour
     public Material handCloseMaterial;
     public string handCloseMaterialName = "BlackRightHandFist";
     public static Vector3 curPos;
-    public static bool isShow = true;
+    public static bool isShow = false;
 
     // Use this for initialization
     void Start()
