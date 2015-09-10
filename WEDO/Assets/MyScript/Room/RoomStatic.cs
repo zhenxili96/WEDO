@@ -164,10 +164,10 @@ public class RoomStatic : MonoBehaviour
 
     private void downloadData(object data)
     {
-        Debug.Log("cur user hands: " + WholeStatic.curRoomInterface.NowUser.LeftCoordX
-            + "," + WholeStatic.curRoomInterface.NowUser.LeftCoordY
-            + " " + WholeStatic.curRoomInterface.NowUser.RightCoordX
-            + "," + WholeStatic.curRoomInterface.NowUser.RightCoordY);
+        //Debug.Log("cur user hands: " + WholeStatic.curRoomInterface.NowUser.LeftCoordX
+        //    + "," + WholeStatic.curRoomInterface.NowUser.LeftCoordY
+        //    + " " + WholeStatic.curRoomInterface.NowUser.RightCoordX
+        //    + "," + WholeStatic.curRoomInterface.NowUser.RightCoordY);
         downloadHandData();
         downloadLayerData();
     }

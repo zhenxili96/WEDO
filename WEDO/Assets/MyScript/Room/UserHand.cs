@@ -131,7 +131,7 @@ public class UserHand
         rightHandObject.transform.localPosition = new Vector3(
             tempUser.RightCoordX, tempUser.RightCoordY, tempUser.RightCoordZ);
         Debug.Log(tempUser.Color);
-        Debug.Log("refresh " + LeftName + " " + leftHandObject.transform.localPosition);
-        Debug.Log("refresh " + RightName + " " + rightHandObject.transform.localPosition);
+        //Debug.Log("refresh " + LeftName + " " + leftHandObject.transform.localPosition);
+        //Debug.Log("refresh " + RightName + " " + rightHandObject.transform.localPosition);
     }
 }
