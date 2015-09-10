@@ -68,11 +68,7 @@ public class Layer
                         new Vector3(tempLayer.BoardMaterials[i].ScalingX,
                             tempLayer.BoardMaterials[i].ScalingY,
                             tempLayer.BoardMaterials[i].ScalingZ);
-                    ColorTable ct = new ColorTable();
-                    Type type = ct.GetType();
-                    PropertyInfo propertyInfo = type.GetProperty(tempLayer.BoardMaterials[i].Color);
-                    Color color = (Color)propertyInfo.GetValue(ct, null);
-                    instanceArray[j].transform.GetChild(0).renderer.material.color = color;
+                    instanceArray[j].transform.GetChild(0).renderer.material.color = ColorTable.getColor(tempLayer.BoardMaterials[i].Color);
                     if (instanceArray[j].GetComponent<InstanceType>().Type == RoomStatic.TEXT)
                     {
                         instanceArray[j].transform.GetChild(0).GetComponent<TextMesh>().text =
@@ -220,11 +216,7 @@ public class Layer
             tempInstance.RotateX, tempInstance.RotateY, tempInstance.RotateZ);
         tempObject.transform.localScale = new Vector3(
             tempInstance.ScalingX, tempInstance.ScalingY, tempInstance.ScalingZ);
-        ColorTable ct = new ColorTable();
-        Type type = ct.GetType();
-        PropertyInfo propertyInfo = type.GetProperty(tempInstance.Color);
-        Color color = (Color)propertyInfo.GetValue(ct, null);
-        tempObject.transform.GetChild(0).renderer.material.color = color;
+        tempObject.transform.GetChild(0).renderer.material.color = ColorTable.getColor(tempInstance.Color);
         tempObject.GetComponent<InstanceType>().MyGuid = tempInstance.Guid;
         tempObject.GetComponent<InstanceType>().LayerGuid = tempInstance.BelongLevel;
         instanceArray.Add(tempObject);

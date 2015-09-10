@@ -4,16 +4,16 @@ using System.Collections;
 public class MenuBar : MonoBehaviour
 {
 
-    private bool statue = false;
-    private bool isHover = false;
+    public bool statue = false;
+    public bool isHover = false;
     public static bool isOut = false;
-    private Vector3 outPos = new Vector3(-144f, 0, 40);
-    private Vector3 inPos = new Vector3(-190f, 0, 40);
-    private float outSpeed = 40f;
-    private float inSpeed = 50f;
-    private string planeName = "menuplane";
-    private Color originBarColor;
-    private Color barNewColor = Color.red;
+    public Vector3 outPos = new Vector3(-144f, 0, 40);
+    public Vector3 inPos = new Vector3(-185, 0, 40);
+    public float outSpeed = 40f;
+    public float inSpeed = 50f;
+    public string planeName = "menuplane";
+    public Color originBarColor;
+    public Color barNewColor = Color.red;
 
 
     // Use this for initialization

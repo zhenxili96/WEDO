@@ -31,6 +31,12 @@ public class MyHandServerUser
     public RoomUser value = null;
 }
 
+public class MyLayerRoomLayer
+{
+    public Layer key = null;
+    public RoomLayer value = null;
+}
+
 public class RoomStatic : MonoBehaviour
 {
 
@@ -72,6 +78,7 @@ public class RoomStatic : MonoBehaviour
     public GameObject curFocusObject = null;
     public GameObject curFocusChild = null;
     public int curFocusRefresh = 0;
+    public static Queue<MyLayerRoomLayer> UnRefreshLayer = new Queue<MyLayerRoomLayer>();
 
     // Use this for initialization
     void Start()
@@ -87,7 +94,7 @@ public class RoomStatic : MonoBehaviour
         initInformation();
         initLayer();
         curLayer = 1;
-        uploadTimer = new Timer(uploadData, null, 0, 300);
+        //uploadTimer = new Timer(uploadData, null, 0, 300);
         downloadTimer = new Timer(downloadData, null, 0, 300);
     }
 
@@ -101,6 +108,8 @@ public class RoomStatic : MonoBehaviour
         }
         WholeStatic.curRoomInterface.EditUser(LeftHandProperty.curPos.x, LeftHandProperty.curPos.y, LeftHandProperty.curPos.z,
             RightHandProperty.curPos.x, RightHandProperty.curPos.y, RightHandProperty.curPos.z, tempstate);
+        //Debug.Log("upload MyLeftHand: " + LeftHandProperty.curPos);
+        //Debug.Log("upload MyRightHand: " + RightHandProperty.curPos);
 
         //同步当前focus物体动态
         curFocusRefresh++;
@@ -181,6 +190,7 @@ public class RoomStatic : MonoBehaviour
                     MyHandServerUser temp = new MyHandServerUser();
                     temp.key = curUserHands[i];
                     temp.value = WholeStatic.curRoomInterface.RoomUsers[i];
+                    Debug.Log("refreshing...");
                     UnRefreshUser.Enqueue(temp);
                 }
             }
@@ -217,14 +227,18 @@ public class RoomStatic : MonoBehaviour
                 {
                     isFind = true;
                     isFindArray[j] = 1;
-                    RoomStatic.layerArray[j].refreshLayer(WholeStatic.curRoomInterface.RoomLayers[i]);
+                    MyLayerRoomLayer temp = new MyLayerRoomLayer();
+                    temp.key = RoomStatic.layerArray[j];
+                    temp.value = WholeStatic.curRoomInterface.RoomLayers[i];
+                    UnRefreshLayer.Enqueue(temp);
                     break;
                 }
             }
             //服务器有新Layer 添加到场景中
             if (!isFind)
             {
-                Debug.Log("将服务器中的新layer添加到场景中");
+                Debug.Log("将服务器中的新layer添加到场景中 " + WholeStatic.curRoomInterface.RoomLayers.Count
+                    + " , " + layerArray.Count);
                 //addLayer(WholeStatic.curRoomInterface.RoomLayers[i]);
                 UnAddLayer.Enqueue(WholeStatic.curRoomInterface.RoomLayers[i]);
             }
@@ -234,7 +248,8 @@ public class RoomStatic : MonoBehaviour
         {
             if (isFindArray[i] == 0)
             {
-                Debug.Log("删除服务器中不存在的layer");
+                Debug.Log("删除服务器中不存在的layer" + WholeStatic.curRoomInterface.RoomLayers.Count
+                    + " , " + layerArray.Count);
                 //Destroy(RoomStatic.layerArray[i].layerObject);
                 UnDeleteLayer.Enqueue(RoomStatic.layerArray[i]);
                 //***RoomStatic.layerArray.RemoveAt(i);
@@ -304,12 +319,22 @@ public class RoomStatic : MonoBehaviour
         checkMaterialChange();
         checkUserHandChange();
         checkRefreshHand();
+        checkRefreshLayer();
         curFocusObject = GameObject.Find(curFocus);
         if (curFocusObject != null)
         {
             curFocusChild = curFocusObject.transform.GetChild(0).gameObject;
         }
         refreshObject();
+    }
+
+    private void checkRefreshLayer()
+    {
+        while (UnRefreshLayer.Count != 0)
+        {
+            MyLayerRoomLayer temp = UnRefreshLayer.Dequeue();
+            temp.key.refreshLayer(temp.value);
+        }
     }
 
     private void checkRefreshHand()
@@ -340,18 +365,21 @@ public class RoomStatic : MonoBehaviour
         while (UnAddRawMaterial.Count != 0)
         {
             MyLayerInt temp = UnAddRawMaterial.Dequeue();
-            temp.key.AddInstance(temp.value);
+            temp.key.AddInstancePrivate(temp.value);
+            Debug.Log("shape create  raw material");
         }
         while (UnAddServerMaterial.Count != 0)
         {
             MyLayerClientMaterial temp = UnAddServerMaterial.Dequeue();
-            temp.key.AddInstance(temp.value);
+            temp.key.AddInstancePrivate(temp.value);
+            Debug.Log("shape create server material");
         }
         while (UnDeleteMaterial.Count != 0)
         {
             MyLayerGameObject temp = UnDeleteMaterial.Dequeue();
             MonoBehaviour.Destroy(temp.value);
             temp.key.instanceArray.Remove(temp.value);
+            Debug.Log("shape delete in raw");
         }
     }
 

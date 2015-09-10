@@ -67,47 +67,63 @@ public class ShapeClass : MonoBehaviour
                 {
                     RightHandProperty.clickUsed = true;
                 }
+                if (WholeStatic.curRoomInterface == null)
+                {
+                    Debug.Log("curRoomInterface null when create shape");
+                }
+                if (WholeStatic.curRoomInterface.RoomLayers == null)
+                {
+                    Debug.Log("Roomlayers null when create shape");
+                }
                 switch (shape)
                 {
                     case SHAPE.CIRCLE:
                         circleInstanceCount++;
+                        Debug.Log("shape queue add a circle");
                         RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_CIRCLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
-                            "A3", RoomStatic.SHAPE_CIRCLE, "", 0, "");
+                            "C7", RoomStatic.SHAPE_CIRCLE, "", 0, "");
+                        Debug.Log("call add a circle in server");
                         break;
                     case SHAPE.RECTANGLE:
                         rectangleInstanceCount++;
+                        Debug.Log("shape queue add a rectangle");
                         RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_RECTANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
-                            "A3", RoomStatic.SHAPE_RECTANGLE, "", 0, "");
+                            "C7", RoomStatic.SHAPE_RECTANGLE, "", 0, "");
+                        Debug.Log("call add a rectangle in server");
                         break;
                     case SHAPE.ROUND_RECTANGLE:
                         roundRectangleInstanceCount++;
+                        Debug.Log("shapa queue add a round rectangle");
                         RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_ROUNDRECTANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
-                            "A3", RoomStatic.SHAPE_ROUNDRECTANGLE, "", 0, "");
+                            "C7", RoomStatic.SHAPE_ROUNDRECTANGLE, "", 0, "");
+                        Debug.Log("call add a round rectangle in server");
                         break;
                     case SHAPE.TRIANGLE:
                         triangleInstanceCount++;
+                        Debug.Log("shape queue add a triangle");
                         RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_TRIANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y, initPos.z,
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
-                            "A3", RoomStatic.SHAPE_TRIANGLE, "", 0, "");
+                            "C7", RoomStatic.SHAPE_TRIANGLE, "", 0, "");
+                        Debug.Log("call add a triangle in server");
                         break;
                     default:
                         break;

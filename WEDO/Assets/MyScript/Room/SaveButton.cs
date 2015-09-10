@@ -35,11 +35,13 @@ public class SaveButton : MonoBehaviour
             {
                 LeftHandProperty.clickUsed = true;
                 WholeStatic.curRoomInterface.Save();
+                Debug.Log("save room");
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
                 WholeStatic.curRoomInterface.Save();
+                Debug.Log("save room");
             }
         }
     }

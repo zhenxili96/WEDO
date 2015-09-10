@@ -36,6 +36,7 @@ public class AddLayerButton : MonoBehaviour
             RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
             WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
             RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
+            Debug.Log("add layer raw and server");
         }
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
@@ -43,6 +44,7 @@ public class AddLayerButton : MonoBehaviour
             RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
             WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
             RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
+            Debug.Log("add layer raw and server");
         }
     }
 

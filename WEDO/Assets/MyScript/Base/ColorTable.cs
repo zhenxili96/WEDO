@@ -34,6 +34,13 @@ public class ColorTable
     {C1, C2, C3, C4, C5, C6, C7, C8}
     };
 
+    public static Color getColor(string colorname)
+    {
+        int row = colorname.ToCharArray()[0] - 'A';
+        int col = colorname.ToCharArray()[1] - '1';
+        return Table[row, col];
+    }
+
 
     public static Color getColor(int r, int g, int b)
     {
