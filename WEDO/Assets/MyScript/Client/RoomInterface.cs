@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
-using System.Collections;
+
 namespace Wedo_ClientSide
 {
     public class RoomInterface
@@ -40,7 +39,7 @@ namespace Wedo_ClientSide
                 {
                     if (_operationsList.Count == 0)
                     {
-                        Thread.Sleep(100);
+                        Thread.Sleep(300);
                         Connect.SendMessage(
                             BaseProcess(new Dictionary<string, object>
                             {
@@ -177,6 +176,12 @@ namespace Wedo_ClientSide
         /// <param name="color">颜色</param>
         public void EditUser(float leftCoordX, float leftCoordY, float leftCoordZ, float rightCoordX, float rightCoordY, float rightCoordZ, int color)
         {
+            foreach (var oper in _operationsList)
+            {
+                if (!oper.Contains("EditUser")) continue;
+                _operationsList.Remove(oper);
+                break;
+            }
             _operationsList.Add(BaseProcess(new Dictionary<string, object>
             {
                 {"Oper", "UpdateRoom"},
@@ -245,6 +250,12 @@ namespace Wedo_ClientSide
         /// <param name="font"></param>
         public void EditBoardMaterial(string boardMaterialGuid, string layerGuid, float coordX, float coordY, float coordZ, float scalingX, float scalingY, float scalingZ, float rotateX, float rotateY, float rotateZ, string color, int type, string cont, int fontSize, string font)
         {
+            foreach (var oper in _operationsList)
+            {
+                if (!oper.Contains("EditBoardMaterial") || !oper.Contains(boardMaterialGuid)) continue;
+                _operationsList.Remove(oper);
+                break;
+            }
             _operationsList.Add(BaseProcess(new Dictionary<string, object>
             {
                 {"Oper", "UpdateRoom"},

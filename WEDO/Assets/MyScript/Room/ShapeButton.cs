@@ -7,12 +7,13 @@ public class ShapeButton : MonoBehaviour
     public static string MENUBARNAME = "MenuBar";
     public static string MENUSHAPENAME = "menu_shape";
     private bool isHover = false;
-    private Color originColor;
     private Vector3 originScale;
     private Vector3 hoverScale;
     private float scaleRate = 2;
     private float originZ;
     private float hoverZ;
+    public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
+    public Color originColor;
 
     // Use this for initialization
     void Start()
@@ -55,18 +56,18 @@ public class ShapeButton : MonoBehaviour
         if (MenuBar.isOut && RayHit.hitName.Equals(name))
         {
             isHover = true;
-            renderer.material.color = Color.red;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
+            renderer.material.color = hoverColor;
         }
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
+            renderer.material.color = originColor;
         }
     }
 }

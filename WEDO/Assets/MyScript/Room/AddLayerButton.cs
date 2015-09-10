@@ -6,7 +6,6 @@ public class AddLayerButton : MonoBehaviour
 
     private bool isHover = false;
     private Color originColor;
-    private Color hoverColor = Color.red;
     private string LAYERTEXTNAME = "LayerText";
     private int ZMIN = 35;  //创建层最小Z值
     private Vector3 originScale;
@@ -33,6 +32,7 @@ public class AddLayerButton : MonoBehaviour
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
         {
             LeftHandProperty.clickUsed = true;
+            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.curLayer;
             RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
             WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
             RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
@@ -41,6 +41,7 @@ public class AddLayerButton : MonoBehaviour
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             RightHandProperty.clickUsed = true;
+            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.curLayer;
             RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
             WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
             RoomStatic.curLayer = RoomStatic.layerArray.Count - 1;
@@ -53,13 +54,11 @@ public class AddLayerButton : MonoBehaviour
         if (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name))
         {
             isHover = true;
-            renderer.material.color = hoverColor;
             transform.localScale = hoverScale;
         }
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
         }
     }

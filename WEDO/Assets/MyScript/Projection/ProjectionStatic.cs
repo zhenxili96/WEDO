@@ -21,6 +21,7 @@ public class ProjectionStatic : MonoBehaviour
     public static string ProjectionNPCName = "Projection_NPC";
     public static string SubAddName = "subadd";
     public static bool isTransPage = false;
+    public string CurProjectionNameObject = "Projection_name";
 
     // Use this for initialization
     void Start()
@@ -111,7 +112,7 @@ public class ProjectionStatic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        GameObject.Find(CurProjectionNameObject).GetComponent<TextMesh>().text = curProjectionName;
     }
 
     void OnDestroy()

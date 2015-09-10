@@ -4,7 +4,6 @@ using System.Collections;
 public class TextButton : MonoBehaviour
 {
 
-    private Color originColor;
     private bool textLock = false;
     private bool isHover = false;
     private float lockTime = 3.0f;
@@ -18,6 +17,8 @@ public class TextButton : MonoBehaviour
     private float scaleRate = 2;
     private float originZ;
     private float hoverZ;
+    public Color originColor;
+    public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
 
     // Use this for initialization
     void Start()
@@ -80,18 +81,18 @@ public class TextButton : MonoBehaviour
         if (MenuBar.isOut && RayHit.hitName.Equals(name))
         {
             isHover = true;
-            renderer.material.color = Color.red;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
+            renderer.material.color = hoverColor;
         }
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
+            renderer.material.color = originColor;
         }
     }
 }

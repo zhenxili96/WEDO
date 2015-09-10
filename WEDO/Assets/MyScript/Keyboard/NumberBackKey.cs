@@ -11,7 +11,6 @@ public class NumberBackKey : MonoBehaviour
     public float originZ;
     public float hoverZ;
     public Color originColor;
-    public Color hoverColor = Color.red;
     public string KeyboardName = "Keyboard";
     public string CharKeyName = "CharKey";
     public string NumberKeyName = "NumberKey";
@@ -60,7 +59,6 @@ public class NumberBackKey : MonoBehaviour
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
-            renderer.material.color = hoverColor;
         }
         else
         {
@@ -68,7 +66,6 @@ public class NumberBackKey : MonoBehaviour
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
-            renderer.material.color = originColor;
         }
     }
 }

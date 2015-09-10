@@ -13,7 +13,6 @@ public class MessageBar : MonoBehaviour
     public float inSpeed = 50f;
     public string planeName = "messageplane";
     public Color originColor;
-    public Color hoverColor = Color.red;
     public static string curFocus = "";
 
 
@@ -107,7 +106,7 @@ public class MessageBar : MonoBehaviour
             isOut = true;
             if (!isOpen)
             {
-                GameObject.Find(planeName).renderer.material.color = hoverColor;
+                //GameObject.Find(planeName).renderer.material.color = hoverColor;
             }
         }
         else

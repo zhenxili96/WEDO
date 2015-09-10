@@ -6,7 +6,6 @@ public class DownKey : MonoBehaviour
 
     public bool isHover = false;
     public Color originColor;
-    public Color hoverColor = Color.red;
     public Vector3 originScale;
     public Vector3 hoverScale;
     public float scaleRate = 2;
@@ -52,7 +51,6 @@ public class DownKey : MonoBehaviour
         if (Keyboard.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
-            renderer.material.color = hoverColor;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
@@ -60,7 +58,6 @@ public class DownKey : MonoBehaviour
         else
         {
             isHover = false;
-            renderer.material.color = originColor;
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);

@@ -5,8 +5,7 @@ public class Login_account : MonoBehaviour
 {
     public bool isHover = false;
     public bool isFocus = false;
-    public Color hoverColor = Color.red;
-    public Color focusColor = Color.yellow;
+    public Color focusColor = new Color(1, 0.5412f, 0.5412f);
     public Color originColor;
     public GameObject accountText;
     public Color accountTextColor = Color.black;
@@ -80,7 +79,6 @@ public class Login_account : MonoBehaviour
             isHover = true;
             if (!isFocus)
             {
-                renderer.material.color = hoverColor;
             }
         }
         else

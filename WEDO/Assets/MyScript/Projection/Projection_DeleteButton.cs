@@ -1,19 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NumberKey : MonoBehaviour
+public class Projection_DeleteButton : MonoBehaviour
 {
 
     public bool isHover = false;
     public Vector3 originScale;
     public Vector3 hoverScale;
-    public float scaleRate = 2;
+    public float scaleRate = 1.1f;
     public float originZ;
     public float hoverZ;
-    public Color originColor;
-    public string KeyboardName = "Keyboard";
-    public string CharKeyName = "CharKey";
-    public string NumberKeyName = "NumberKey";
+    public string ProjectionNPCName = "Projection_NPC";
+    public string DeleteAttentionName = "DeleteAttention";
 
     // Use this for initialization
     void Start()
@@ -22,7 +20,6 @@ public class NumberKey : MonoBehaviour
         hoverScale = scaleRate * originScale;
         originZ = transform.position.z;
         hoverZ = originZ - 1;
-        originColor = renderer.material.color;
     }
 
     // Update is called once per frame
@@ -38,15 +35,13 @@ public class NumberKey : MonoBehaviour
         {
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
-                GameObject.Find(KeyboardName).transform.FindChild(CharKeyName).gameObject.SetActive(false);
-                GameObject.Find(KeyboardName).transform.FindChild(NumberKeyName).gameObject.SetActive(true);
                 LeftHandProperty.clickUsed = true;
+                GameObject.Find(ProjectionNPCName).transform.FindChild(DeleteAttentionName).gameObject.SetActive(true);
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
-                GameObject.Find(KeyboardName).transform.FindChild(CharKeyName).gameObject.SetActive(false);
-                GameObject.Find(KeyboardName).transform.FindChild(NumberKeyName).gameObject.SetActive(true);
                 RightHandProperty.clickUsed = true;
+                GameObject.Find(ProjectionNPCName).transform.FindChild(DeleteAttentionName).gameObject.SetActive(true);
             }
         }
     }

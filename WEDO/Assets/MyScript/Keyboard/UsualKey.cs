@@ -11,7 +11,6 @@ public class UsualKey : MonoBehaviour
     public float originZ;
     public float hoverZ;
     public Color originColor;
-    public Color hoverColor = Color.red;
     public string MySelf = "";
 
     // Use this for initialization
@@ -57,7 +56,6 @@ public class UsualKey : MonoBehaviour
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
-            renderer.material.color = hoverColor;
         }
         else
         {
@@ -65,7 +63,6 @@ public class UsualKey : MonoBehaviour
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
-            renderer.material.color = originColor;
         }
     }
 }

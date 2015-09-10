@@ -11,7 +11,6 @@ public class DeleteKey : MonoBehaviour
     public float originZ;
     public float hoverZ;
     public Color originColor;
-    public Color hoverColor = Color.red;
 
     // Use this for initialization
     void Start()
@@ -63,7 +62,6 @@ public class DeleteKey : MonoBehaviour
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
-            renderer.material.color = hoverColor;
         }
         else
         {
@@ -71,7 +69,6 @@ public class DeleteKey : MonoBehaviour
             transform.localScale = originScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
-            renderer.material.color = originColor;
         }
     }
 }

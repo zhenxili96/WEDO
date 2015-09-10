@@ -11,6 +11,7 @@ public class ColorButton : MonoBehaviour
     private float scaleRate = 2;
     private float originZ;
     private float hoverZ;
+    public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
 
     // Use this for initialization
     void Start()
@@ -51,7 +52,7 @@ public class ColorButton : MonoBehaviour
         if (MenuBar.isOut && RayHit.hitName.Equals(name))
         {
             isHover = true;
-            renderer.material.color = Color.red;
+            renderer.material.color = hoverColor;
             transform.localScale = hoverScale;
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, hoverZ);
