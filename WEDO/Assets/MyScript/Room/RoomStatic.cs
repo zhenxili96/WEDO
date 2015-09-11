@@ -67,7 +67,7 @@ public class RoomStatic : MonoBehaviour
     public static string UNSETGUID = "---";
     public static Queue<RoomLayer> UnAddLayer = new Queue<RoomLayer>();
     public static Queue<Layer> UnDeleteLayer = new Queue<Layer>();
-    public static Queue<MyLayerInt> UnAddRawMaterial = new Queue<MyLayerInt>();
+    //public static Queue<MyLayerInt> UnAddRawMaterial = new Queue<MyLayerInt>();
     public static Queue<MyLayerClientMaterial> UnAddServerMaterial = new Queue<MyLayerClientMaterial>();
     public static Queue<MyLayerGameObject> UnDeleteMaterial = new Queue<MyLayerGameObject>();
     public string OtherHandsName = "OtherHandsName";
@@ -370,12 +370,12 @@ public class RoomStatic : MonoBehaviour
 
     private void checkMaterialChange()
     {
-        while (UnAddRawMaterial.Count != 0)
-        {
-            MyLayerInt temp = UnAddRawMaterial.Dequeue();
-            temp.key.AddInstancePrivate(temp.value);
-            Debug.Log("get a shape from buttonclick unaddqueue");
-        }
+        //while (UnAddRawMaterial.Count != 0)
+        //{
+        //    MyLayerInt temp = UnAddRawMaterial.Dequeue();
+        //    temp.key.AddInstancePrivate(temp.value);
+        //    Debug.Log("get a shape from buttonclick unaddqueue");
+        //}
         while (UnAddServerMaterial.Count != 0)
         {
             MyLayerClientMaterial temp = UnAddServerMaterial.Dequeue();

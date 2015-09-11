@@ -5,12 +5,13 @@ public class ShapeInstance : MonoBehaviour
 {
     public bool isFocus = false;
     public Color originColor;
-    public static float warnHigh = 70f;
-    public static float deleteHigh = 80f;
+    public static float warnHigh = 60f;
+    public static float deleteHigh = 70f;
     //private static string DELETEBUTTONNAME = "Room_delete"; 
     public int belongLayer;
     public float layerZ;
     public Layer parentLayer = null;
+    public bool isDelete = false;
 
     // Use this for initialization
     void Start()
@@ -32,6 +33,10 @@ public class ShapeInstance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDelete)
+        {
+            return;
+        }
         GetComponent<ScaleAction>().enabled = true;
         GetComponent<RotationAction>().enabled = true;
         if (RoomStatic.curLayer != belongLayer)
@@ -60,6 +65,10 @@ public class ShapeInstance : MonoBehaviour
 
     private void checkDelete()
     {
+        if (isDelete)
+        {
+            return;
+        }
         if (!isFocus)
         {
             return;
@@ -79,7 +88,21 @@ public class ShapeInstance : MonoBehaviour
             {
                 
                 DeleteButton.isOut = false;
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                if (!gameObject.GetComponent<InstanceType>().LayerGuid.Equals(RoomStatic.UNSETGUID)
+                    && !gameObject.GetComponent<InstanceType>().MyGuid.Equals(RoomStatic.UNSETGUID))
+                {
+                    WholeStatic.curRoomInterface.DeleteBoardMaterial(gameObject.GetComponent<InstanceType>().LayerGuid,
+                    gameObject.GetComponent<InstanceType>().MyGuid);
+                    isDelete = true;
+                    Debug.Log("delete material");
+                    return;
+                }
+                else
+                {
+                    Debug.Log("delete error " + gameObject.GetComponent<InstanceType>().LayerGuid
+                        + "  " + gameObject.GetComponent<InstanceType>().MyGuid);
+                }
                 return;
             }
         }
@@ -95,6 +118,10 @@ public class ShapeInstance : MonoBehaviour
 
     private void checkFocus()
     {
+        if (isDelete)
+        {
+            return;
+        }
         if (RoomStatic.curFocus.Equals(name))
         {
             isFocus = true;
@@ -117,6 +144,10 @@ public class ShapeInstance : MonoBehaviour
 
     private void checkDrag()
     {
+        if (isDelete)
+        {
+            return;
+        }
         if (!isFocus)
         {
             return;

@@ -125,13 +125,13 @@ public class Layer
         RoomStatic.UnDeleteMaterial.Enqueue(temp);
     }
 
-    public void AddInstance(int type)
-    {
-        MyLayerInt temp = new MyLayerInt();
-        temp.key = this;
-        temp.value = type;
-        RoomStatic.UnAddRawMaterial.Enqueue(temp);
-    }
+    //public void AddInstance(int type)
+    //{
+    //    MyLayerInt temp = new MyLayerInt();
+    //    temp.key = this;
+    //    temp.value = type;
+    //    RoomStatic.UnAddRawMaterial.Enqueue(temp);
+    //}
 
     public void RemoveInstance()
     { 
@@ -145,55 +145,55 @@ public class Layer
         RoomStatic.UnAddServerMaterial.Enqueue(temp);
     }
 
-    public void AddInstancePrivate(int type)
-    {
-        GameObject tempObject;
-        switch (type)
-        {
-            case RoomStatic.SHAPE_CIRCLE:
-                RoomStatic.CircleInstanceCount++;
-                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(CirclePrefab));
-                tempObject.name = "CircleInstance_" + RoomStatic.CircleInstanceCount;
-                tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
-                break;
-            case RoomStatic.SHAPE_RECTANGLE:
-                RoomStatic.RectangleInstanceCount++;
-                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RectanglePrefab));
-                tempObject.name = "RectangleInstance_" + RoomStatic.RectangleInstanceCount;
-                tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
-                break;
-            case RoomStatic.SHAPE_ROUNDRECTANGLE:
-                RoomStatic.RoundRectangleInstanceCount++;
-                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RoungRectanglePrefab));
-                tempObject.name = "RoundRectangleInstance_" + RoomStatic.RoundRectangleInstanceCount;
-                tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
-                break;
-            case RoomStatic.SHAPE_TRIANGLE:
-                RoomStatic.TriangleInstanceCount++;
-                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TrianglePrefab));
-                tempObject.name = "TriangleInstance_" + RoomStatic.TriangleInstanceCount;
-                tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
-                break;
-            case RoomStatic.TEXT:
-                RoomStatic.TextInstanceCount++;
-                tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TextPrefab));
-                tempObject.name = "TextInstance_" + RoomStatic.TextInstanceCount;
-                tempObject.transform.parent = layerObject.transform.FindChild(TextInstanceName);
-                break;
-            default:
-                tempObject = null;
-                break;
-        }
-        Debug.Log("add a object from buttonclick");
-        tempObject.GetComponent<ShapeInstance>().parentLayer = this;
-        tempObject.transform.localPosition = initPos;
-        tempObject.transform.localEulerAngles = initRotate;
-        tempObject.transform.localScale = initScale;
-        tempObject.transform.GetChild(0).renderer.material.color = initColor;
-        tempObject.GetComponent<InstanceType>().MyGuid = "---";
-        instanceArray.Add(tempObject);
-        ObjectCount++;
-    }
+    //public void AddInstancePrivate(int type)
+    //{
+    //    GameObject tempObject;
+    //    switch (type)
+    //    {
+    //        case RoomStatic.SHAPE_CIRCLE:
+    //            RoomStatic.CircleInstanceCount++;
+    //            tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(CirclePrefab));
+    //            tempObject.name = "CircleInstance_" + RoomStatic.CircleInstanceCount;
+    //            tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+    //            break;
+    //        case RoomStatic.SHAPE_RECTANGLE:
+    //            RoomStatic.RectangleInstanceCount++;
+    //            tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RectanglePrefab));
+    //            tempObject.name = "RectangleInstance_" + RoomStatic.RectangleInstanceCount;
+    //            tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+    //            break;
+    //        case RoomStatic.SHAPE_ROUNDRECTANGLE:
+    //            RoomStatic.RoundRectangleInstanceCount++;
+    //            tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RoungRectanglePrefab));
+    //            tempObject.name = "RoundRectangleInstance_" + RoomStatic.RoundRectangleInstanceCount;
+    //            tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+    //            break;
+    //        case RoomStatic.SHAPE_TRIANGLE:
+    //            RoomStatic.TriangleInstanceCount++;
+    //            tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TrianglePrefab));
+    //            tempObject.name = "TriangleInstance_" + RoomStatic.TriangleInstanceCount;
+    //            tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+    //            break;
+    //        case RoomStatic.TEXT:
+    //            RoomStatic.TextInstanceCount++;
+    //            tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TextPrefab));
+    //            tempObject.name = "TextInstance_" + RoomStatic.TextInstanceCount;
+    //            tempObject.transform.parent = layerObject.transform.FindChild(TextInstanceName);
+    //            break;
+    //        default:
+    //            tempObject = null;
+    //            break;
+    //    }
+    //    Debug.Log("add a object from buttonclick");
+    //    tempObject.GetComponent<ShapeInstance>().parentLayer = this;
+    //    tempObject.transform.localPosition = initPos;
+    //    tempObject.transform.localEulerAngles = initRotate;
+    //    tempObject.transform.localScale = initScale;
+    //    tempObject.transform.GetChild(0).renderer.material.color = initColor;
+    //    tempObject.GetComponent<InstanceType>().MyGuid = "---";
+    //    instanceArray.Add(tempObject);
+    //    ObjectCount++;
+    //}
 
     public void AddInstancePrivate(ClientMaterial tempInstance)
     {
