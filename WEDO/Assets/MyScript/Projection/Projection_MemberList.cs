@@ -72,6 +72,16 @@ public class Projection_MemberList : MonoBehaviour
         checkInviteHover();
         checkOKClick();
         checkOKHover();
+        checkUpdate();
+    }
+
+    private void checkUpdate()
+    {
+        if (Projection_Addmember.isUpdate)
+        {
+            initMemberList();
+            Projection_Addmember.isUpdate = false;
+        }
     }
 
     private void checkInviteHover()

@@ -24,7 +24,7 @@ public class Projection_Addproject : MonoBehaviour
 
     public GameObject nameTextObject;
     public string name = "";
-    public string ProjectionNPCName = "";
+    public string ProjectionNPCName = "Projection_NPC";
 
     // Use this for initialization
     void Start()

@@ -51,9 +51,23 @@ public class EntryStatic : MonoBehaviour
             }
             if (curNotifications[i].NotificationType.Equals(WholeStatic.INVITENOTIF))
             {
-                InvitationStatic.showInvitation(EntryNPCName, formatMessage(curNotifications[i].Message), curNotifications[i].Guid);
+                InvitationStatic.showInvitation(EntryNPCName, formatInvitation(curNotifications[i]), curNotifications[i].Guid);
             }
         }
+    }
+
+    private string formatInvitation(ClientNotification cn)
+    {
+        string result = "";
+        for (int i = 0; i < cn.Message.Length; i++)
+        {
+            result += cn.Message[i];
+            if ((i + 1)%15 == 0)
+            {
+                result += "\n";
+            }
+        }
+        return result;
     }
 
     private string formatMessage(string str)

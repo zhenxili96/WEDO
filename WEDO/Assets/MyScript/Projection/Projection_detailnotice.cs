@@ -39,14 +39,14 @@ public class Projection_detailnotice : MonoBehaviour
                 LeftHandProperty.clickUsed = true;
                 //TODO 呼出展示公告窗
                 List<ClientMessage> notice = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
-                AttentionStatic.callAttention(ProjectionNPCName, notice.ToString());
+                AttentionStatic.callAttention(ProjectionNPCName, transformNotice(notice));
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
                 //TODO 呼出展示公告窗
                 List<ClientMessage> notice = ProxyInterface.Project_GetInfo(WholeStatic.curProject.Guid).Announcements;
-                AttentionStatic.callAttention(ProjectionNPCName, notice.ToString());
+                AttentionStatic.callAttention(ProjectionNPCName, transformNotice(notice));
             }
         }
     }
@@ -67,5 +67,21 @@ public class Projection_detailnotice : MonoBehaviour
             transform.position = new Vector3(transform.position.x,
                 transform.position.y, originZ);
         }
+    }
+
+    private string transformNotice(List<ClientMessage> notice)
+    {
+        string result = "";
+
+        foreach (ClientMessage cm in notice)
+        {
+            result += (cm.Cont + "\n");
+        }
+
+        if (result.Equals(""))
+        {
+            result = "暂无公告"; 
+        }
+        return result;
     }
 }

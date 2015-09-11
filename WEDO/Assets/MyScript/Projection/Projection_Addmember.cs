@@ -36,6 +36,7 @@ public class Projection_Addmember : MonoBehaviour
 
     public string inputAccount = "";
     public ClientUser tempInvite = null;
+    public static bool isUpdate = false; 
 
     // Use this for initialization
     void Start()
@@ -148,6 +149,10 @@ public class Projection_Addmember : MonoBehaviour
             {
                 AttentionStatic.callAttention(ProjectionNPCName, "邀请失败！");
             }
+            else
+            {
+                isUpdate = true;
+            }
             gameObject.SetActive(false);
             Keyboard.isOut = false;
         }
@@ -157,6 +162,10 @@ public class Projection_Addmember : MonoBehaviour
             if (!ProxyInterface.Invitation_Send(WholeStatic.curUser.Guid, WholeStatic.curProject.Guid, tempInvite.Guid))
             {
                 AttentionStatic.callAttention(ProjectionNPCName, "邀请失败！");
+            }
+            else
+            {
+                isUpdate = true;
             }
             gameObject.SetActive(false);
             Keyboard.isOut = false;
