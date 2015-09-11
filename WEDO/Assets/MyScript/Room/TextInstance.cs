@@ -13,6 +13,7 @@ public class TextInstance : MonoBehaviour
     private float layerZ;
     public Layer parentLayer = null;
     public bool isDelete = false;
+    public bool canTracking = false;
 
     // Use this for initialization
     void Start()
@@ -58,7 +59,49 @@ public class TextInstance : MonoBehaviour
         checkScale();
         checkCollider();
         checkDelete();
+        checkEditMode();
         //normalRotation();
+    }
+
+    private void checkEditMode()
+    {
+        switch (EditManager.curEditState)
+        {
+            case EditState.SCALE:
+                GetComponent<ScaleAction>().enabled = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.X = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Y = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
+                GetComponent<RotationAction>().enabled = false;
+                canTracking = false;
+                break;
+            case EditState.SCALEX:
+                GetComponent<ScaleAction>().enabled = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.X = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Y = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
+                GetComponent<RotationAction>().enabled = false;
+                canTracking = false;
+                break;
+            case EditState.SCALEY:
+                GetComponent<ScaleAction>().enabled = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.X = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.Y = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
+                GetComponent<RotationAction>().enabled = false;
+                canTracking = false;
+                break;
+            case EditState.ROTATE:
+                GetComponent<ScaleAction>().enabled = false;
+                GetComponent<RotationAction>().enabled = true;
+                canTracking = false;
+                break;
+            case EditState.MOVE:
+                GetComponent<ScaleAction>().enabled = false;
+                GetComponent<RotationAction>().enabled = false;
+                canTracking = true;
+                break;
+        }
     }
 
     private void normalRotation()
@@ -71,6 +114,10 @@ public class TextInstance : MonoBehaviour
     private void checkDelete()
     {
         if (isDelete)
+        {
+            return;
+        }
+        if (!canTracking)
         {
             return;
         }

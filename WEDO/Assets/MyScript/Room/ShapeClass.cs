@@ -148,7 +148,7 @@ public class ShapeClass : MonoBehaviour
     private void checkHover()
     {
         //Debug.Log(RayHit.hitName + " + " + gameObject.name);
-        if (MenuBar.isOut && RayHit.hitName.Equals(gameObject.name))
+        if (MenuBar.isOpen && RayHit.hitName.Equals(gameObject.name))
         {
             isHover = true;
             renderer.material.color = hoverColor;

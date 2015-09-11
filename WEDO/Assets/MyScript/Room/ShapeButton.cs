@@ -53,7 +53,7 @@ public class ShapeButton : MonoBehaviour
 
     private void checkHover()
     {
-        if (MenuBar.isOut && RayHit.hitName.Equals(name))
+        if (MenuBar.isOpen && RayHit.hitName.Equals(name))
         {
             isHover = true;
             transform.localScale = hoverScale;

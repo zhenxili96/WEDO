@@ -25,8 +25,74 @@ public class MessageBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkHover();
+        //checkHover();
+        checkClick();
         checkOut();
+    }
+
+    private void checkClick()
+    {
+        bool isClick = false;
+        if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
+            || (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed))
+        {
+            isClick = true;
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                if ((RayHit.LeftHitName.Equals(child.name) && LeftHandProperty.isClosed) 
+                    || RayHit.RightHitName.Equals(child.name) && RightHandProperty.isClosed)
+                {
+                    isClick = true;
+                }
+                else
+                {
+                    foreach (Transform grandchild in child.transform)
+                    {
+                        if ((RayHit.LeftHitName.Equals(grandchild.name) && LeftHandProperty.isClosed)
+                            || (RayHit.RightHitName.Equals(grandchild.name) && RightHandProperty.isClosed))
+                        {
+                            isClick = true;
+                        }
+                        else
+                        {
+                            foreach (Transform grandgrandchild in grandchild.transform)
+                            {
+                                if ((RayHit.LeftHitName.Equals(grandgrandchild.name) && LeftHandProperty.isClosed)
+                                    || RayHit.RightHitName.Equals(grandgrandchild.name) && RightHandProperty.isClosed)
+                                {
+                                    isClick = true;
+                                }
+                                else
+                                {
+                                    foreach (Transform grandgrandgrandchild in grandgrandchild.transform)
+                                    {
+                                        if ((RayHit.LeftHitName.Equals(grandgrandgrandchild.name) && LeftHandProperty.isClosed)
+                                            || (RayHit.RightHitName.Equals(grandgrandgrandchild.name)) && RightHandProperty.isClosed)
+                                        {
+                                            isClick = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (isClick)
+        {
+            isOut = true;
+        }
+        else
+        {
+            if (LeftHandProperty.isClosed || RightHandProperty.isClosed)
+            {
+                isOut = false;
+            }
+        }
     }
 
     private void checkOut()

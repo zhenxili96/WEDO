@@ -49,7 +49,7 @@ public class ColorButton : MonoBehaviour
 
     private void checkHover()
     {
-        if (MenuBar.isOut && RayHit.hitName.Equals(name))
+        if (MenuBar.isOpen && RayHit.hitName.Equals(name))
         {
             isHover = true;
             renderer.material.color = hoverColor;

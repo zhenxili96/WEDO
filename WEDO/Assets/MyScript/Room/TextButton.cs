@@ -91,7 +91,7 @@ public class TextButton : MonoBehaviour
 
     private void checkHover()
     {
-        if (MenuBar.isOut && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
+        if (MenuBar.isOpen && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
             transform.localScale = hoverScale;

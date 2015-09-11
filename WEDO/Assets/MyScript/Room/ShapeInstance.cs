@@ -13,6 +13,7 @@ public class ShapeInstance : MonoBehaviour
     public Layer parentLayer = null;
     public bool isDelete = false;
     public string ShadowName = "shadow";
+    public bool canTracking = false;
 
     // Use this for initialization
     void Start()
@@ -66,6 +67,7 @@ public class ShapeInstance : MonoBehaviour
                 GetComponent<ScaleAction>().Constraints.Freeze.Y = false;
                 GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
                 GetComponent<RotationAction>().enabled = false;
+                canTracking = false;
                 break;
             case EditState.SCALEX:
                 GetComponent<ScaleAction>().enabled = true;
@@ -73,6 +75,7 @@ public class ShapeInstance : MonoBehaviour
                 GetComponent<ScaleAction>().Constraints.Freeze.Y = true;
                 GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
                 GetComponent<RotationAction>().enabled = false;
+                canTracking = false;
                 break;
             case EditState.SCALEY:
                 GetComponent<ScaleAction>().enabled = true;
@@ -80,10 +83,17 @@ public class ShapeInstance : MonoBehaviour
                 GetComponent<ScaleAction>().Constraints.Freeze.Y = false;
                 GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
                 GetComponent<RotationAction>().enabled = false;
+                canTracking = false;
                 break;
             case EditState.ROTATE:
                 GetComponent<ScaleAction>().enabled = false;
                 GetComponent<RotationAction>().enabled = true;
+                canTracking = false;
+                break;
+            case EditState.MOVE:
+                GetComponent<ScaleAction>().enabled = false;
+                GetComponent<RotationAction>().enabled = false;
+                canTracking = true;
                 break;
         } 
     }
@@ -180,6 +190,10 @@ public class ShapeInstance : MonoBehaviour
     private void checkDrag()
     {
         if (isDelete)
+        {
+            return;
+        }
+        if (!canTracking)
         {
             return;
         }

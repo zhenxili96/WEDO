@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum EditState { SCALE, SCALEX, SCALEY, ROTATE};
+public enum EditState { SCALE, SCALEX, SCALEY, ROTATE, MOVE};
 
 public class EditManager : MonoBehaviour
 {
@@ -10,34 +10,42 @@ public class EditManager : MonoBehaviour
     public string Manager_Scale = "manager_scale";
     public string Manager_ScaleY = "manager_scaley";
     public string Manager_Rotate = "manager_rotate";
+    public string Manager_Move = "manager_move";
     public GameObject scalexObject;
     public GameObject scaleyObject;
     public GameObject scaleObject;
     public GameObject rotateObject;
+    public GameObject moveObject;
     public Vector3 scalexOriginScale;
     public Vector3 scaleyOriginScale;
     public Vector3 scaleOriginScale;
     public Vector3 rotateOriginScale;
+    public Vector3 moveOriginScale;
     public Vector3 scalexHoverScale;
     public Vector3 scaleyHoverScale;
     public Vector3 scaleHoverScale;
     public Vector3 rotateHoverScale;
+    public Vector3 moveHoverScale;
     public float scalexScaleRate = 1.2f;
     public float scaleyScaleRate = 1.2f;
     public float scaleScaleRate = 1.2f;
     public float rotateScaleRate = 1.2f;
+    public float moverScaleRate = 1.2f;
     public Color scalexOriginColor;
     public Color scaleyOriginColor;
     public Color scaleOriginColor;
     public Color rotateOriginColor;
+    public Color moveOriginColor;
     public Color scalexHoverColor = new Color(0.7f, 0.7f, 0.7f);
     public Color scaleyHoverColor = new Color(0.7f, 0.7f, 0.7f);
     public Color scaleHoverColor = new Color(0.7f, 0.7f, 0.7f);
     public Color rotateHoverColor = new Color(0.7f, 0.7f, 0.7f);
+    public Color moveHoverColor = new Color(0.7f, 0.7f, 0.7f);
     public Color scalexFocusColor = new Color(1, 0.5412f, 0.5412f);
     public Color scaleyFocusColor = new Color(1, 0.5412f, 0.5412f);
     public Color scaleFocusColor = new Color(1, 0.5412f, 0.5412f);
     public Color rotateFocusColor = new Color(1, 0.5412f, 0.5412f);
+    public Color moveFocusColor = new Color(1, 0.5412f, 0.5412f);
     public bool isInit = false;
 
     // Use this for initialization
@@ -53,6 +61,7 @@ public class EditManager : MonoBehaviour
         scaleyObject = transform.FindChild(Manager_ScaleY).gameObject;
         scaleObject = transform.FindChild(Manager_Scale).gameObject;
         rotateObject = transform.FindChild(Manager_Rotate).gameObject;
+        moveObject = transform.FindChild(Manager_Move).gameObject;
 
         scalexOriginColor = scalexObject.renderer.material.color;
         scalexOriginScale = scalexObject.transform.localScale;
@@ -62,11 +71,14 @@ public class EditManager : MonoBehaviour
         scaleOriginScale = scaleObject.transform.localScale;
         rotateOriginColor = rotateObject.renderer.material.color;
         rotateOriginScale = rotateObject.transform.localScale;
+        moveOriginColor = moveObject.renderer.material.color;
+        moveOriginScale = moveObject.transform.localScale;
 
         scalexHoverScale = scalexOriginScale * scalexScaleRate;
         scaleyHoverScale = scaleyOriginScale * scaleyScaleRate;
         scaleHoverScale = scaleOriginScale * scaleScaleRate;
         rotateHoverScale = rotateOriginScale * rotateScaleRate;
+        moveHoverScale = moveOriginScale * moverScaleRate;
     }
 
     // Update is called once per frame
@@ -89,6 +101,8 @@ public class EditManager : MonoBehaviour
         checkScalezClick();
         checkScaleClick();
         checkRotateClick();
+        checkMoveHover();
+        checkMoveClick();
         checkColor();
     }
 
@@ -108,6 +122,44 @@ public class EditManager : MonoBehaviour
             case EditState.ROTATE:
                 rotateObject.renderer.material.color = rotateFocusColor;
                 break;
+            case EditState.MOVE:
+                moveObject.renderer.material.color = moveFocusColor;
+                break;
+        }
+    }
+
+    private void checkMoveHover()
+    {
+        if (RayHit.LeftHitName.Equals(Manager_Move)
+            || RayHit.RightHitName.Equals(Manager_Move))
+        {
+            if (curEditState == EditState.MOVE)
+            {
+                return;
+            }
+            moveObject.renderer.material.color = moveHoverColor;
+            moveObject.transform.localScale = moveHoverScale;
+        }
+        else
+        {
+            moveObject.renderer.material.color = moveOriginColor;
+            moveObject.transform.localScale = moveOriginScale;
+        }
+    }
+
+    private void checkMoveClick()
+    {
+        if (RayHit.LeftHitName.Equals(Manager_Move) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+        {
+            LeftHandProperty.clickUsed = true;
+            curEditState = EditState.MOVE;
+            moveObject.renderer.material.color = moveFocusColor;
+        }
+        if (RayHit.RightHitName.Equals(Manager_Move) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+        {
+            RightHandProperty.clickUsed = true;
+            curEditState = EditState.MOVE;
+            moveObject.renderer.material.color = moveFocusColor;
         }
     }
 
