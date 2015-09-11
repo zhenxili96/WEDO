@@ -75,6 +75,7 @@ public class MenuBar : MonoBehaviour
 
     private void checkOut()
     {
+        isOpen = false;
         if (isOut)
         {
             if (transform.position.x < outPos.x)

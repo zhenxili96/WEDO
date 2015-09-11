@@ -148,7 +148,8 @@ public class ShapeClass : MonoBehaviour
     private void checkHover()
     {
         //Debug.Log(RayHit.hitName + " + " + gameObject.name);
-        if (MenuBar.isOpen && RayHit.hitName.Equals(gameObject.name))
+        if ((MenuBar.isOpen && RayHit.LeftHitName.Equals(name))
+            || (MenuBar.isOpen && RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
             renderer.material.color = hoverColor;
@@ -166,17 +167,6 @@ public class ShapeClass : MonoBehaviour
         }
     }
 
-    public void getDownOrder()
-    {
-        transform.localPosition = transform.localPosition - moveSpace;
-        checkShow();
-    }
-
-    public void getUpOrder()
-    {
-        transform.localPosition = transform.localPosition + moveSpace;
-        checkShow();
-    }
 
     private void checkShow()
     {

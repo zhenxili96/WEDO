@@ -159,10 +159,12 @@
      <Compile Include="Assets\MyScript\Room\MemberState.cs" />
      <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
      <Compile Include="Assets\MyScript\Room\MessageBar.cs" />
+     <Compile Include="Assets\MyScript\Room\PrintButton.cs" />
      <Compile Include="Assets\MyScript\Room\RoomNPC.cs" />
      <Compile Include="Assets\MyScript\Room\RoomStatic.cs" />
      <Compile Include="Assets\MyScript\Room\Room_savebutton.cs" />
      <Compile Include="Assets\MyScript\Room\SaveButton.cs" />
+     <Compile Include="Assets\MyScript\Room\ScreenShot.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeButton.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeClass.cs" />
      <Compile Include="Assets\MyScript\Room\ShapeInstance.cs" />
