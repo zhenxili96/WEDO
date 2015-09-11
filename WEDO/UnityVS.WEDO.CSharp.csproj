@@ -170,6 +170,7 @@
     <Compile Include="Assets\MyScript\Room\AspectBackButton.cs" />
     <Compile Include="Assets\MyScript\Room\AspectChangeButton.cs" />
     <Compile Include="Assets\MyScript\Room\EditManager.cs" />
+    <Compile Include="Assets\MyScript\Room\HideButton.cs" />
     <Compile Include="Assets\MyScript\Room\Layer.cs" />
     <Compile Include="Assets\MyScript\Room\LayerItemManager.cs" />
     <Compile Include="Assets\MyScript\Room\LayerManager.cs" />

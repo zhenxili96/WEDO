@@ -48,6 +48,14 @@ public class EditManager : MonoBehaviour
     public Color moveFocusColor = new Color(1, 0.5412f, 0.5412f);
     public bool isInit = false;
 
+    public string Manager_Close = "manager_close";
+    public GameObject closeObject;
+    public Vector3 closeOriginScale;
+    public Vector3 closeHoverScale;
+    public float closeScaleRate = 1.2f;
+    public Color closeOriginColor;
+    public Color closeHoverColor = new Color(0.7f, 0.7f, 0.7f);
+
     // Use this for initialization
     void Start()
     {
@@ -79,6 +87,11 @@ public class EditManager : MonoBehaviour
         scaleHoverScale = scaleOriginScale * scaleScaleRate;
         rotateHoverScale = rotateOriginScale * rotateScaleRate;
         moveHoverScale = moveOriginScale * moverScaleRate;
+
+        closeObject = transform.FindChild(Manager_Close).gameObject;
+        closeOriginColor = closeObject.renderer.material.color;
+        closeOriginScale = closeObject.transform.localScale;
+        closeHoverScale = closeOriginScale * closeScaleRate;
     }
 
     // Update is called once per frame
@@ -104,6 +117,36 @@ public class EditManager : MonoBehaviour
         checkMoveHover();
         checkMoveClick();
         checkColor();
+        checkCloseHover();
+        checkCloseClick();
+    }
+
+    private void checkCloseHover()
+    {
+        if (RayHit.LeftHitName.Equals(Manager_Close) || RayHit.RightHitName.Equals(Manager_Close))
+        {
+            closeObject.renderer.material.color = closeHoverColor;
+            closeObject.transform.localScale = closeHoverScale;
+        }
+        else
+        {
+            closeObject.renderer.material.color = closeOriginColor;
+            closeObject.transform.localScale = closeOriginScale;
+        }
+    }
+
+    private void checkCloseClick()
+    {
+        if (RayHit.LeftHitName.Equals(Manager_Close) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
+        {
+            LeftHandProperty.clickUsed = true;
+            RoomStatic.curFocus = "";
+        }
+        if (RayHit.RightHitName.Equals(Manager_Close) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
+        {
+            RightHandProperty.clickUsed = true;
+            RoomStatic.curFocus = "";
+        }
     }
 
     private void checkColor()

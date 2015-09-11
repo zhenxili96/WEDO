@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PrintButton : MonoBehaviour
+public class HideButton : MonoBehaviour
 {
 
     public bool isHover = false;
@@ -10,7 +10,10 @@ public class PrintButton : MonoBehaviour
     public float scaleRate = 1.3f;
     public float originZ;
     public float hoverZ;
-    public string Camera1Name = "Camera_mode1";
+    public Vector3 NormalRotate = new Vector3(90, 180, 0);
+    public Vector3 HideRotate = new Vector3(-90, 0, 0);
+    public bool isHide = false;
+    public string HideBarName = "room_topbar";
     public string RoomNPCName = "Room_NPC";
 
     // Use this for initialization
@@ -27,6 +30,21 @@ public class PrintButton : MonoBehaviour
     {
         checkHover();
         checkClick();
+        checkHide();
+    }
+
+    private void checkHide()
+    {
+        if (isHide)
+        {
+            transform.localEulerAngles = HideRotate;
+            GameObject.Find(RoomNPCName).transform.FindChild(HideBarName).gameObject.SetActive(false);
+        }
+        else
+        {
+            transform.localEulerAngles = NormalRotate;
+            GameObject.Find(RoomNPCName).transform.FindChild(HideBarName).gameObject.SetActive(true);
+        }
     }
 
     private void checkClick()
@@ -36,14 +54,12 @@ public class PrintButton : MonoBehaviour
             if (LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
             {
                 LeftHandProperty.clickUsed = true;
-                GameObject.Find(RoomNPCName).SetActive(false);
-                GameObject.Find(Camera1Name).GetComponent<ScreenShot>().ScreenShotSave();
+                isHide = !isHide;
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
             {
                 RightHandProperty.clickUsed = true;
-                GameObject.Find(RoomNPCName).SetActive(false);
-                GameObject.Find(Camera1Name).GetComponent<ScreenShot>().ScreenShotSave();
+                isHide = !isHide;
             }
         }
     }

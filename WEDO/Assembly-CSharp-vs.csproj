@@ -152,6 +152,7 @@
      <Compile Include="Assets\MyScript\Room\DeleteButton.cs" />
      <Compile Include="Assets\MyScript\Room\DownButton.cs" />
      <Compile Include="Assets\MyScript\Room\EditManager.cs" />
+     <Compile Include="Assets\MyScript\Room\HideButton.cs" />
      <Compile Include="Assets\MyScript\Room\InstanceType.cs" />
      <Compile Include="Assets\MyScript\Room\Layer.cs" />
      <Compile Include="Assets\MyScript\Room\LayerItemManager.cs" />

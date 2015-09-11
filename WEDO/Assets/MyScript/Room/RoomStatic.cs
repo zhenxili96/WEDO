@@ -468,21 +468,21 @@ public class RoomStatic : MonoBehaviour
                 {
                     Debug.Log("ERROR 退出房间失败");
                 }
-                if (!WholeStatic.curRoomInterface.CloseRoom())
-                {
-                    Debug.Log("ERROR close room fail");
-                }
-                //if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                //if (!WholeStatic.curRoomInterface.CloseRoom())
                 //{
-                //    if (!WholeStatic.curRoomInterface.CloseRoom())
-                //    {
-                //        Debug.Log("ERROR close room fail");
-                //    }
-                //    else
-                //    {
-                //        Debug.Log("room 无人， 关闭room");
-                //    }
+                //    Debug.Log("ERROR close room fail");
                 //}
+                if (WholeStatic.curRoomInterface.RoomUsers.Count == 0)
+                {
+                    if (!WholeStatic.curRoomInterface.CloseRoom())
+                    {
+                        Debug.Log("ERROR close room fail");
+                    }
+                    else
+                    {
+                        Debug.Log("room 无人， 关闭room");
+                    }
+                }
             }
             ProxyInterface.Connect_End();
         }
