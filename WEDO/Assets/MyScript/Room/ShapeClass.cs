@@ -2,7 +2,7 @@
 using System.Collections;
 using Wedo_ClientSide;
 
-public enum SHAPE { CIRCLE, TRIANGLE, RECTANGLE, ROUND_RECTANGLE };
+public enum SHAPE { CIRCLE, TRIANGLE, RECTANGLE, ROUND_RECTANGLE, LINE };
 
 public class ShapeClass : MonoBehaviour
 {

@@ -9,8 +9,8 @@ public class DeleteButton : MonoBehaviour
     public static bool isOpen = false;
     public Vector3 outPos = new Vector3(0, 85, 50);
     public Vector3 inPos = new Vector3(0, 120, 50);
-    public float inSpeed = 2.5f;
-    public float outSpeed = 2f;
+    public float inSpeed = 8f;
+    public float outSpeed = 7f;
     public Color originColor;
     public Color prepareColor = Color.red;
 

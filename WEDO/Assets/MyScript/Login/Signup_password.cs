@@ -5,6 +5,7 @@ public class Signup_password : MonoBehaviour
 {
     public bool isHover = false;
     public bool isFocus = false;
+    public Color hoverColor = new Color(0.7f, 0.7f, 0.7f);
     public Color focusColor = new Color(1, 0.5412f, 0.5412f);
     public Color originColor;
     public GameObject passwordText;
@@ -78,6 +79,7 @@ public class Signup_password : MonoBehaviour
             isHover = true;
             if (!isFocus)
             {
+                renderer.material.color = hoverColor;
             }
         }
         else
