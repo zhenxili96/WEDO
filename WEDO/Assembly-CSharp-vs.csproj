@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/S_software/Unity_4_1/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -151,12 +151,15 @@
      <Compile Include="Assets\MyScript\Room\ColorItem.cs" />
      <Compile Include="Assets\MyScript\Room\DeleteButton.cs" />
      <Compile Include="Assets\MyScript\Room\DownButton.cs" />
+     <Compile Include="Assets\MyScript\Room\EditManager.cs" />
      <Compile Include="Assets\MyScript\Room\InstanceType.cs" />
      <Compile Include="Assets\MyScript\Room\Layer.cs" />
      <Compile Include="Assets\MyScript\Room\LayerItemManager.cs" />
      <Compile Include="Assets\MyScript\Room\LayerManager.cs" />
+     <Compile Include="Assets\MyScript\Room\MemberState.cs" />
      <Compile Include="Assets\MyScript\Room\MenuBar.cs" />
      <Compile Include="Assets\MyScript\Room\MessageBar.cs" />
+     <Compile Include="Assets\MyScript\Room\RoomNPC.cs" />
      <Compile Include="Assets\MyScript\Room\RoomStatic.cs" />
      <Compile Include="Assets\MyScript\Room\Room_savebutton.cs" />
      <Compile Include="Assets\MyScript\Room\SaveButton.cs" />

@@ -32,7 +32,7 @@ public class AddLayerButton : MonoBehaviour
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
         {
             LeftHandProperty.clickUsed = true;
-            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.curLayer;
+            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.layerArray.Count;
             //RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
             //WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
             WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count + 1, 0, 0, ZMIN - RoomStatic.layerArray.Count);
@@ -42,7 +42,7 @@ public class AddLayerButton : MonoBehaviour
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             RightHandProperty.clickUsed = true;
-            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.curLayer;
+            GameObject.Find(LAYERTEXTNAME).GetComponent<TextMesh>().text = "Layer" + RoomStatic.layerArray.Count;
             //RoomStatic.layerArray.Add(new Layer(ZMIN - RoomStatic.layerArray.Count, RoomStatic.UNSETGUID));
             //WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count, 0, 0, ZMIN + 1 - RoomStatic.layerArray.Count);
             WholeStatic.curRoomInterface.AddLayer(RoomStatic.layerArray.Count + 1, 0, 0, ZMIN - RoomStatic.layerArray.Count);

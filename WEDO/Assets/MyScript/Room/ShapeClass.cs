@@ -87,7 +87,8 @@ public class ShapeClass : MonoBehaviour
                         //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_CIRCLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
-                            initPos.x, initPos.y, initPos.z,
+                            initPos.x, initPos.y,
+                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_CIRCLE, "", 0, "");
@@ -99,7 +100,8 @@ public class ShapeClass : MonoBehaviour
                         //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_RECTANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
-                            initPos.x, initPos.y, initPos.z,
+                            initPos.x, initPos.y,
+                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_RECTANGLE, "", 0, "");
@@ -111,7 +113,8 @@ public class ShapeClass : MonoBehaviour
                         //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_ROUNDRECTANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
-                            initPos.x, initPos.y, initPos.z,
+                            initPos.x, initPos.y,
+                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_ROUNDRECTANGLE, "", 0, "");
@@ -123,7 +126,8 @@ public class ShapeClass : MonoBehaviour
                         //RoomStatic.layerArray[RoomStatic.curLayer].AddInstance(RoomStatic.SHAPE_TRIANGLE);
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
-                            initPos.x, initPos.y, initPos.z,
+                            initPos.x, initPos.y,
+                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_TRIANGLE, "", 0, "");

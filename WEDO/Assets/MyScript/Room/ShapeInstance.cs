@@ -12,6 +12,7 @@ public class ShapeInstance : MonoBehaviour
     public float layerZ;
     public Layer parentLayer = null;
     public bool isDelete = false;
+    public string ShadowName = "shadow";
 
     // Use this for initialization
     void Start()
@@ -37,8 +38,6 @@ public class ShapeInstance : MonoBehaviour
         {
             return;
         }
-        GetComponent<ScaleAction>().enabled = true;
-        GetComponent<RotationAction>().enabled = true;
         if (RoomStatic.curLayer != belongLayer)
         {
             GetComponent<ScaleAction>().enabled = false;
@@ -53,7 +52,40 @@ public class ShapeInstance : MonoBehaviour
         checkDrag();
         checkFocus();
         checkDelete();
+        checkEditMode();
         //normalRotation();
+    }
+
+    private void checkEditMode()
+    {
+        switch (EditManager.curEditState)
+        {
+            case EditState.SCALE:
+                GetComponent<ScaleAction>().enabled = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.X = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Y = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
+                GetComponent<RotationAction>().enabled = false;
+                break;
+            case EditState.SCALEX:
+                GetComponent<ScaleAction>().enabled = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.X = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Y = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
+                GetComponent<RotationAction>().enabled = false;
+                break;
+            case EditState.SCALEY:
+                GetComponent<ScaleAction>().enabled = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.X = true;
+                GetComponent<ScaleAction>().Constraints.Freeze.Y = false;
+                GetComponent<ScaleAction>().Constraints.Freeze.Z = true;
+                GetComponent<RotationAction>().enabled = false;
+                break;
+            case EditState.ROTATE:
+                GetComponent<ScaleAction>().enabled = false;
+                GetComponent<RotationAction>().enabled = true;
+                break;
+        } 
     }
 
     private void normalRotation()
@@ -127,6 +159,7 @@ public class ShapeInstance : MonoBehaviour
             isFocus = true;
             transform.GetChild(0).renderer.material.color = ColorItem.curColor;
             GetComponent<InstanceType>().colorString = ColorItem.curColorString;
+            transform.FindChild(ShadowName).gameObject.SetActive(true);
         }
         else if ((RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
             || (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed))
@@ -135,10 +168,12 @@ public class ShapeInstance : MonoBehaviour
             RoomStatic.curFocus = name;
             ColorItem.curColor = transform.GetChild(0).renderer.material.color;
             ColorItem.curColorString = GetComponent<InstanceType>().colorString;
+            transform.FindChild(ShadowName).gameObject.SetActive(true);
         }
         else
         {
             isFocus = false;
+            transform.FindChild(ShadowName).gameObject.SetActive(false);
         }
     }
 

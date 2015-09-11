@@ -27,6 +27,7 @@ public class Layer
     public int ObjectCount = 1; //默认为1 为plane预留位置
     public string guid;
     public List<GameObject> instanceArray = new List<GameObject>();
+    public string ShadowName = "shadow";
 
     public Layer()
     {
@@ -200,6 +201,7 @@ public class Layer
         if (tempInstance.Type == 0)
         {
             Debug.Log("ERROR wrong type get");
+            //WholeStatic.curRoomInterface.DeleteBoardMaterial(guid, tempInstance.Guid);
             return;
         }
         GameObject tempObject;
@@ -257,6 +259,14 @@ public class Layer
         tempObject.transform.GetChild(0).renderer.material.color = ColorTable.getColor(tempInstance.Color);
         tempObject.GetComponent<InstanceType>().MyGuid = tempInstance.Guid;
         tempObject.GetComponent<InstanceType>().LayerGuid = tempInstance.BelongLevel;
+        foreach (Transform child in tempObject.transform)
+        {
+            if (child.name.Equals(ShadowName))
+            {
+                continue;
+            }
+            child.name = tempObject.name + "_" + child.name;
+        }
         instanceArray.Add(tempObject);
         ObjectCount++;
     }
