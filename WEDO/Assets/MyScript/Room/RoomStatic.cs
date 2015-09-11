@@ -79,6 +79,7 @@ public class RoomStatic : MonoBehaviour
     public GameObject curFocusChild = null;
     public int curFocusRefresh = 0;
     public static Queue<MyLayerRoomLayer> UnRefreshLayer = new Queue<MyLayerRoomLayer>();
+    public static int MyEnterTime = 1;
 
     // Use this for initialization
     void Start()
@@ -311,6 +312,7 @@ public class RoomStatic : MonoBehaviour
         noticeCount = WholeStatic.curAnnouncements.Count;
         recordCount = WholeStatic.curRecords.Count;
         memberCount = WholeStatic.curMembers.Count;
+        MyEnterTime = memberCount + 1;
         GameObject.Find(Message_MemberName).GetComponent<message_member>().initMember();
         GameObject.Find(Message_NoticeName).GetComponent<message_notice>().initNotice();
         GameObject.Find(Message_RecordName).GetComponent<message_record>().initRecord();

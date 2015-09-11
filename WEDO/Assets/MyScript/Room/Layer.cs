@@ -201,7 +201,7 @@ public class Layer
         if (tempInstance.Type == 0)
         {
             Debug.Log("ERROR wrong type get");
-            //WholeStatic.curRoomInterface.DeleteBoardMaterial(guid, tempInstance.Guid);
+            WholeStatic.curRoomInterface.DeleteBoardMaterial(guid, tempInstance.Guid);
             return;
         }
         GameObject tempObject;

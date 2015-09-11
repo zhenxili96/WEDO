@@ -15,6 +15,14 @@ public class UpButton : MonoBehaviour
     public string MenuShapeName = "menu_shape";
     public Color originColor;
     public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
+    public string[] shapaNameArray = {"menu_line",
+                                      "menu_circlebutton", "menu_roundrectanglebutton",
+                                      "menu_rectanglebutton", "menu_trianglebutton",
+                                      "menu_back"};
+    public Vector3[] posArray = {new Vector3(0, 16, 0), new Vector3(0, 6, 0),
+                                 new Vector3(0, -4, 0), new Vector3(0, -14, 0)};
+    public static int upFlag = 2;
+    public static int downFlag = 5;
 
     // Use this for initialization
     void Start()
@@ -31,6 +39,25 @@ public class UpButton : MonoBehaviour
     {
         checkHover();
         checkClick();
+        checkShapePos();
+    }
+
+    private void checkShapePos()
+    {
+        GameObject menuShape = GameObject.Find(MenuBarName).transform.FindChild(MenuShapeName).gameObject;
+        for (int i = 0; i < shapaNameArray.Length; i++)
+        {
+            if ((i < upFlag) || (i > downFlag))
+            {
+                menuShape.transform.FindChild(shapaNameArray[i]).gameObject.SetActive(false);
+            }
+            else
+            {
+                menuShape.transform.FindChild(shapaNameArray[i]).gameObject.SetActive(true);
+                menuShape.transform.FindChild(shapaNameArray[i]).gameObject.transform.localPosition
+                    = posArray[i - upFlag];
+            }
+        }
     }
 
     private void checkClick()
@@ -46,12 +73,13 @@ public class UpButton : MonoBehaviour
                 }
                 if (GameObject.Find(MenuBarName).transform.FindChild(MenuShapeName).gameObject.activeInHierarchy)
                 {
-                    GameObject menuShape = GameObject.Find(MenuBarName).transform.FindChild(MenuShapeName).gameObject;
-                    for (int i = 0; i < menuShape.transform.GetChildCount(); i++)
+                    upFlag--;
+                    if (upFlag < 0)
                     {
-                        menuShape.transform.GetChild(i).gameObject.SetActive(true);
-                        //menuShape.transform.GetChild(i).gameObject.SendMessage("getUpOrder");
+                        upFlag = 0;
+                        return;
                     }
+                    downFlag--;
                 }
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
@@ -63,10 +91,13 @@ public class UpButton : MonoBehaviour
                 }
                 if (GameObject.Find(MenuShapeName).transform.FindChild(MenuShapeName).gameObject.activeInHierarchy)
                 {
-                    foreach (Transform child in GameObject.Find(MenuShapeName).transform.FindChild(MenuShapeName))
+                    upFlag--;
+                    if (upFlag < 0)
                     {
-                        child.gameObject.SendMessage("getUpOrder");
+                        upFlag = 0;
+                        return;
                     }
+                    downFlag--;
                 }
             }
         }

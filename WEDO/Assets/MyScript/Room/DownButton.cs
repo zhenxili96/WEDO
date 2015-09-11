@@ -15,6 +15,10 @@ public class DownButton : MonoBehaviour
     public string MenuShapeName = "menu_shape";
     public Color originColor;
     public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
+    public string[] shapeNameArray = {"menu_line",
+                                      "menu_circlebutton", "menu_roundrectanglebutton",
+                                      "menu_rectanglebutton", "menu_trianglebutton",
+                                      "menu_back"};
 
     // Use this for initialization
     void Start()
@@ -46,12 +50,13 @@ public class DownButton : MonoBehaviour
                 }
                 if (GameObject.Find(MenuBarName).transform.FindChild(MenuShapeName).gameObject.activeInHierarchy)
                 {
-                    GameObject menuShape = GameObject.Find(MenuBarName).transform.FindChild(MenuShapeName).gameObject;
-                    for (int i = 0; i < menuShape.transform.GetChildCount(); i++)
+                    UpButton.downFlag++;
+                    if (UpButton.downFlag > (shapeNameArray.Length - 1))
                     {
-                        menuShape.transform.GetChild(i).gameObject.SetActive(true);
-                        menuShape.transform.GetChild(i).gameObject.SendMessage("getDownOrder");
+                        UpButton.downFlag = (shapeNameArray.Length - 1);
+                        return;
                     }
+                    UpButton.downFlag++;
                 }
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
@@ -63,10 +68,13 @@ public class DownButton : MonoBehaviour
                 }
                 if (GameObject.Find(MenuShapeName).transform.FindChild(MenuShapeName).gameObject.activeInHierarchy)
                 {
-                    foreach (Transform child in GameObject.Find(MenuShapeName).transform.FindChild(MenuShapeName))
+                    UpButton.downFlag++;
+                    if (UpButton.downFlag > (shapeNameArray.Length - 1))
                     {
-                        child.gameObject.SendMessage("getDownOrder");
+                        UpButton.downFlag = (shapeNameArray.Length - 1);
+                        return;
                     }
+                    UpButton.downFlag++;
                 }
             }
         }
