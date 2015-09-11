@@ -59,7 +59,7 @@ public class Home_Addproject : MonoBehaviour
         checkConfirmClick();
         checkConfirmHover();
         checkCancelHover();
-        checkOut();
+        //checkOut();
         checkInput();
     }
 

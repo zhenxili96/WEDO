@@ -331,7 +331,14 @@ public class RoomStatic : MonoBehaviour
         curFocusObject = GameObject.Find(curFocus);
         if (curFocusObject != null)
         {
-            curFocusChild = curFocusObject.transform.GetChild(0).gameObject;
+            if (curFocusObject.transform != null && curFocusObject.transform.childCount != 0)
+            {
+                curFocusChild = curFocusObject.transform.GetChild(0).gameObject;
+            }
+            else
+            {
+                Debug.Log("ERROR! child null" + curFocusObject.name);
+            }
         }
         uploadRawFocusObject();
     }

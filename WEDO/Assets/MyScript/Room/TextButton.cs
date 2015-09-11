@@ -4,19 +4,21 @@ using System.Collections;
 public class TextButton : MonoBehaviour
 {
 
-    private bool textLock = false;
-    private bool isHover = false;
-    private float lockTime = 3.0f;
-    private Vector3 textOriginPos = new Vector3(-70, 1, 22);
-    private int textInstanceCount = 0;
-    private string TEXTPARENTNAME = "TextInstance";
-    private string ROOMNPCNAME = "Room_NPC";
-    private string TEXTBOARDNAME = "TextBoard";
-    private Vector3 originScale;
-    private Vector3 hoverScale;
-    private float scaleRate = 2;
-    private float originZ;
-    private float hoverZ;
+    public bool textLock = false;
+    public bool isHover = false;
+    public float lockTime = 3.0f;
+    public Vector3 initPos = new Vector3(0, 0, 23);
+    public Vector3 initScale = new Vector3(1, 1, 1);
+    public Vector3 initRotate = new Vector3(0, 0, 0);
+    public int textInstanceCount = 0;
+    public string TEXTPARENTNAME = "TextInstance";
+    public string ROOMNPCNAME = "Room_NPC";
+    public string TEXTBOARDNAME = "TextBoard";
+    public Vector3 originScale;
+    public Vector3 hoverScale;
+    public float scaleRate = 2;
+    public float originZ;
+    public float hoverZ;
     public Color originColor;
     public Color hoverColor = new Color(1, 0.5412f, 0.5412f);
 
@@ -34,6 +36,11 @@ public class TextButton : MonoBehaviour
     void Update()
     {
         checkHover();
+        checkClick();
+    }
+
+    private void checkClick()
+    {
         if (isHover)
         {
             if ((RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
@@ -58,14 +65,20 @@ public class TextButton : MonoBehaviour
                 }
                 textInstanceCount++;
                 //GameObject.Find(ROOMNPCNAME).transform.Find(TEXTBOARDNAME).gameObject.SetActive(true);
-                GameObject temp = (GameObject)Instantiate(Resources.Load("textPrefab"));
-                temp.transform.parent = GameObject.Find(TEXTPARENTNAME).transform;
-                temp.name = "TextInstance_" + textInstanceCount;
-                GameObject tempChild = temp.transform.GetChild(0).gameObject;
-                tempChild.transform.position = textOriginPos;
-                TextMesh tempText = tempChild.GetComponent<TextMesh>();
-                tempText.text = "Hello world";
-                tempText.fontSize = 100;
+                //GameObject temp = (GameObject)Instantiate(Resources.Load("textPrefab"));
+                //temp.transform.parent = GameObject.Find(TEXTPARENTNAME).transform;
+                //temp.name = "TextInstance_" + textInstanceCount;
+                //GameObject tempChild = temp.transform.GetChild(0).gameObject;
+                //tempChild.transform.position = textOriginPos;
+                //TextMesh tempText = tempChild.GetComponent<TextMesh>();
+                //tempText.text = "Hello world";
+                //tempText.fontSize = 100;
+                WholeStatic.curRoomInterface.AddBoardMaterial(
+                    WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
+                            initPos.x, initPos.y, initPos.z,
+                            initScale.x, initScale.y, initScale.z,
+                            initRotate.x, initRotate.y, initRotate.z,
+                            "C7", RoomStatic.TEXT, "helloworld", 40, "UNSET");
                 Keyboard.isOut = true;
             }
         }
@@ -78,7 +91,7 @@ public class TextButton : MonoBehaviour
 
     private void checkHover()
     {
-        if (MenuBar.isOut && RayHit.hitName.Equals(name))
+        if (MenuBar.isOut && (RayHit.LeftHitName.Equals(name) || RayHit.RightHitName.Equals(name)))
         {
             isHover = true;
             transform.localScale = hoverScale;

@@ -26,7 +26,7 @@ public class Signup_NPC : MonoBehaviour
     void Update()
     {
         checkHover();
-        checkOut();
+        //checkOut();
     }
 
     private void checkOut()

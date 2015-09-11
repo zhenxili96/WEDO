@@ -11,16 +11,18 @@ public class TextInstance : MonoBehaviour
     private HAND dragHand;
     private int belongLayer;
     private float layerZ;
+    public Layer parentLayer = null;
+    public bool isDelete = false;
 
     // Use this for initialization
     void Start()
     {
         Keyboard.curSentence = GetComponent<TextMesh>().text;
         name = transform.parent.name + "_prefab";
-        RoomStatic.curFocus = name;
+        RoomStatic.curFocus = transform.parent.name;
         isFocus = true;
         ColorItem.curColor = renderer.material.color;
-        ColorItem.curColorString = GetComponent<InstanceType>().colorString;
+        ColorItem.curColorString = transform.parent.GetComponent<InstanceType>().colorString;
         gameObject.AddComponent<BoxCollider>();
         belongLayer = RoomStatic.curLayer;
         ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount++;
@@ -34,6 +36,10 @@ public class TextInstance : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDelete)
+        {
+            return;
+        }
         GetComponent<ScaleAction>().enabled = true;
         GetComponent<RotationAction>().enabled = true;
         if (RoomStatic.curLayer != belongLayer)
@@ -64,6 +70,10 @@ public class TextInstance : MonoBehaviour
 
     private void checkDelete()
     {
+        if (isDelete)
+        {
+            return;
+        }
         if (!isFocus)
         {
             return;
@@ -71,11 +81,11 @@ public class TextInstance : MonoBehaviour
         if (DeleteButton.isOpen && transform.position.y >= deleteHigh)
         {
             DeleteButton.isPrepare = false;
-            if (RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
+            if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed)
             {
                 DeleteButton.isPrepare = true;
             }
-            else if (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed)
+            else if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed)
             {
                 DeleteButton.isPrepare = true;
             }
@@ -83,7 +93,21 @@ public class TextInstance : MonoBehaviour
             {
 
                 DeleteButton.isOut = false;
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                if (!gameObject.GetComponent<InstanceType>().LayerGuid.Equals(RoomStatic.UNSETGUID)
+                    && !gameObject.GetComponent<InstanceType>().MyGuid.Equals(RoomStatic.UNSETGUID))
+                {
+                    WholeStatic.curRoomInterface.DeleteBoardMaterial(gameObject.GetComponent<InstanceType>().LayerGuid,
+                    gameObject.GetComponent<InstanceType>().MyGuid);
+                    isDelete = true;
+                    Debug.Log("delete material");
+                    return;
+                }
+                else
+                {
+                    Debug.Log("delete error " + gameObject.GetComponent<InstanceType>().LayerGuid
+                        + "  " + gameObject.GetComponent<InstanceType>().MyGuid);
+                }
                 return;
             }
         }
@@ -100,6 +124,10 @@ public class TextInstance : MonoBehaviour
 
     private void checkScale()
     {
+        if (isDelete)
+        {
+            return;
+        }
         GetComponent<TextMesh>().fontSize = (int)(100 * transform.localScale.x);
         transform.parent.localScale = new Vector3(1 / transform.localScale.x,
             1 / transform.localScale.y, 1 / transform.localScale.z);
@@ -107,6 +135,10 @@ public class TextInstance : MonoBehaviour
 
     private void checkCollider()
     {
+        if (isDelete)
+        {
+            return;
+        }
         GetComponent<BoxCollider>().center = new Vector3(0, 0, 0);
         int charCount = GetComponent<TextMesh>().text.Length;
         int fontSize = GetComponent<TextMesh>().fontSize / 10;
@@ -115,7 +147,11 @@ public class TextInstance : MonoBehaviour
 
     private void checkFocus()
     {
-        if (RoomStatic.curFocus.Equals(name))
+        if (isDelete)
+        {
+            return;
+        }
+        if (RoomStatic.curFocus.Equals(transform.parent.name))
         {
             isFocus = true;
             renderer.material.color = ColorItem.curColor;
@@ -129,19 +165,23 @@ public class TextInstance : MonoBehaviour
 
     private void checkDrag()
     {
+        if (isDelete)
+        {
+            return;
+        }
         if (RayHit.LeftHitName.Equals(name) && LeftHandProperty.isClosed && !LeftHandProperty.clickUsed)
         {
             isDraging = true;
             dragHand = HAND.LEFTHAND;
             LeftHandProperty.clickUsed = true;
-            RoomStatic.curFocus = name;
+            RoomStatic.curFocus = transform.parent.name;
         }
         if (RayHit.RightHitName.Equals(name) && RightHandProperty.isClosed && !RightHandProperty.clickUsed)
         {
             isDraging = true;
             dragHand = HAND.RIGHTHAND;
             RightHandProperty.clickUsed = true;
-            RoomStatic.curFocus = name;
+            RoomStatic.curFocus = transform.parent.name;
         }
         if (isDraging)
         {

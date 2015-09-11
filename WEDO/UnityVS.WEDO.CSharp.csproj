@@ -115,6 +115,7 @@
     <Compile Include="Assets\MyScript\Keyboard\Keyboard.cs" />
     <Compile Include="Assets\MyScript\Keyboard\NumberBackKey.cs" />
     <Compile Include="Assets\MyScript\Keyboard\NumberKey.cs" />
+    <Compile Include="Assets\MyScript\Keyboard\TypeKey.cs" />
     <Compile Include="Assets\MyScript\Keyboard\UsualKey.cs" />
     <Compile Include="Assets\MyScript\Login\LoginStatic.cs" />
     <Compile Include="Assets\MyScript\Login\Login_LoginButton.cs" />
