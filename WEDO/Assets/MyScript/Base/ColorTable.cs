@@ -36,6 +36,7 @@ public class ColorTable
 
     public static Color getColor(string colorname)
     {
+        colorname = colorname.ToUpper();
         int row = colorname.ToCharArray()[0] - 'A';
         int col;
         if (colorname.Length == 2)
