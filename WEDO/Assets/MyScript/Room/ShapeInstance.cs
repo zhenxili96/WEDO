@@ -167,8 +167,15 @@ public class ShapeInstance : MonoBehaviour
         if (RoomStatic.curFocus.Equals(name))
         {
             isFocus = true;
-            transform.GetChild(0).renderer.material.color = ColorItem.curColor;
-            GetComponent<InstanceType>().colorString = ColorItem.curColorString;
+            //transform.GetChild(0).renderer.material.color = ColorItem.curColor;
+            //GetComponent<InstanceType>().colorString = ColorItem.curColorString;
+            WholeStatic.curRoomInterface.EditBoardMaterial(GetComponent<InstanceType>().MyGuid,
+                GetComponent<InstanceType>().LayerGuid,
+                transform.localPosition.x, transform.localPosition.y, transform.localPosition.z,
+                transform.localScale.x, transform.localScale.y, transform.localScale.z,
+                transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z,
+                ColorItem.curColorString, GetComponent<InstanceType>().Type,
+                    "", 0, "");
             transform.FindChild(ShadowName).gameObject.SetActive(true);
         }
         else if ((RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
@@ -176,8 +183,15 @@ public class ShapeInstance : MonoBehaviour
         {
             isFocus = true;
             RoomStatic.curFocus = name;
-            ColorItem.curColor = transform.GetChild(0).renderer.material.color;
-            ColorItem.curColorString = GetComponent<InstanceType>().colorString;
+            //ColorItem.curColor = transform.GetChild(0).renderer.material.color;
+            //ColorItem.curColorString = GetComponent<InstanceType>().colorString;
+            WholeStatic.curRoomInterface.EditBoardMaterial(GetComponent<InstanceType>().MyGuid,
+                GetComponent<InstanceType>().LayerGuid,
+                transform.localPosition.x, transform.localPosition.y, transform.localPosition.z,
+                transform.localScale.x, transform.localScale.y, transform.localScale.z,
+                transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z,
+                ColorItem.curColorString, GetComponent<InstanceType>().Type,
+                    "", 0, "");
             transform.FindChild(ShadowName).gameObject.SetActive(true);
         }
         else

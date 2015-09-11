@@ -313,6 +313,7 @@ public class RoomStatic : MonoBehaviour
         recordCount = WholeStatic.curRecords.Count;
         memberCount = WholeStatic.curMembers.Count;
         MyEnterTime = memberCount + 1;
+        Debug.Log("room static init information");
         GameObject.Find(Message_MemberName).GetComponent<message_member>().initMember();
         GameObject.Find(Message_NoticeName).GetComponent<message_notice>().initNotice();
         GameObject.Find(Message_RecordName).GetComponent<message_record>().initRecord();

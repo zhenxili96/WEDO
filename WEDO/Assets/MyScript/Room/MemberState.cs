@@ -27,7 +27,7 @@ public class MemberState : MonoBehaviour
         {
             Debug.Log("curRoomInterface null no member");
         }
-        Debug.Log("cur User count " + WholeStatic.curRoomInterface.RoomUsers.Count);
+        //Debug.Log("cur User count " + WholeStatic.curRoomInterface.RoomUsers.Count + " my enter" + RoomStatic.memberCount);
         switch (WholeStatic.curRoomInterface.RoomUsers.Count)
         {
             case 0:
@@ -41,12 +41,21 @@ public class MemberState : MonoBehaviour
                 transform.FindChild(FirstManName).gameObject.SetActive(true);
                 transform.FindChild(SecondManName).gameObject.SetActive(true);
                 transform.FindChild(ThirdManName).gameObject.SetActive(false);
+                //Debug.Log(WholeStatic.curRoomInterface.RoomUsers[0].UserNickName);
                 if (RoomStatic.MyEnterTime == 1)
                 {
                     transform.FindChild(FirstManName).GetChild(0).GetComponent<TextMesh>().text
                         = WholeStatic.curUser.Account;
                     transform.FindChild(SecondManName).GetChild(0).GetComponent<TextMesh>().text
                         = WholeStatic.curRoomInterface.RoomUsers[0].UserNickName;
+                }
+                else
+                {
+                    //Debug.Log(RoomStatic.MyEnterTime);
+                    transform.FindChild(FirstManName).GetChild(0).GetComponent<TextMesh>().text
+                        = WholeStatic.curRoomInterface.RoomUsers[0].UserNickName;
+                    transform.FindChild(SecondManName).GetChild(0).GetComponent<TextMesh>().text
+                        = WholeStatic.curUser.Account;
                 }
                 break;
             case 2:
