@@ -63,13 +63,21 @@ public class MenuBar : MonoBehaviour
         if (isClick)
         {
             isOut = true;
+            if ((RayHit.LeftHitName.Equals(planeName) && LeftHandProperty.isClosed)
+                            || RayHit.RightHitName.Equals(planeName) && RightHandProperty.isClosed)
+            {
+                if (isOpen)
+                {
+                    isOut = false;
+                }
+            }
         }
         else
         {
-            if (LeftHandProperty.isClosed || RightHandProperty.isClosed)
-            {
-                isOut = false;
-            }
+            //if (LeftHandProperty.isClosed || RightHandProperty.isClosed)
+            //{
+            //    isOut = false;
+            //}
         }
     }
 
