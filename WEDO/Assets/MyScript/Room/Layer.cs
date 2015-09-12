@@ -82,7 +82,10 @@ public class Layer
                         new Vector3(tempLayer.BoardMaterials[i].ScalingX,
                             tempLayer.BoardMaterials[i].ScalingY,
                             tempLayer.BoardMaterials[i].ScalingZ);
-                    instanceArray[j].transform.GetChild(0).renderer.material.color = ColorTable.getColor(tempLayer.BoardMaterials[i].Color);
+                    instanceArray[j].GetComponent<InstanceType>().colorString
+                            = tempLayer.BoardMaterials[i].Color;
+                    instanceArray[j].transform.GetChild(0).renderer.material.color
+                        = ColorTable.getColor(instanceArray[j].GetComponent<InstanceType>().colorString);
 
                     //Debug.Log("download curfocus data:"
                     //    + tempLayer.BoardMaterials[i].CoordX + ","
