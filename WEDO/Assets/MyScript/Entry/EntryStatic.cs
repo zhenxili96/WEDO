@@ -30,7 +30,7 @@ public class EntryStatic : MonoBehaviour
     {
         if (!isTransPage)
         {
-            Debug.Log("exit");
+            Debug.Log("connect end");
             ProxyInterface.Connect_End();
         }
         else

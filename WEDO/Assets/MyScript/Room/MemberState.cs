@@ -28,6 +28,10 @@ public class MemberState : MonoBehaviour
             Debug.Log("curRoomInterface null no member");
         }
         //Debug.Log("cur User count " + WholeStatic.curRoomInterface.RoomUsers.Count + " my enter" + RoomStatic.memberCount);
+        if (WholeStatic.curRoomInterface.RoomUsers == null)
+        {
+            Debug.Log(WholeStatic.curRoomInterface.NowUser);
+        }
         switch (WholeStatic.curRoomInterface.RoomUsers.Count)
         {
             case 0:

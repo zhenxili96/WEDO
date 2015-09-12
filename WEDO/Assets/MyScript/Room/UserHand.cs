@@ -13,10 +13,10 @@ public class UserHand
     public string leftHandPrefab = "RoomPrefab/userlefthandprefab";
     public string rightHandPrefab = "RoomPrefab/userrighthandprefab";
     public string ParentName = "OtherHands";
-    public string leftOpenHandMetrialPrefab = "BlueLeftHand";
-    public string leftCloseHandMetrialPrefab = "BlueLeftHandFist";
-    public string rightOpenHandMetrialPrefab = "BlueRightHand";
-    public string rightCloseHandMetrialPrefab = "BlueRightHandFist";
+    public string leftOpenHandMetrialPrefab = "RedLeftHand";
+    public string leftCloseHandMetrialPrefab = "RedLeftHandFist";
+    public string rightOpenHandMetrialPrefab = "RedRightHand";
+    public string rightCloseHandMetrialPrefab = "RedRightHandFist";
     public string userName = "";
     public string userGuid = "";
     public string LeftName = "";

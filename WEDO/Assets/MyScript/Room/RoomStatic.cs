@@ -488,6 +488,7 @@ public class RoomStatic : MonoBehaviour
                 }
             }
             ProxyInterface.Connect_End();
+            Debug.Log("connect end");
         }
         else
         {
