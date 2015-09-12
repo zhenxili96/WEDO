@@ -57,13 +57,19 @@ public class Layer
                 {
                     isFind = true;
                     isFindArray[j] = 1;
-                    //if (RoomStatic.curFocusObject!= null
-                    //    && RoomStatic.curFocusObject.GetComponent<InstanceType>().MyGuid.Equals(tempLayer.BoardMaterials[i].Guid))
-                    //{
-                    //    //当前focus 物体属性仅由本地决定并上传至server server不可干涉
-                    //    Debug.Log("focus object is being designed by raw user");
-                    //    break;
-                    //}
+                    if (RoomStatic.curFocusObject != null
+                        && RoomStatic.curFocusObject.GetComponent<InstanceType>().MyGuid.Equals(tempLayer.BoardMaterials[i].Guid))
+                    {
+                        //当前focus 物体属性仅由本地决定并上传至server server不可干涉
+                        Debug.Log("focus object is being designed by raw user");
+                        //当前focus 物体颜色属性由server提供
+                        instanceArray[j].GetComponent<InstanceType>().colorString
+                            = tempLayer.BoardMaterials[i].Color;
+                        Debug.Log("my colorstring " + instanceArray[j].GetComponent<InstanceType>().colorString);
+                        instanceArray[i].transform.GetChild(0).renderer.material.color 
+                            = ColorTable.getColor(instanceArray[j].GetComponent<InstanceType>().colorString);
+                        break;
+                    }
                     instanceArray[j].transform.localPosition =
                         new Vector3(tempLayer.BoardMaterials[i].CoordX,
                             tempLayer.BoardMaterials[i].CoordY,

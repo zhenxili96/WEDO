@@ -141,7 +141,7 @@ public class RoomStatic : MonoBehaviour
                     curFocusObject.transform.localPosition.x, curFocusObject.transform.localPosition.y, curFocusObject.transform.localPosition.z,
                     curFocusObject.transform.localScale.x, curFocusObject.transform.localScale.y, curFocusObject.transform.localScale.z,
                     curFocusObject.transform.localEulerAngles.x, curFocusObject.transform.localEulerAngles.y, curFocusObject.transform.localEulerAngles.z,
-                    curFocusObject.GetComponent<InstanceType>().colorString, TEXT,
+                    ColorItem.curColorString, TEXT,
                     curFocusChild.GetComponent<TextMesh>().text,
                     curFocusChild.GetComponent<TextMesh>().fontSize, "");
             }
@@ -152,15 +152,15 @@ public class RoomStatic : MonoBehaviour
                     curFocusObject.transform.localPosition.x, curFocusObject.transform.localPosition.y, curFocusObject.transform.localPosition.z,
                     curFocusObject.transform.localScale.x, curFocusObject.transform.localScale.y, curFocusObject.transform.localScale.z,
                     curFocusObject.transform.localEulerAngles.x, curFocusObject.transform.localEulerAngles.y, curFocusObject.transform.localEulerAngles.z,
-                    curFocusObject.GetComponent<InstanceType>().colorString, curFocusObject.GetComponent<InstanceType>().Type,
+                    ColorItem.curColorString, curFocusObject.GetComponent<InstanceType>().Type,
                     "", 0, "");
             }
 
-            //Debug.Log("upload cur focus data:"
-            //    + curFocusObject.transform.localPosition + " "
-            //    + curFocusObject.transform.localEulerAngles + " "
-            //    + curFocusObject.transform.localScale + " "
-            //    + curFocusObject.GetComponent<InstanceType>().colorString);
+            Debug.Log("upload cur focus data:"
+                //+ curFocusObject.transform.localPosition + " "
+                //+ curFocusObject.transform.localEulerAngles + " "
+                //+ curFocusObject.transform.localScale + " "
+                + ColorItem.curColorString);
         }
     }
 

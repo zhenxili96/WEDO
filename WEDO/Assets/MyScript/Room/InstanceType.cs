@@ -18,6 +18,7 @@ public class InstanceType : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("my colot " + colorString);
+        transform.GetChild(0).renderer.material.color = ColorTable.getColor(colorString);
     }
 }
