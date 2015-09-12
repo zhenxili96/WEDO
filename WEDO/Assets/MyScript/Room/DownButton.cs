@@ -56,7 +56,7 @@ public class DownButton : MonoBehaviour
                         UpButton.downFlag = (shapeNameArray.Length - 1);
                         return;
                     }
-                    UpButton.downFlag++;
+                    UpButton.upFlag++;
                 }
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)
@@ -74,7 +74,7 @@ public class DownButton : MonoBehaviour
                         UpButton.downFlag = (shapeNameArray.Length - 1);
                         return;
                     }
-                    UpButton.downFlag++;
+                    UpButton.upFlag++;
                 }
             }
         }

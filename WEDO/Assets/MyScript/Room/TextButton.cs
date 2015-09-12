@@ -7,10 +7,10 @@ public class TextButton : MonoBehaviour
     public bool textLock = false;
     public bool isHover = false;
     public float lockTime = 3.0f;
-    public Vector3 initPos = new Vector3(0, 0, 23);
+    public Vector3 initPos = new Vector3(0, 0, 35);
     public Vector3 initScale = new Vector3(1, 1, 1);
     public Vector3 initRotate = new Vector3(0, 0, 0);
-    public int textInstanceCount = 0;
+    public static int textInstanceCount = 0;
     public string TEXTPARENTNAME = "TextInstance";
     public string ROOMNPCNAME = "Room_NPC";
     public string TEXTBOARDNAME = "TextBoard";
@@ -75,7 +75,9 @@ public class TextButton : MonoBehaviour
                 //tempText.fontSize = 100;
                 WholeStatic.curRoomInterface.AddBoardMaterial(
                     WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
-                            initPos.x, initPos.y, initPos.z,
+                            initPos.x, initPos.y,
+                            (initPos.z - RoomStatic.curLayer 
+                            - 0.001f * (textInstanceCount + ShapeClass.triangleInstanceCount + ShapeClass.roundRectangleInstanceCount + ShapeClass.rectangleInstanceCount + ShapeClass.circleInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.TEXT, "helloworld", 40, "UNSET");

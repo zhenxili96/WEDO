@@ -4,13 +4,13 @@ using System.Collections;
 public class TextInstance : MonoBehaviour
 {
 
-    private bool isFocus = true;
+    private bool isFocus = false;
     private bool isDraging = false;
     private static float warnHigh = 70f;
     private static float deleteHigh = 80f;
     private HAND dragHand;
     private int belongLayer;
-    private float layerZ;
+    public float layerZ;
     public Layer parentLayer = null;
     public bool isDelete = false;
     public bool canTracking = false;
@@ -20,16 +20,14 @@ public class TextInstance : MonoBehaviour
     {
         Keyboard.curSentence = GetComponent<TextMesh>().text;
         name = transform.parent.name + "_prefab";
-        RoomStatic.curFocus = transform.parent.name;
-        isFocus = true;
         ColorItem.curColor = renderer.material.color;
         ColorItem.curColorString = transform.parent.GetComponent<InstanceType>().colorString;
         gameObject.AddComponent<BoxCollider>();
         belongLayer = RoomStatic.curLayer;
         ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount++;
         int objcount = ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount;
-        layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMINPos
-            - objcount * ((Layer)RoomStatic.layerArray[belongLayer]).ZSPACE;
+        //layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMINPos
+        //    - objcount * ((Layer)RoomStatic.layerArray[belongLayer]).ZSPACE;
         transform.position = new Vector3(transform.position.x,
             transform.position.y, layerZ);
     }
@@ -114,10 +112,6 @@ public class TextInstance : MonoBehaviour
     private void checkDelete()
     {
         if (isDelete)
-        {
-            return;
-        }
-        if (!canTracking)
         {
             return;
         }
@@ -213,6 +207,10 @@ public class TextInstance : MonoBehaviour
     private void checkDrag()
     {
         if (isDelete)
+        {
+            return;
+        }
+        if (!canTracking)
         {
             return;
         }

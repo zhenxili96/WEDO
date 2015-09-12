@@ -5,6 +5,8 @@ public class ScreenShot : MonoBehaviour
 {
     public string Mode1Name = "Mode1";
     public string RoomNPCName = "Room_NPC";
+    public string HANDNAME = "HAND";
+    public string OtherHandName = "OtherHands";
     public Rect shotRect;
     public bool isPrepare = false;
     public bool isShot = false;
@@ -23,6 +25,8 @@ public class ScreenShot : MonoBehaviour
         {
             CaptureScreenshot2(shotRect);
             GameObject.Find(Mode1Name).transform.FindChild(RoomNPCName).gameObject.SetActive(true);
+            GameObject.Find(Mode1Name).transform.FindChild(HANDNAME).gameObject.SetActive(true);
+            GameObject.Find(Mode1Name).transform.FindChild(OtherHandName).gameObject.SetActive(true);
             isShot = false;
         }
     }

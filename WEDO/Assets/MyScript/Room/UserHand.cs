@@ -21,6 +21,8 @@ public class UserHand
     public string userGuid = "";
     public string LeftName = "";
     public string RightName = "";
+    public Vector3 initScale = new Vector3(2, 1, 2);
+    public Vector3 initRotate = new Vector3(270, 0, 0);
 
     public UserHand()
     {
@@ -35,13 +37,13 @@ public class UserHand
         leftHandObject.transform.parent = GameObject.Find(ParentName).transform;
         leftHandObject.transform.localPosition = new Vector3(
             tempUser.LeftCoordX, tempUser.LeftCoordY, tempUser.LeftCoordZ);
-        leftHandObject.transform.localScale = new Vector3(1, 1, 1);
-        leftHandObject.transform.localEulerAngles = new Vector3(270, 0, 0);
+        leftHandObject.transform.localScale = initScale;
+        leftHandObject.transform.localEulerAngles = initRotate;
         rightHandObject.transform.parent = GameObject.Find(ParentName).transform;
         rightHandObject.transform.localPosition = new Vector3(
             tempUser.RightCoordX, tempUser.RightCoordY, tempUser.RightCoordZ);
-        rightHandObject.transform.localScale = new Vector3(1, 1, 1);
-        rightHandObject.transform.localEulerAngles = new Vector3(270, 0, 0);
+        rightHandObject.transform.localScale = initScale;
+        rightHandObject.transform.localEulerAngles = initRotate;
         LeftName = "LeftHand_" + userName;
         RightName = "RighHand_" + userName;
         leftHandObject.name = LeftName;

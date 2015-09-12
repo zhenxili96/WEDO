@@ -12,6 +12,8 @@ public class PrintButton : MonoBehaviour
     public float hoverZ;
     public string Camera1Name = "Camera_mode1";
     public string RoomNPCName = "Room_NPC";
+    public string HANDNAME = "HAND";
+    public string OtherHandName = "OtherHands";
 
     // Use this for initialization
     void Start()
@@ -37,6 +39,8 @@ public class PrintButton : MonoBehaviour
             {
                 LeftHandProperty.clickUsed = true;
                 GameObject.Find(RoomNPCName).SetActive(false);
+                GameObject.Find(HANDNAME).SetActive(false);
+                GameObject.Find(OtherHandName).SetActive(false);
                 GameObject.Find(Camera1Name).GetComponent<ScreenShot>().ScreenShotSave();
             }
             if (RightHandProperty.isClosed && !RightHandProperty.clickUsed)

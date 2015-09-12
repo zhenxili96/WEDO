@@ -65,7 +65,7 @@ public class Layer
                         //当前focus 物体颜色属性由server提供
                         instanceArray[j].GetComponent<InstanceType>().colorString
                             = tempLayer.BoardMaterials[i].Color;
-                        Debug.Log("my colorstring " + instanceArray[j].GetComponent<InstanceType>().colorString);
+                        //Debug.Log("my colorstring " + instanceArray[j].GetComponent<InstanceType>().colorString);
                         instanceArray[i].transform.GetChild(0).renderer.material.color 
                             = ColorTable.getColor(instanceArray[j].GetComponent<InstanceType>().colorString);
                         break;
@@ -221,6 +221,7 @@ public class Layer
                 tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(CirclePrefab));
                 tempObject.name = "CircleInstance_" + RoomStatic.CircleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+                tempObject.GetComponent<ShapeInstance>().layerZ = tempInstance.CoordZ;
                 tempObject.GetComponent<ShapeInstance>().parentLayer = this;
                 break;
             case RoomStatic.SHAPE_RECTANGLE:
@@ -228,6 +229,7 @@ public class Layer
                 tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RectanglePrefab));
                 tempObject.name = "RectangleInstance_" + RoomStatic.RectangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+                tempObject.GetComponent<ShapeInstance>().layerZ = tempInstance.CoordZ;
                 tempObject.GetComponent<ShapeInstance>().parentLayer = this;
                 break;
             case RoomStatic.SHAPE_ROUNDRECTANGLE:
@@ -235,6 +237,7 @@ public class Layer
                 tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(RoungRectanglePrefab));
                 tempObject.name = "RoundRectangleInstance_" + RoomStatic.RoundRectangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+                tempObject.GetComponent<ShapeInstance>().layerZ = tempInstance.CoordZ;
                 tempObject.GetComponent<ShapeInstance>().parentLayer = this;
                 break;
             case RoomStatic.SHAPE_TRIANGLE:
@@ -242,6 +245,7 @@ public class Layer
                 tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TrianglePrefab));
                 tempObject.name = "TriangleInstance_" + RoomStatic.TriangleInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(ShapeInstanceName);
+                tempObject.GetComponent<ShapeInstance>().layerZ = tempInstance.CoordZ;
                 tempObject.GetComponent<ShapeInstance>().parentLayer = this;
                 break;
             case RoomStatic.TEXT:
@@ -249,6 +253,7 @@ public class Layer
                 tempObject = (GameObject)MonoBehaviour.Instantiate(Resources.Load(TextPrefab));
                 tempObject.name = "TextInstance_" + RoomStatic.TextInstanceCount;
                 tempObject.transform.parent = layerObject.transform.FindChild(TextInstanceName);
+                tempObject.transform.GetChild(0).GetComponent<TextInstance>().layerZ = tempInstance.CoordZ;
                 tempObject.transform.GetChild(0).GetComponent<TextInstance>().parentLayer = this;
                 tempObject.transform.GetChild(0).GetComponent<TextMesh>().text = tempInstance.Cont;
                 tempObject.transform.GetChild(0).GetComponent<TextMesh>().fontSize = tempInstance.FontSize;

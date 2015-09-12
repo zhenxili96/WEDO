@@ -17,13 +17,12 @@ public class ShapeInstance : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        RoomStatic.curFocus = "";
         isFocus = true;
         belongLayer = RoomStatic.curLayer;
         ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount++;
         int objcount = ((Layer)RoomStatic.layerArray[belongLayer]).ObjectCount;
-        layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMINPos
-            - objcount * ((Layer)RoomStatic.layerArray[belongLayer]).ZSPACE;
+        //layerZ = ((Layer)RoomStatic.layerArray[belongLayer]).ZMINPos
+        //    - objcount * ((Layer)RoomStatic.layerArray[belongLayer]).ZSPACE;
         transform.localPosition = new Vector3(transform.localPosition.x,
             transform.localPosition.y, layerZ);
     }
@@ -163,7 +162,7 @@ public class ShapeInstance : MonoBehaviour
         if (RoomStatic.curFocus.Equals(name))
         {
             isFocus = true;
-            Debug.Log("my color string " + GetComponent<InstanceType>().colorString);
+            //Debug.Log("my color string " + GetComponent<InstanceType>().colorString);
             //WholeStatic.curRoomInterface.EditBoardMaterial(GetComponent<InstanceType>().MyGuid,
             //    GetComponent<InstanceType>().LayerGuid,
             //    transform.localPosition.x, transform.localPosition.y, transform.localPosition.z,
@@ -173,8 +172,8 @@ public class ShapeInstance : MonoBehaviour
                     //"", 0, "");
             transform.FindChild(ShadowName).gameObject.SetActive(true);
         }
-        else if ((RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
-            || (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed))
+        else if (RoomStatic.curFocus.Equals("") && ((RayHit.LeftHitName.Equals(transform.GetChild(0).name) && LeftHandProperty.isClosed)
+            || (RayHit.RightHitName.Equals(transform.GetChild(0).name) && RightHandProperty.isClosed)))
         {
             isFocus = true;
             RoomStatic.curFocus = name;

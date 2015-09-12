@@ -11,11 +11,11 @@ public class ShapeClass : MonoBehaviour
     private bool shapeLock = false; //防止连续生成
     private float lockTime = 3.0f;
     public SHAPE shape;
-    private static int circleInstanceCount = 0;
-    private static int rectangleInstanceCount = 0;
-    private static int roundRectangleInstanceCount = 0;
-    private static int triangleInstanceCount = 0;
-    public static Vector3 initPos = new Vector3(0, 0, 23);
+    public static int circleInstanceCount = 0;
+    public static int rectangleInstanceCount = 0;
+    public static int roundRectangleInstanceCount = 0;
+    public static int triangleInstanceCount = 0;
+    public static Vector3 initPos = new Vector3(0, 0, 35);
     public static Vector3 initScale = new Vector3(1, 1, 1);
     public static Vector3 initRotate = new Vector3(0, 0, 0);
     private static string SHAPEPARETNNAME = "ShapeInstance";
@@ -88,7 +88,8 @@ public class ShapeClass : MonoBehaviour
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y,
-                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
+                            (initPos.z - RoomStatic.curLayer
+                            - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount + TextButton.textInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_CIRCLE, "", 0, "");
@@ -101,7 +102,8 @@ public class ShapeClass : MonoBehaviour
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y,
-                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
+                            (initPos.z - RoomStatic.curLayer
+                            - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount + TextButton.textInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_RECTANGLE, "", 0, "");
@@ -114,7 +116,8 @@ public class ShapeClass : MonoBehaviour
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y,
-                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
+                           (initPos.z - RoomStatic.curLayer
+                            - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount + TextButton.textInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_ROUNDRECTANGLE, "", 0, "");
@@ -127,7 +130,8 @@ public class ShapeClass : MonoBehaviour
                         WholeStatic.curRoomInterface.AddBoardMaterial(
                             WholeStatic.curRoomInterface.RoomLayers[RoomStatic.curLayer - 1].NowLayer.Guid,
                             initPos.x, initPos.y,
-                            (initPos.z - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount)),
+                            (initPos.z - RoomStatic.curLayer
+                            - 0.001f * (circleInstanceCount + rectangleInstanceCount + roundRectangleInstanceCount + triangleInstanceCount + TextButton.textInstanceCount)),
                             initScale.x, initScale.y, initScale.z,
                             initRotate.x, initRotate.y, initRotate.z,
                             "C7", RoomStatic.SHAPE_TRIANGLE, "", 0, "");
