@@ -374,7 +374,10 @@ public class RoomStatic : MonoBehaviour
         }
         while (UnDeleteUser.Count != 0)
         {
-            curUserHands.Remove(UnDeleteUser.Dequeue());
+            UserHand temp = UnDeleteUser.Dequeue();
+            Destroy(temp.leftHandObject);
+            Destroy(temp.rightHandObject);
+            curUserHands.Remove(temp);
         }
     }
 
