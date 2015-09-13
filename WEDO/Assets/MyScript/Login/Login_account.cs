@@ -20,6 +20,8 @@ public class Login_account : MonoBehaviour
         originColor = renderer.material.color;
         accountText = transform.GetChild(accounttextIndex).gameObject;
         accountText.renderer.material.color = accountTextColor;
+        account = "";
+        accountText.GetComponent<TextMesh>().text = account;
     }
 
     // Update is called once per frame

@@ -9,6 +9,7 @@ public class LoginStatic : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        curFocus = "";
         LayRay.rayStyle = RayStyle.Ortho;
         LeftHandProperty.HandInit();
         RightHandProperty.HandInit();

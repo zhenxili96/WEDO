@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Wedo_ClientSide;
+using System;
+using System.Threading;
 
 public class EntryStatic : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class EntryStatic : MonoBehaviour
     public string InvitationName = "Invitation";
     public List<ClientNotification> curNotifications = new List<ClientNotification>();
     public static bool isTransPage = false;
+    public Timer invitationTimer;
+    public bool needInvitate = false;
 
     // Use this for initialization
     void Start()
@@ -18,12 +22,22 @@ public class EntryStatic : MonoBehaviour
         LeftHandProperty.HandInit();
         RightHandProperty.HandInit();
         checkInvitation();
+        invitationTimer = new Timer(checkInvitationTimer, null, 0, 1000);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //if (needInvitate)
+        //{
+        //    checkInvitation();
+        //    needInvitate = false;
+        //}
+    }
+
+    private void checkInvitationTimer(object data)
+    {
+        needInvitate = true;
     }
 
     void OnDestroy()

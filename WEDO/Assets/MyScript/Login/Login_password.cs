@@ -19,6 +19,8 @@ public class Login_password : MonoBehaviour
         originColor = renderer.material.color;
         passwordText = transform.GetChild(passwordtextIndex).gameObject;
         passwordText.renderer.material.color = passwordTextColor;
+        password = "";
+        passwordText.GetComponent<TextMesh>().text = TranslatePassword();
     }
 
     // Update is called once per frame

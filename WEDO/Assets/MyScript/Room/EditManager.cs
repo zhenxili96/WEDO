@@ -5,7 +5,7 @@ public enum EditState { SCALE, SCALEX, SCALEY, ROTATE, MOVE};
 
 public class EditManager : MonoBehaviour
 {
-    public static EditState curEditState = EditState.SCALE;
+    public static EditState curEditState = EditState.MOVE;
     public string Manager_ScaleX = "manager_scalex";
     public string Manager_Scale = "manager_scale";
     public string Manager_ScaleY = "manager_scaley";

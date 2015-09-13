@@ -47,6 +47,8 @@ public class PrintButton : MonoBehaviour
             {
                 RightHandProperty.clickUsed = true;
                 GameObject.Find(RoomNPCName).SetActive(false);
+                GameObject.Find(HANDNAME).SetActive(false);
+                GameObject.Find(OtherHandName).SetActive(false);
                 GameObject.Find(Camera1Name).GetComponent<ScreenShot>().ScreenShotSave();
             }
         }
